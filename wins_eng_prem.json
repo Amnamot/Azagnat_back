@@ -1,0 +1,33 @@
+[
+  {
+    "theme_name": "win",
+    "texts": 
+    [
+		"#nonce#. Congratulations, #name#! #win# SOL!",
+		"#nonce#. #name#, #win# SOL are yours!",
+		"#nonce#. You won #win# SOL!",
+		"#nonce#. + #win# SOL!",
+		"#nonce#. Super! Get #win# SOL!",
+		"Excellent! #nonce#. I transfer #win# SOL!",
+		"#nonce#. Cool! #win# SOL!",
+		"#nonce#. WIN! #win# SOL!",
+		"Luck! #nonce#. Take #win# SOL!",
+		"#nonce#. #name#, you won #win# SOL!"
+    ]
+  },
+  {
+    "theme_name": "lost",
+    "texts": 
+    [
+		"#nonce#. Lost!",
+		"#nonce#. Failure!",
+		"#nonce#. Loss!",
+		"#nonce#. Oh! Still lucky!",
+		"#nonce#. Try again!",
+		"#nonce#. Come onе more!",
+		"#nonce#. No...",
+		"#nonce#. Don't despair!",
+		"#nonce#. Not this time."
+    ]
+  }
+]

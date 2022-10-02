@@ -1,0 +1,600 @@
+{% load static %}
+<!doctype html>
+<html lang="ru-en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Magic Ball</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+  <script type="module" crossorigin src="{% static 'assets/main.js' %}"></script>
+  <link rel="modulepreload" href="{% static 'assets/vendor.js' %}">
+  <link rel="stylesheet" href="{% static 'assets/main.css' %}">
+</head>
+<body>
+<header class="header">
+    <img src="{% static 'img/solana_logo.svg' %}" alt="solana logo" class="header-logo">
+    <div class="header-texts">
+        <h1 class="header-title">AZAGNAT</h1>
+        <p class="header-subtitle description">
+            Non-fungible Magic Ball
+        </p>
+    </div>
+    <img src="{% static 'img/WalletON.svg' %}" alt="Wallet" class="header-wallet">
+</header>
+<div class="container-main">
+    <main class="main">
+        <div class="main-description">
+            <h3 class="main-description__title">Description:</h3>
+            <p class="main-description__text description">
+                In old Ireland, there lived a dwarf who was no different from his fellow tribesmen until his wife left
+                him (to another dwarf or to another world, it is not specified). The uncontrolled dwarf went on a
+                rampage: he began to drink, smoke more, and he himself did not notice how he turned into a Leprechaun. I
+                had to give up drinking and smoking for health reasons. And the status of the Leprechaun had to be
+                worked out in full. This is how Leprechaun Jerome's project Azagnath was born — an immersive
+                non-fungible Magic Ball that connects to the owner via a neuro-sensory interface and can help him not
+                make another mistake and indicate the path of fate.
+            </p>
+            <p class="main-description__text description">
+                The ball will start working only if you pay for it with a coin. The more expensive the coin, the
+                stronger the Tsaheylu!
+            </p>
+        </div>
+        <form action="!#">
+            <div class="container-webgl">
+                <div class="container3d">
+                    <div class="title-container">
+                        <h1 class="main-title">AZAGNAT <span>#{{ id }}</span></h1>
+                        <p class="user-name"></p>
+                        <img class="avatar" src="{% static 'img/avatar.svg' %}" alt="avatar">
+                    </div>
+                    <div class="container3d-footer">
+                        <div class="switch-mode__container">
+                            <div class="switch-mode"></div>
+                        </div>
+                        <div class="full-screen__container">
+                            <div class="full-screen"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu">
+                    <div class="menu-container">
+                        <h3 class="menu__title">This data is required</h3>
+                        <fieldset class="user-data">
+                            <div class="user-data__container">
+                                <label>
+                                    Name
+                                    <input class="text" min="5" type="text" placeholder="input name">
+                                    <sub>min 5 symbols (like Jerome)</sub>
+                                </label>
+                                <label class="date-label">
+                                    Date of Birth
+                                    <input class="date-label-pic" type="date" placeholder="00 month 0000">
+                                    <span class="air-picker"></span>
+                                    <sub>Leprechauns live up to 1000 years</sub>
+                                </label>
+                                <label>
+                                    Gender
+                                    <select class="hide gender-input">
+                                        <option value="0">Man</option>
+                                        <option value="1">Woman</option>
+                                    </select>
+
+                                    <div class="f-select">
+                                        <div class="f-select-container f-select-container__gender">
+                                            <div class="f-select-option placeholder"><span>specify gender</span></div>
+                                            <div class="f-select-option">Man</div>
+                                            <div class="f-select-option">Woman</div>
+                                        </div>
+                                    </div>
+                                    <sub>*who saw the leprechaun's wife?</sub>
+                                </label>
+                                <label>
+                                    Avatar
+                                    <input type='file' id="uploadBannerImage"/>
+                                    <span class="input text">select image</span>
+                                    <sub>max 300kb, size 512x512 px</sub>
+                                </label>
+                                <label class="text">
+                                    Language
+                                    <select class="hide lang">
+                                        <option value="0">English</option>
+                                        <option value="1">Russian</option>
+                                    </select>
+                                    <div class="f-select">
+                                        <div class="f-select-container f-select-container__language">
+                                            <div class="f-select-option placeholder"><span>English/Russian</span></div>
+                                            <div class="f-select-option">English</div>
+                                            <div class="f-select-option">Russian</div>
+                                        </div>
+                                    </div>
+                                    <sub>Leprechaun speak Shelta</sub>
+                                </label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="ball-settings">
+                            <h3 class="ball-settings__title">Premium data <span>(+SOL)</span></h3>
+                            <div class="ball-settings__container">
+                                <label class="active">
+                                    Body model
+                                    <select class="body-type hide"></select>
+                                    <div class="f-select">
+                                        <div class="f-select-container f-select-container__body-type">
+                                            <div class="f-select-option placeholder">Ostan</div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="addOption"></div>
+                            </div>
+                            <div class="ball-settings__container ball-settings__container--body-color">
+                                <label class="active">
+                                    Body view
+                                    <select class="body-color hide">
+                                        <option value="0">Default</option>
+                                        <option value="1">Custom color</option>
+                                        <option value="2">Custom image</option>
+                                        <option value="3">Select image</option>
+                                        <option value="4">Material</option>
+                                    </select>
+                                    <div class="f-select ">
+                                        <div class="f-select-container f-select-container__body-color">
+                                            <div class="f-select-option placeholder">Default color</div>
+                                            <div class="f-select-option">Default color</div>
+                                            <div class="f-select-option">Custom color</div>
+                                            <div class="f-select-option">Custom image</div>
+                                            <div class="f-select-option">Select image</div>
+                                            <div class="f-select-option">Material</div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="addOption body-color-add"></div>
+                            </div>
+                            <div class="ball-settings__container metalness-conyainer">
+                                <label class="active metalness-lb">
+                                    Metalness
+                                    <input class="metalness styled-slider slider-progress" type="range" min="0" max="1"
+                                           step=".01" value="0">
+                                </label>
+
+                                <label class="active">
+                                    Roughness
+                                    <input class="roughness styled-slider slider-progress" type="range" min="0" max="1"
+                                           step=".01" value="0">
+                                </label>
+                            </div>
+                            <div class="ball-settings__container">
+
+                                <label class="active">
+                                    Background
+                                    <select class="background-settings hide">
+                                        <option value="0">Default</option>
+                                        <option value="1">Single color</option>
+                                        <option value="2">Linear gradient</option>
+                                        <option value="3">Radial gradient</option>
+                                        <option value="4">Custom image</option>
+                                        <option value="5">Select image</option>
+                                    </select>
+                                    <div class="f-select">
+                                        <div class="f-select-container f-select-container__background-color">
+                                            <div class="f-select-option placeholder"><span>Select</span></div>
+                                            <div class="f-select-option">Default</div>
+                                            <div class="f-select-option">Single color</div>
+                                            <div class="f-select-option">Linear gradient</div>
+                                            <div class="f-select-option">Radial gradient</div>
+                                            <div class="f-select-option">Custom image</div>
+                                            <div class="f-select-option">Select image</div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="addOption background-settings-add"></div>
+                            </div>
+                            <div class="ball-settings__container">
+                                <label class="active">
+                                    Ticker color
+                                    <select class="change-ticker-color hide">
+                                        <option value="0">Default</option>
+                                        <option value="1">Custom color</option>
+                                    </select>
+                                    <div class="f-select">
+                                        <div class="f-select-container f-select-container__ticker-color">
+                                            <div class="f-select-option placeholder"><span>Select text color</span>
+                                            </div>
+                                            <div class="f-select-option">Default</div>
+                                            <div class="f-select-option">Custom color</div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="addOption change-ticker-color-add"></div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <section class="instructions">
+                <h3 class="instructions__title description">Instructions for use</h3><br>
+                <p class="instructions__text description">
+                    Click on the ball. Hold and spin fast. After you have customized the ball according to your beauty,
+                    proceed to payment.
+                </p>
+                <p class="instructions__text description">
+                    You can switch the mode of tips and answers with a special button in the lower left corner of the
+                    window with the ball
+                </p>
+            </section>
+            <section class="mint">
+                <h3 class="mint__title">
+                    The resource of the blacksmith's sledgehammer is limited, but no one knows how many Magic Balls he
+                    will have time to forge. Take care of your Azagnat.
+                    He is now an integral part of you. Use it only for its intended purpose, and it will serve you
+                    forever!
+                    And Azagnaths can be given as a gift.                
+                </h3>
+
+                <p class="mint__description description">
+                    Your discount is <span>{{ percent }}%</span>. It applies only to the base cost of Azagnat, and is not taken into
+                    account in premium parameters. The total cost is:
+                </p>
+                <div class="mint__sum">
+                    Σ = <span>0.00</span> SOL
+                </div>
+                <input class="mint__submit" type="submit" value="MINT">
+            </section>
+        </form>
+        <section class="referral">
+            <p class="referral__description description">
+                After the Magic Ball token is minted, a referral link will appear here. Send it to a friend and he will
+                receive a 20% discount, and you will get back 10% of the base price of the token. Keep in mind that your
+                link can make a lot of purchases!
+            </p>
+            <p class="referral__link description">○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○</p>
+            <p class="referral__link-copy description" onclick="let area = document.createElement('textarea');document.body.appendChild(area);area.value = document.querySelector('.referral__link').innerHTML;area.select();document.execCommand('copy');document.body.removeChild(area); ">Copy</p>
+            <p class="referral__sum description">
+                In total, the referral program returned: {{ returned }} SOL
+                <img src="{% static 'img/flower.png' %}" alt="flower">
+            </p>
+        </section>
+        <section class="phrase">
+            <h3 class="phrase__title description">Last random phrase&gt;</h3>
+            <div class="phrase-items">
+                <div class="phrase-item">
+                    <img src="{% static 'img/flags/ru.png' %}" alt="flag" class="phrase-item__pic">
+                    <p class="phrase-item__title text">&lt;Дамский угодник 217&gt;</p>
+                    <p class="phrase-item__text text">
+                        Повседневная практика показывает, что сложившаяся структура организации позволяет оценить
+                        значение дальнейших направлений разв--->
+                    </p>
+                </div>
+                <div class="phrase-item">
+                    <img src="{% static 'img/flags/us.png' %}" alt="flag" class="phrase-item__pic">
+                    <p class="phrase-item__title text">&lt;Pamella&gt;</p>
+                    <p class="phrase-item__text text">
+                        Nullam eu pulvinar eros, et varius arcu. Sed in pretium elit, quis porta justo. Proin.
+                    </p>
+                </div>
+                <div class="phrase-item">
+                    <img src="{% static 'img/flags/gb.png' %}" alt="flag" class="phrase-item__pic">
+                    <p class="phrase-item__title text">&lt;Stive&gt;</p>
+                    <p class="phrase-item__text text">
+                        Mauris in nunc vitae nunc viverra pellentesque. Curabitur vitae lobortis leo. Phasellus mollis
+                        tortor enim, at laoreet lectus sodales varius. Donec laoreet libe--->
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container-footer">
+            <p class="mobile-thumb-about__description description">
+                You can follow the milestones of the project on Twitter
+            </p>
+            <a href="https://twitter.com/JeromLeprechaun" target="_blank" class="mobile-thumb-about__link">
+                <img src="{% static 'img/twt.svg' %}" alt="twt">
+            </a>
+            <p class="mobile-thumb-about__description description">
+                Jerome has a Telegram channel where he sometimes talks about his life, makes riddles, with prizes in the
+                form of codes for premium discounts of 50%, 70% and 90%. Join us - it will be fun!
+            </p>
+            <a href="https://t.me/AzagnatNFT" target="_blank" class="mobile-thumb-about__link">
+                <img src="{% static 'img/tel.svg' %}" alt="twt">
+            </a>
+            <p class="mobile-thumb-about__description description">
+                Break a leg.<br><br>
+                and...<br><br>
+            </p>
+            <p class="mobile-thumb__luck title description">
+                Good luck!<br><br>
+                <img src="{% static 'img/flower.png' %}" alt="flower">
+            </p>
+        </div>
+    </footer>
+</div>
+<div class="preloader">
+    <div class="preloader-element">
+        <div class="preloader-element__scale"></div>
+    </div>
+</div>
+
+<!-- warnings -->
+
+<div class="warning warning-welcomes hide">
+    <div class="warning__content">
+        <h2 class="warning__title">Hello stranger!</h2>
+        <p class="description">
+            Leprechaun Jerom invites you to get acquainted
+            with the Azagnat project — a magic ball, an
+            immersive non-fungible NFT token that will help
+            you avoid making another mistake and show the
+            path of fate.
+        </p>
+        <p class="description">
+            The Azagnat project is crowdfunding before the
+            launch of a large-scale collection of an
+            immersive token made using 3D technology.
+            The rarity of the traits of the new token will be
+            controlled by holders. Token mutable will give more
+            control and predictability.
+        </p>
+        <p class="description">
+            The Azagnat project has a loyalty program that
+            will allow you to get a little rich.
+            First 3000 holders will be whitelisted in the next
+            collection.
+        </p>
+        <p class="description" style="color:red;">
+            Jerome guarantees stable work only in the <br>
+            Chrome browser! <br>
+            It is not responsible for other browsers!
+        </p>
+        <div class="warning-welcomes-buttons">
+            <div class="warning__button">Don't show again</div>
+            <img src="{% static 'img/flower.png' %}" alt="pic">
+            <div class="warning__button">CLOSE</div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="warning warning-mint hide">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="warning__description description">The blacksmith is ready to mint your token!</p>
+        <img class="warning-mint__img" src="" alt="screenshot">
+        <p class="warning-text text">
+            Further action is irreversible!<br>
+            <b>
+                <span>0.00</span> SOL
+            </b><br>
+            it will be debited from your wallet account.
+            The token will appear in the wallet after a while.
+        </p>
+        <div class="warning__button">OK! MINT</div>
+    </div>
+</div>
+
+<div class="warning warning-balance hide">
+    <div class="warning__content">
+        <h2 class="warning__title warning__title-img">Attention!</h2>
+        <p class="description">
+            The blacksmith is ready to mint your<br> NFT-token!
+        </p><br>
+        <p class="red description">
+            However, everything is missing from<br>
+            <span>Y</span> SOL<br>
+            You need <span>N</span> SOL<br>
+            and you only have <span>Z</span> SOL
+        </p><br>
+        <p class="description">
+            Top up your balance and come back.
+        </p>
+
+    </div>
+</div>
+
+<div class="warning warning-minted-tokens hide">
+    <div class="warning__content">
+        <h2 class="warning__title warning__title-img-wallet"></h2>
+        <p class="warning__description description wallet-address"></p>
+        
+        <div class="warning__button">Disconnect</div>
+    </div>
+</div>
+
+<div class="warning warning-ref-redeemed {% if is_active %}hide{% else %}{% endif %}">
+    <div class="warning__content">
+        <h2 class="warning__title warning__title-img">Error!</h2>
+        <p class="description">
+            Jerom says: this code has already<br>
+            been redeemed.
+        </p>
+        <p class="description">
+            Try your luck in the drawing, which<br>
+            takes place every day in the<br>
+            Telegram channel of the project.
+        </p>
+        <a href="https://t.me/AzagnatNFT" target="_blank">
+            <img class="warning-ref-redeemed__img" src="{% static 'img/tel.svg' %}" alt="pic">
+        </a>
+    </div>
+</div>
+
+
+<div class="warning warning-avatar-exceed hide">
+    <div class="warning__content">
+        <h2 class="warning__title warning__title-img">Error!</h2>
+        <p class="description">
+            max 300 KB<br>
+            max size 512x512 px
+        </p>
+    </div>
+</div>
+
+<div class="warning warning-img-exceed hide">
+    <div class="warning__content">
+        <h2 class="warning__title warning__title-img">Error!</h2>
+        <p class="description">
+            max 1.5 MB<br>
+            max size 2048x2048 px
+        </p>
+    </div>
+</div>
+
+<div class="warning warning-access-prem hide">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="description">
+            Access to premium parameters<br>
+            is possible after connecting the wallet.
+        </p>
+        <img class="warning-access-prem" src="{% static 'img/WalletON.svg' %}" alt="pic">
+    </div>
+</div>
+
+
+<div class="warning warning-req-param hide">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="description">
+            For a high-quality neurosensory connection, you need to fill in all <br>
+            the required parameters.
+        </p>
+    
+    </div>
+</div>
+
+<div class="warning warning-minted hide">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="description">
+            The token minting process has been launched.  <br>
+            Depending on the network load, it may not be fast. <br> 
+            Wait and check the wallet on the site.
+        </p>
+        <br><br>
+        
+        <img class="warning-minted-img" src="{% static 'img/wallet_off.svg' %}" alt="pic">
+    </div>
+</div>
+
+
+
+<div class="warning warning-cancels hide">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="description">
+            Our cashier has hiccups.<br>
+            <span>It cancels the transaction.</span><br>
+            But he'll be back soon. Come back too.<br>
+        </p>
+        <p class="description thin">
+            In the meantime, think about how<br>
+            to make the token even more beautiful.
+        </p>
+    </div>
+</div>
+
+<div class="warning warning-user-cancels hide">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="description">
+            Jerom:<br>
+            — I hope you canceled the transaction in<br>
+            order to change something in the<br>
+            appearance of the token, and get back to<br>
+            me soon.<br>
+        </p>
+    </div>
+</div>
+
+
+<!-- mobile thumb -->
+
+<div class="mobile-thumb hide">
+    <h2 class="mobile-thumb__title">Hello stranger!</h2>
+    <p class="mobile-thumb__description description">
+        Leprechaun Jerom invites you to get acquainted with the Azagnat project a magic ball, an immersive non-fungible
+        NFT token that will help you avoid making another mistake and show the path of fate.
+    </p>
+    <p class="mobile-thumb__description description">
+        The Azagnat project is crowdfunding before the launch of a large-scale collection of an immersive token made
+        using 3D technology.<br>
+        The rarity of the traits of the new token will be controlled by holders. Token mutable will give more control
+        and predictability.
+    </p>
+    <div class="mobile-thumb-warning">
+        <h2 class="mobile-thumb-warning__title">Attention!</h2>
+        <p class="description">
+            Due to the peculiarities of the token, customization and minting is possible only in a desktop browser.<br>
+            I strongly recommend that you use the Chrome browser.
+        </p>
+    </div>
+    <p class="mobile-thumb-example__description description">
+        While you're here, I'll show you an<br> example of a token:
+    </p>
+    <div class="mobile-thumb-example-container">
+        <a href="{{ token_1.animation_url }}"><img src="{{ token_1.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
+        <a href="{{ token_2.animation_url }}"><img src="{{ token_2.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
+        <a href="{{ token_3.animation_url }}"><img src="{{ token_3.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
+    </div>
+    <h2 class="mobile-thumb-about__title">Learn more about the project</h2>
+    <p class="mobile-thumb-about__description description">
+        You can follow the milestones of the project on Twitter
+    </p>
+    <a href="https://twitter.com/JeromLeprechaun" target="_blank" class="mobile-thumb-about__link">
+        <img src="{% static 'img/twt.svg' %}" alt="twt">
+    </a>
+    <p class="mobile-thumb-about__description description">
+        Jerome tells his stories and arranges contests where you can win premium promo codes, are held in Telegram
+    </p>
+    <a href="https://t.me/AzagnatNFT"  target="_blank" class="mobile-thumb-about__link">
+        <img src="{% static 'img/tel.svg' %}" alt="twt">
+    </a>
+    <p class="mobile-thumb-about__description description">
+        Join us!<br>
+        AND...
+    </p>
+    <p class="mobile-thumb__luck">
+        Good luck!<br>
+        <img src="{% static 'img/flower.png' %}" alt="flower">
+    </p>
+
+
+</div>
+
+<template id="ref_template">
+    <div class="warning-minted-tokens-token">
+    <img src="{% static 'img/screenThumb.png' %}" alt="pic" class="warning-minted-tokens-token__img">
+        <div class="token-content">
+            <h3 class="token-content__title">AZAGNAT <span>#7518</span></h3>
+            <p class="token-content__cost description">Cost: <span>1.63</span> SOL</p>
+            <p class="token-content__ref description">Paid by referral: <span>1.17</span> SOL</p>
+            <p class="token-content__ref-deals description">Referral deals: <span>6</span></p>
+            <div class="token-content__links">
+                <p class="token-content__links__title description">View in:</p>
+                <a href="!#"><img src="{% static 'img/new_window.svg' %}" alt="link"></a>
+                <a href="!#"><img src="{% static 'img/solana.svg' %}" alt="link"></a>
+                <a href="!#"><img src="{% static 'img/solscan.svg' %}" alt="link"></a>
+                <a href="!#"><img src="{% static 'img/solana_fm.svg' %}" alt="link"></a>
+            </div>
+            <div class="token-content__button" onclick="let area = document.createElement('textarea');document.body.appendChild(area);  area.value = title;area.select(); document.execCommand('copy'); document.body.removeChild(area);">Copy referal link</div>
+        </div>
+    </div>
+</template>
+
+<script src="https://unpkg.com/@solana/web3.js@1.29.2/lib/index.iife.min.js"></script>
+<script src="{% static 'assets/wallet.js' %}"></script>
+
+
+</body>
+</html>

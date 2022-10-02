@@ -1,0 +1,24 @@
+[
+    {
+        "bodyImages": [
+            {
+                "name": "Abstract",
+                "path": "../media/body-img/Abstract.jpg"
+            },
+            {
+                "name": "Thunderstorm",
+                "path": "../media/body-img/Thunderstorm.jpg"
+            }
+        ],
+        "backgroundImages": [
+            {
+                "name": "Thunderstorm",
+                "path": "../media/bg-img/Thunderstorm.jpg"
+            },
+            {
+                "name": "Abstract",
+                "path": "../media/bg-img/Abstract.jpg"
+            }
+        ]
+    }
+]

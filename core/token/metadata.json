@@ -1,0 +1,42 @@
+{
+    "name": "Azagnat #00005",
+    "symbol": "AZGT",
+    "description": "Non-fungible Magic Ball",
+    "image": "https://arweave.net/PHlXYMi3wcLSt7YROTjN8Xxo3rddVshsnP27dJnM_iA?ext=png",
+    "animation_url": "https://arweave.net/dW3IgF9IRYazpqLZGRdFdAfJzGdoktaTLBwViqjEJKs?ext=html",
+    "external_url": "https://azagnat.art",
+    "attributes": [
+        {
+            "trait_type": "Name",
+            "value": "toton"
+        },
+        {
+            "trait_type": "Date of Birth",
+            "value": "2022-10-20"
+        },
+        {
+            "trait_type": "Gender",
+            "value": "Woman"
+        },
+        {
+            "trait_type": "Language",
+            "value": "Russian"
+        },
+        {
+            "trait_type": "Ball_name",
+            "value": "Ostan"
+        },
+        {
+            "trait_type": "Body_view",
+            "value": "Default"
+        },
+        {
+            "trait_type": "Background",
+            "value": "Default"
+        },
+        {
+            "trait_type": "Ticker",
+            "value": "Default"
+        }
+    ]
+}

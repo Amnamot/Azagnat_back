@@ -1,0 +1,13 @@
+{
+    "name": "Azagnat #00005",
+    "symbol": "AZGT",
+    "uri": "https://arweave.net/uYlINQ3L7nPpaFHcY-ycUtJEGbYJ4K7rD0Rm-RZQr24",
+    "seller_fee_basis_points": 777,
+    "creators": [
+        {
+            "address": "AZZZdSAJGZVBFYgYBzj3CRNzhJDfWuxLUTFForV8J82U",
+            "verified": true,
+            "share": 100
+        }
+    ]
+}

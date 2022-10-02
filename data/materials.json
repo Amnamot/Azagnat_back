@@ -1,0 +1,20 @@
+[
+    {
+        "id": 0,
+        "name": "Golden scr.",
+        "map": "../media/models/materials/scratched_golden_albedo.jpg",
+        "normalMap": "../media/models/materials/scratched_golden_normal.jpg",
+        "roughnessMap": "../media/models/materials/scratched_golden_roughness.jpg",
+        "metalness": 1.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 1,
+        "name": "Violet crystal",
+        "map": "../media/models/materials/violet_crystal_albedo.jpg",
+        "normalMap": "../media/models/materials/violet_crystal_normal.jpg",
+        "roughnessMap": "../media/models/materials/violet_crystal_roughness.jpg",
+        "metalness": 0.16,
+        "roughness": 1.0
+    }
+]

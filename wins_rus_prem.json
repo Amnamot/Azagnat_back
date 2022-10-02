@@ -1,0 +1,33 @@
+[
+  {
+    "theme_name": "win",
+    "texts": 
+    [
+		"Выпало #nonce#. #name#, заери #win# SOL!",
+		"#nonce#. #name#, #win# SOL твои!",
+		"#nonce#. Ты выиграл #win# SOL!",
+		"#nonce#. + #win# SOL!",
+		"Супер! #nonce#. Получай #win# SOL!",
+		"#nonce#. Отлично! Перевожу #win# SOL!",
+		"#nonce#. Класс! #win# SOL!",
+		"#nonce#. WIN! #win# SOL!",
+		"Удача! #nonce#. Забирай #win# SOL!",
+		"#nonce#. #name#, ты выиграл #win# SOL!"
+    ]
+  },
+  {
+    "theme_name": "lost",
+    "texts": 
+    [
+		"#nonce#. Проиграл!",
+		"#nonce#. Провал!",
+		"#nonce#. Проигрыш!",
+		"#nonce#. Еще повезет!",
+		"#nonce#. Попробуй еще!",
+		"#nonce#. Давай еще!",
+		"#nonce#. Нет...",
+		"#nonce#. Не отчаивайся!",
+		"#nonce#. Не в этот раз."
+    ]
+  }
+]
