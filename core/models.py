@@ -1,8 +1,8 @@
-from itertools import count
 from django.db import models
 import os
 import json
 import random
+from aza.settings import DOMEN
 
 def generator(n):
     s = ''
@@ -84,7 +84,7 @@ class Promocode(models.Model):
 
     def save(self):
         if self.code == None:
-            self.code = 'http://127.0.0.1:8000?p=' + generator(8)
+            self.code = DOMEN + '?p=' + generator(8)
         
         super().save()
 
@@ -106,7 +106,7 @@ class Ambassador(models.Model):
 
     def save(self):
         if self.code == None:
-            self.code = 'http://127.0.0.1:8000?a=' + generator(8)
+            self.code = DOMEN + '?a=' + generator(8)
         
         super().save()
 
