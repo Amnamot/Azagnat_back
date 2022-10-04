@@ -132,18 +132,18 @@ def getprice(request):
         price['model_price'] = .0
         price['global_price'] += price['model_price']
     else:
-        price['model_price'] = Models.objects.get(id=int(data['model'])+1).price
+        price['model_price'] = Models.objects.get(id=int(data['model'])+1).price * baseprice
         price['global_price'] += price['model_price']
 
     try:
         if data['idBodyColor'] == '3':
-            price['body_price'] = BodyViewPrice.objects.get(id=1).select_image
+            price['body_price'] = BodyViewPrice.objects.get(id=1).select_image * baseprice
             price['global_price'] += price['body_price']
         elif data['idBodyColor'] == '2':
-            price['body_price'] = BodyViewPrice.objects.get(id=1).custom_image
+            price['body_price'] = BodyViewPrice.objects.get(id=1).custom_image * baseprice
             price['global_price'] += price['body_price']
         elif data['idBodyColor'] == '1':
-            price['body_price'] = BodyViewPrice.objects.get(id=1).custom_color
+            price['body_price'] = BodyViewPrice.objects.get(id=1).custom_color * baseprice
             price['global_price'] += price['body_price']
         elif data['idBodyColor'] == '0':
             price['body_price'] = .0
@@ -152,25 +152,25 @@ def getprice(request):
             if data['selectedMaterialId'] == None:
                 price['body_price'] = .0
             else:
-                price['body_price'] = Materials.objects.get(id=int(data['selectedMaterialId'])+1).price
+                price['body_price'] = Materials.objects.get(id=int(data['selectedMaterialId'])+1).price * baseprice
                 price['global_price'] += price['body_price']
     except KeyError:
         pass
     try:
         if data['idBackground'] == '5':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).select_image
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).select_image * baseprice
             price['global_price'] += price['bg_price']
         elif data['idBackground'] == '4':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).custom_image
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).custom_image * baseprice
             price['global_price'] += price['bg_price']
         elif data['idBackground'] == '3':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).radial_gradient
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).radial_gradient * baseprice
             price['global_price'] += price['bg_price']
         elif data['idBackground'] == '2':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).linear_gradient
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).linear_gradient * baseprice
             price['global_price'] += price['bg_price']
         elif data['idBackground'] == '1':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).single_color
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).single_color * baseprice
             price['global_price'] += price['bg_price']
         elif data['idBackground'] == '0':
             price['bg_price'] = .0
@@ -183,7 +183,7 @@ def getprice(request):
             price['ticker_price'] = .0
             price['global_price'] += price['ticker_price']
         else:
-            price['ticker_price'] = TickerPrice.objects.get(id=1).color
+            price['ticker_price'] = TickerPrice.objects.get(id=1).color * baseprice
             price['global_price'] += price['ticker_price']
     else:
         price['ticker_price'] = .0

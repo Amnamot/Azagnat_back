@@ -6,18 +6,122 @@
                 "path": "../media/body-img/Abstract.jpg"
             },
             {
+                "name": "Cloud",
+                "path": "../media/body-img/cloud.jpeg"
+            },
+            {
+                "name": "ColorDrops",
+                "path": "../media/body-img/colordrops.jpeg"
+            },
+            {
+                "name": "Colors",
+                "path": "../media/body-img/colors.jpeg"
+            },
+            {
+                "name": "DarkLight",
+                "path": "../media/body-img/darklight.jpeg"
+            },
+            {
+                "name": "Drops",
+                "path": "../media/body-img/drop.jpeg"
+            },
+            {
+                "name": "Electric sun",
+                "path": "../media/body-img/electricsun.jpeg"
+            },
+            {
+                "name": "Lines",
+                "path": "../media/body-img/lines.jpeg"
+            },
+            {
+                "name": "Morning",
+                "path": "../media/body-img/morning.jpeg"
+            },
+            {
+                "name": "Mountains",
+                "path": "../media/body-img/mountains.jpeg"
+            },
+            {
+                "name": "Nature",
+                "path": "../media/body-img/nature.jpeg"
+            },
+            {
                 "name": "Thunderstorm",
-                "path": "../media/body-img/Thunderstorm.jpg"
+                "path": "../media/body-img/thunderstorm.jpeg"
+            },
+            {
+                "name": "Leaf",
+                "path": "../media/body-img/leaf.jpeg"
+            },
+            {
+                "name": "Butterfly",
+                "path": "../media/body-img/butterfly.jpeg"
+            },
+            {
+                "name": "Tiles",
+                "path": "../media/body-img/tiles.jpeg"
             }
         ],
         "backgroundImages": [
             {
-                "name": "Thunderstorm",
-                "path": "../media/bg-img/Thunderstorm.jpg"
-            },
-            {
                 "name": "Abstract",
                 "path": "../media/bg-img/Abstract.jpg"
+            },
+            {
+                "name": "Cloud",
+                "path": "../media/bg-img/cloud.jpeg"
+            },
+            {
+                "name": "ColorDrops",
+                "path": "../media/bg-img/colordrops.jpeg"
+            },
+            {
+                "name": "Colors",
+                "path": "../media/bg-img/colors.jpeg"
+            },
+            {
+                "name": "DarkLight",
+                "path": "../media/bg-img/darklight.jpeg"
+            },
+            {
+                "name": "Drops",
+                "path": "../media/bg-img/drop.jpeg"
+            },
+            {
+                "name": "Electric sun",
+                "path": "../media/bg-img/electricsun.jpeg"
+            },
+            {
+                "name": "Lines",
+                "path": "../media/bg-img/lines.jpeg"
+            },
+            {
+                "name": "Morning",
+                "path": "../media/bg-img/morning.jpeg"
+            },
+            {
+                "name": "Mountains",
+                "path": "../media/bg-img/mountains.jpeg"
+            },
+            {
+                "name": "Nature",
+                "path": "../media/bg-img/nature.jpeg"
+            },
+            {
+                "name": "Thunderstorm",
+                "path": "../media/bg-img/thunderstorm.jpeg"
+            },
+            {
+                "name": "Leaf",
+                "path": "../media/bg-img/leaf.jpeg"
+            },
+            {
+                "name": "Butterfly",
+                "path": "../media/bg-img/butterfly.jpeg"
+            },
+            {
+                "name": "Tiles",
+                "path": "../media/bg-img/tiles.jpeg"
             }
         ]
     }
