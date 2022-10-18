@@ -23,7 +23,6 @@ else:
     ALLOWED_HOSTS = ['azagnat.art', 'www.azagnat.art', '195.231.34.246', '0.0.0.0', 'localhost', '127.0.0.1']
 
 
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -34,11 +33,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'core',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -175,4 +176,4 @@ else:
     DOMEN = 'https://azagnat.art/'
 RPC = os.getenv('RPC')
 
-
+CORS_ALLOWED_ORIGINS = ['azagnat.art', 'www.azagnat.art', '195.231.34.246', '0.0.0.0', 'localhost', '127.0.0.1']

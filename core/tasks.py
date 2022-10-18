@@ -204,7 +204,7 @@ def minttask(self, data, publickey):
         d['symbol'] = 'AZGT'
         d['uri'] = metadata_url
         d['seller_fee_basis_points'] = 777
-        d['creators'] = [{"address": "AZZZdSAJGZVBFYgYBzj3CRNzhJDfWuxLUTFForV8J82U", "verified": True, "share": 100}]
+        d['creators'] = [{"address": "AzagnattdNF4kiZnQDDXhmpQ9FgGUb9ZGTJouEACjGj7", "verified": True, "share": 100}]
         with open('core/token/ex.json', 'w') as f:
             json.dump(d, f, indent=4, ensure_ascii=False)
 
