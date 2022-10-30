@@ -241,7 +241,7 @@ class PremiumDice(APIView):
             if s <= int(request.GET['select']):
                 k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
                 w = float(k) * float(request.GET['bet'])
-                with open('wins_eng_free.json', 'r') as f:
+                with open('wins_eng_prem.json', 'r') as f:
                     text = random.choice(json.load(f)[0])
                 if text.find('#name#') != -1:
                     text.replace("#name#", "jerom")
@@ -262,7 +262,7 @@ class PremiumDice(APIView):
                 from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
                 resp = solana_client.send_transaction(txn, keypair)
             else:
-                with open('wins_eng_free.json', 'r') as f:
+                with open('wins_eng_prem.json', 'r') as f:
                     text = random.choice(json.load(f)[1])
                 text = text.replace('#nonce#', str(s))
                 res['win'] = text
@@ -271,7 +271,7 @@ class PremiumDice(APIView):
             if s > ss:
                 k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
                 w = float(k) * float(request.GET['bet'])
-                with open('wins_eng_free.json', 'r') as f:
+                with open('wins_eng_prem.json', 'r') as f:
                     text = random.choice(json.load(f)[0])
                 if text.find('#name#') != -1:
                     text.replace("#name#", "jerom")
@@ -291,7 +291,7 @@ class PremiumDice(APIView):
                 from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
                 resp = solana_client.send_transaction(txn, keypair)
             else:
-                with open('wins_eng_free.json', 'r') as f:
+                with open('wins_eng_prem.json', 'r') as f:
                     text = random.choice(json.load(f)[1])
                 text = text.replace('#nonce#', str(s))
                 res['win'] = text
