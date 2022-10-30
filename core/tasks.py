@@ -119,13 +119,13 @@ def minttask(self, data, publickey):
         else:
             ticker = '#004f20'
         
-        if 'model' not in data:
+        if 'mId' not in data:
             model = Models.objects.get(id=1)
             model_name = model.name
             model_link = model.link
             curve = model.curve_radius
         else:
-            model = Models.objects.get(id=int(data['model'])+1)
+            model = Models.objects.get(id=int(data['mId'])+1)
             model_name = model.name
             model_link = model.link
             curve = model.curve_radius
