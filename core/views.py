@@ -11,6 +11,11 @@ from aza.settings import DOMEN
 from math import sqrt
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from solana.keypair import Keypair
+from solana.rpc.api import Client
+from solana.publickey import PublicKey
+from solana.transaction import Transaction
+from solana.system_program import TransferParams, transfer
 
 
 
@@ -195,40 +200,101 @@ class FreeDice(APIView):
     def get(self, request):
         x = 20
         y = 3
-        o = 0.2
+        o = 0.245
         a = (-o*x+sqrt(((o*x)**2)+(4*o*x)/y))/2
         b = y-(1/a)
         r = float("{:.2f}".format(random.uniform(0, 10)))
         k = "{:.3f}".format((1/(o*r+a))+b)
         win = float(k) * float(request.GET['bet'])
-        return Response({'win': "{:.4f}".format(win)})
+
+        solana_client = Client('https://api.devnet.solana.com')
+
+
+        with open('id.json', 'r') as f:
+            lines = json.load(f)
+        key_from_file = [int(x) for x in lines]
+
+        keypair = Keypair(key_from_file[:32])
+
+        txn = Transaction().add(transfer(TransferParams(
+        from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=win * 1000000000)))
+        resp = solana_client.send_transaction(txn, keypair)
+
+        with open('wins_eng_free.json', 'r') as f:
+            text = random.choice(json.load(f))
+        if text.find('#name#') != -1:
+            text.replace("#name#", "jerom")
+        text.replace("#win#", str(win))
+        return Response({'win': text})
 
 
 
 class PremiumDice(APIView):
     def get(self, request):
         res = {}
-        x = 100
+        x = 97
         y = 76
-        o = 0.03
+        o = 0.0099
         a = (-o*x+sqrt(((o*x)**2)+(4*o*x)/y))/2
         b = y-(1/a)
         s = random.randint(1, 98)
         if request.GET['isunder']:
-            if s < int(request.GET['select']):
+            if s <= int(request.GET['select']):
                 k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
                 w = float(k) * float(request.GET['bet'])
-                res['win'] = w
+                with open('wins_eng_free.json', 'r') as f:
+                    text = random.choice(json.load(f)[0])
+                if text.find('#name#') != -1:
+                    text.replace("#name#", "jerom")
+                text.replace('#nonce#', str(s))
+                text.replace("#win#", str(w))
+                res['win'] = text
+
+                solana_client = Client('https://api.devnet.solana.com')
+
+
+                with open('id.json', 'r') as f:
+                    lines = json.load(f)
+                key_from_file = [int(x) for x in lines]
+
+                keypair = Keypair(key_from_file[:32])
+
+                txn = Transaction().add(transfer(TransferParams(
+                from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=w * 1000000000)))
+                resp = solana_client.send_transaction(txn, keypair)
             else:
-                w = 0
-                res['win'] = w
+                with open('wins_eng_free.json', 'r') as f:
+                    text = random.choice(json.load(f)[1])
+                text.replace('#nonce#', str(s))
+                res['win'] = text
         else:
             ss = request.GET['select']*-1+99
             if s > ss:
                 k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
                 w = float(k) * float(request.GET['bet'])
-                res['win'] = w
+                with open('wins_eng_free.json', 'r') as f:
+                    text = random.choice(json.load(f)[0])
+                if text.find('#name#') != -1:
+                    text.replace("#name#", "jerom")
+                text.replace('#nonce#', str(s))
+                text.replace("#win#", str(w))
+                res['win'] = text
+                solana_client = Client('https://api.devnet.solana.com')
+
+
+                with open('id.json', 'r') as f:
+                    lines = json.load(f)
+                key_from_file = [int(x) for x in lines]
+
+                keypair = Keypair(key_from_file[:32])
+
+                txn = Transaction().add(transfer(TransferParams(
+                from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=w * 1000000000)))
+                resp = solana_client.send_transaction(txn, keypair)
             else:
-                w = 0
-                res['win'] = w
+                with open('wins_eng_free.json', 'r') as f:
+                    text = random.choice(json.load(f)[1])
+                text.replace('#nonce#', str(s))
+                res['win'] = text
+        
         return Response(res)

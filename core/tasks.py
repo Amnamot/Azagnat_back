@@ -1,6 +1,5 @@
 import json
 from .models import Ambassador, Config, BasePrice, ReceivedTrans, RefferalCode, Returned, Promocode, MintCount, SentTrans, Models, Materials, SelectImageBody, SelectImageBackground
-from solana.keypair import Keypair
 import random
 from solana.keypair import Keypair
 from solana.rpc.api import Client

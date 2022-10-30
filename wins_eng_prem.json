@@ -1,7 +1,4 @@
 [
-  {
-    "theme_name": "win",
-    "texts": 
     [
 		"#nonce#. Congratulations, #name#! #win# SOL!",
 		"#nonce#. #name#, #win# SOL are yours!",
@@ -13,11 +10,7 @@
 		"#nonce#. WIN! #win# SOL!",
 		"Luck! #nonce#. Take #win# SOL!",
 		"#nonce#. #name#, you won #win# SOL!"
-    ]
-  },
-  {
-    "theme_name": "lost",
-    "texts": 
+	],
     [
 		"#nonce#. Lost!",
 		"#nonce#. Failure!",
@@ -29,5 +22,4 @@
 		"#nonce#. Don't despair!",
 		"#nonce#. Not this time."
     ]
-  }
 ]
