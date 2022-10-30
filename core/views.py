@@ -217,14 +217,13 @@ class FreeDice(APIView):
         keypair = Keypair(key_from_file[:32])
 
         txn = Transaction().add(transfer(TransferParams(
-        from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=win * 1000000000)))
+        from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(win * 1000000000))))
         resp = solana_client.send_transaction(txn, keypair)
 
         with open('wins_eng_free.json', 'r') as f:
             text = random.choice(json.load(f))
-        if text.find('#name#') != -1:
-            text.replace("#name#", "jerom")
-        text.replace("#win#", str(win))
+        text = text.replace("#name#", "jerom")
+        text = text.replace("#win#", str(win))
         return Response({'win': text})
 
 
@@ -246,8 +245,8 @@ class PremiumDice(APIView):
                     text = random.choice(json.load(f)[0])
                 if text.find('#name#') != -1:
                     text.replace("#name#", "jerom")
-                text.replace('#nonce#', str(s))
-                text.replace("#win#", str(w))
+                text = text.replace('#nonce#', str(s))
+                text = text.replace("#win#", str(w))
                 res['win'] = text
 
                 solana_client = Client('https://api.devnet.solana.com')
@@ -260,12 +259,12 @@ class PremiumDice(APIView):
                 keypair = Keypair(key_from_file[:32])
 
                 txn = Transaction().add(transfer(TransferParams(
-                from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=w * 1000000000)))
+                from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
                 resp = solana_client.send_transaction(txn, keypair)
             else:
                 with open('wins_eng_free.json', 'r') as f:
                     text = random.choice(json.load(f)[1])
-                text.replace('#nonce#', str(s))
+                text = text.replace('#nonce#', str(s))
                 res['win'] = text
         else:
             ss = request.GET['select']*-1+99
@@ -276,8 +275,8 @@ class PremiumDice(APIView):
                     text = random.choice(json.load(f)[0])
                 if text.find('#name#') != -1:
                     text.replace("#name#", "jerom")
-                text.replace('#nonce#', str(s))
-                text.replace("#win#", str(w))
+                text = text.replace('#nonce#', str(s))
+                text = text.replace("#win#", str(w))
                 res['win'] = text
                 solana_client = Client('https://api.devnet.solana.com')
 
@@ -289,12 +288,12 @@ class PremiumDice(APIView):
                 keypair = Keypair(key_from_file[:32])
 
                 txn = Transaction().add(transfer(TransferParams(
-                from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=w * 1000000000)))
+                from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
                 resp = solana_client.send_transaction(txn, keypair)
             else:
                 with open('wins_eng_free.json', 'r') as f:
                     text = random.choice(json.load(f)[1])
-                text.replace('#nonce#', str(s))
+                text = text.replace('#nonce#', str(s))
                 res['win'] = text
         
         return Response(res)
