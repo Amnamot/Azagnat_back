@@ -591,7 +591,15 @@
         </div>
     </div>
 </template>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC4LTDWF8E"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-RC4LTDWF8E');
+</script>
 <script src="https://unpkg.com/@solana/web3.js@1.29.2/lib/index.iife.min.js"></script>
 <script src="{% static 'assets/wallet.js' %}"></script>
 
