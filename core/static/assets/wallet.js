@@ -216,7 +216,7 @@ background.addEventListener("change", function () {
 });
 let ticker = document.querySelector(".change-ticker-color");
 async function trans(b) {
-    let a = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com", "confirmed"),
+    let a = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl("mainnet"), "confirmed"),
         e = getProvider(),
         c = await a.getAccountInfo(e.publicKey);
     if (1e9 * b > c.lamports) return [(1e9 * b - c.lamports) / 1e9, (1e9 * b) / 1e9, c.lamports / 1e9];

@@ -14,12 +14,14 @@
     <link rel="mask-icon" href="{% static 'safari-pinned-tab.svg' %}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-  <script type="module" crossorigin src="{% static 'assets/main.js' %}"></script>
-  <link rel="modulepreload" href="{% static 'assets/vendor.js' %}">
-  <link rel="stylesheet" href="{% static 'assets/main.css' %}">
+  <script type="module" crossorigin src="{% static 'assets/main.57e6299a.js' %}"></script>
+  <link rel="modulepreload" href="{% static 'assets/vendor.42a5c5ba.js' %}">
+  <link rel="stylesheet" href="{% static 'assets/main.894c0a95.js' %}">
 </head>
 <body>
 <header class="header">
+    <!-- кнопку тон пока оставил -->
+    <!-- <div class="button"><img src="./img/tonLogo.svg" alt="TON" class="header-logo"></div> -->
     <img src="{% static 'img/solana_logo.svg' %}" alt="solana logo" class="header-logo">
     <div class="header-texts">
         <h1 class="header-title">AZAGNAT</h1>
@@ -27,7 +29,10 @@
             Non-fungible Magic Ball
         </p>
     </div>
-    <img src="{% static 'img/WalletON.svg' %}" alt="Wallet" class="header-wallet">
+    <div class="header-info">
+        <div class="button" id="RoadMap">Road map</div>
+        <img src="{% static 'img/WalletON.svg' %}" alt="Wallet" class="header-wallet">
+    </div>
 </header>
 <div class="container-main">
     <main class="main">
@@ -155,7 +160,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="sol text">+ <span>0.03</span> SOL</div>
                                 <div class="addOption body-color-add"></div>
                             </div>
                             <div class="ball-settings__container metalness-conyainer">
@@ -195,7 +200,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="sol text">+ <span>0.01</span> SOL</div>
                                 <div class="addOption background-settings-add"></div>
                             </div>
                             <div class="ball-settings__container">
@@ -214,7 +219,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="sol text">+ <span>0.01</span> SOL</div>
                                 <div class="addOption change-ticker-color-add"></div>
                             </div>
                         </fieldset>
@@ -238,11 +243,12 @@
                     will have time to forge. Take care of your Azagnat.
                     He is now an integral part of you. Use it only for its intended purpose, and it will serve you
                     forever!
-                    And Azagnaths can be given as a gift.                
+                    And Azagnaths can be given as a gift.
                 </h3>
-
+                <!--                <input class="description" type="text" placeholder="paste promo code here">-->
                 <p class="mint__description description">
-                    Your discount is <span>{{ percent }}%</span>. It applies only to the base cost of Azagnat, and is not taken into
+                    Your discount is <span>50%</span>. It applies only to the base cost of Azagnat, and is not taken
+                    into
                     account in premium parameters. The total cost is:
                 </p>
                 <div class="mint__sum">
@@ -258,9 +264,9 @@
                 link can make a lot of purchases!
             </p>
             <p class="referral__link description">○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○</p>
-            <p class="referral__link-copy description" onclick="let area = document.createElement('textarea');document.body.appendChild(area);area.value = document.querySelector('.referral__link').innerHTML;area.select();document.execCommand('copy');document.body.removeChild(area); ">Copy</p>
+            <p class="referral__link-copy description">Copy</p>
             <p class="referral__sum description">
-                In total, the referral program returned: {{ returned }} SOL
+                In total, the referral program returned: <span>XXXX</span> SOL
                 <img src="{% static 'img/flower.png' %}" alt="flower">
             </p>
         </section>
@@ -290,6 +296,13 @@
                         tortor enim, at laoreet lectus sodales varius. Donec laoreet libe--->
                     </p>
                 </div>
+                <div class="phrase-item">
+                    <img src="{% static 'img/flags/us.png' %}" alt="flag" class="phrase-item__pic">
+                    <p class="phrase-item__title text">&lt;Ronald&gt;</p>
+                    <p class="phrase-item__text text">
+                        Nullam eu pulvinar eros, et varius arcu. Sed in pretium elit, quis porta justo. Proin.
+                    </p>
+                </div>
             </div>
         </section>
     </main>
@@ -305,7 +318,7 @@
                 Jerome has a Telegram channel where he sometimes talks about his life, makes riddles, with prizes in the
                 form of codes for premium discounts of 50%, 70% and 90%. Join us - it will be fun!
             </p>
-            <a href="https://t.me/AzagnatNFT" target="_blank" class="mobile-thumb-about__link">
+            <a href="https://t.me/Azagnat" target="_blank" class="mobile-thumb-about__link">
                 <img src="{% static 'img/tel.svg' %}" alt="twt">
             </a>
             <p class="mobile-thumb-about__description description">
@@ -327,39 +340,69 @@
 
 <!-- warnings -->
 
-<div class="warning warning-welcomes hide">
+<div class="warning warning-welcomes">
     <div class="warning__content">
         <h2 class="warning__title">Hello stranger!</h2>
         <p class="description">
-            Leprechaun Jerom invites you to get acquainted
-            with the Azagnat project — a magic ball, an
-            immersive non-fungible NFT token that will help
-            you avoid making another mistake and show the
-            path of fate.
+            Azagnat — interactive non-fungible token.
         </p>
+
         <p class="description">
-            The Azagnat project is crowdfunding before the
-            launch of a large-scale collection of an
-            immersive token made using 3D technology.
-            The rarity of the traits of the new token will be
-            controlled by holders. Token mutable will give more
-            control and predictability.
+            Magic Ball, in which the experience of all metaverses is accumulated.
         </p>
+    
         <p class="description">
-            The Azagnat project has a loyalty program that
-            will allow you to get a little rich.
-            First 3000 holders will be whitelisted in the next
-            collection.
+            You can customize the appearance of the NFT Magic Ball at your discretion. Choose a design, shape, cover and avatar. Realize your craziest ideas. It is you who creates the visual part of your Azagnat Magic Ball.
         </p>
-        <p class="description" style="color:red;">
-            Jerome guarantees stable work only in the <br>
-            Chrome browser! <br>
-            It is not responsible for other browsers!
+    
+        <p class="description">
+            Based on the parameters you choose, a rarity table will be created! It will directly depend on the number and value of the parameters used. The rarity table will be released once all NFTs have been minted.
         </p>
+
         <div class="warning-welcomes-buttons">
             <div class="warning__button">Don't show again</div>
             <img src="{% static 'img/flower.png' %}" alt="pic">
             <div class="warning__button">CLOSE</div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="warning warning-RoadMap hide">
+    <div class="warning__content">
+        <h2 class="warning__title green">Road map</h2>
+        <p class="description">
+            We won't promise what we can't deliver!
+            Let's not fantasize about the timing of implementation!
+        </p>
+    
+        <p class="description">
+            We will jointly decide what functionality the next NFT will have and what service needs to be launched into space. Depending on the interests of the community in our project with you, we will make further plans.
+        </p>
+    
+        <p class="description marginNull">
+            Now we can share with you our plans for building the Azagnat ecosystem:
+        </p>
+    
+        <ol class="warning-RoadMap_list description" type="1">
+            <li>Launch of the private-mint Magic Ball collection;</li>
+            <li>Launch of the public-mint Magic Bal collection;</li> 
+            <li>Creation of a rare table;</li> 
+            <li>Creation of a mobile application;</li> 
+            <li>Creating a Telegram web-app bot;</li> 
+            <li>Launching an NFT lottery inside the token;</li> 
+            <li>Launch of Azagnat Oracle;</li> 
+            <li>Opening a merch-store (shop):</li> 
+                <ol type="a">
+                    <li>Hoodie with augmented reality,</li>
+                    <li>Amulets,</li> 
+                    <li>Branded Magic Balls,</li> 
+                </ol>
+            <li>And much more and interesting...</li> 
+        </ol>
+        <div class="warning-welcomes-buttons">
+            <img src="{% static 'img/flower.png' %}" alt="pic">
         </div>
 
 
@@ -374,11 +417,24 @@
         <p class="warning-text text">
             Further action is irreversible!<br>
             <b>
-                <span>0.00</span> SOL
+                <span>2,17</span> SOL
             </b><br>
             it will be debited from your wallet account.
             The token will appear in the wallet after a while.
         </p>
+        <div class="warning__info">
+            <label class="checkbox">
+                <input class="checkbox" type="checkbox" name="create" id="create"/>
+                <div class="checkbox__checkmark"></div>
+                <div class="checkbox__body"><a href="./сreating.html">Conditions for creating</a>an appearance are met.</div>
+              </label>
+            <br>
+            <label class="checkbox">
+                <input class="ownership" type="checkbox" name="ownership" id="ownership"/>
+                <div class="checkbox__checkmark"></div>
+                <div class="checkbox__body">I agree to comply with the <a href="./ownership.html">terms of ownership.</a></div>
+              </label>
+        </div>
         <div class="warning__button">OK! MINT</div>
     </div>
 </div>
@@ -391,9 +447,9 @@
         </p><br>
         <p class="red description">
             However, everything is missing from<br>
-            <span>Y</span> SOL<br>
-            You need <span>N</span> SOL<br>
-            and you only have <span>Z</span> SOL
+            Y SOL<br>
+            You need N SOL<br>
+            and you only have Z SOL
         </p><br>
         <p class="description">
             Top up your balance and come back.
@@ -405,13 +461,32 @@
 <div class="warning warning-minted-tokens hide">
     <div class="warning__content">
         <h2 class="warning__title warning__title-img-wallet"></h2>
-        <p class="warning__description description wallet-address"></p>
-        
-        <div class="warning__button">Disconnect</div>
+        <p class="warning__description description wallet-address">0xA366D36A7df28b0081d261C5b4A444C9855a7C6e</p>
+        <div class="warning-minted-tokens-token">
+            <img src="./img/screenThumb.png" alt="pic" class="warning-minted-tokens-token__img">
+            <div class="token-content">
+                <h3 class="token-content__title">AZAGNAT <span>#7518</span></h3>
+                <p class="token-content__cost description">Cost: <span>1.63</span> SOL</p>
+                <p class="token-content__ref description">Paid by referral: <span>1.17</span> SOL</p>
+                <p class="token-content__ref-deals description">Referral deals: <span>6</span></p>
+                <div class="token-content__links">
+                    <p class="token-content__links__title description">View in:</p>
+                    <a href="!#"><img src="./img/new_window.svg" alt="link"></a>
+                    <a href="!#"><img src="./img/solana.svg" alt="link"></a>
+                    <!-- <a href="!#"><img src="./img/solscan.svg" alt="link"></a> -->
+                    <a href="!#"><img src="./img/solana_fm.svg" alt="link"></a>
+                </div>
+                <div class="token-content__button">Copy referal link</div>
+            </div>
+        </div>
+        <div class="warning__info"> connect and watch in Telegram bot 
+            <a class="img" href="!#"><img src="./img/telegram-icon.svg" alt="telegram"></a>
+        </div>
+        <!-- <div class="warning__button">CLOSE</div> -->
     </div>
 </div>
 
-<div class="warning warning-ref-redeemed {% if is_active %}hide{% else %}{% endif %}">
+<div class="warning warning-ref-redeemed hide">
     <div class="warning__content">
         <h2 class="warning__title warning__title-img">Error!</h2>
         <p class="description">
@@ -423,12 +498,11 @@
             takes place every day in the<br>
             Telegram channel of the project.
         </p>
-        <a href="https://t.me/AzagnatNFT" target="_blank">
-            <img class="warning-ref-redeemed__img" src="{% static 'img/tel.svg' %}" alt="pic">
+        <a href="https://t.me/Azagnat" target="_blank">
+            <img class="warning-ref-redeemed__img" src="./img/tel.svg" alt="pic">
         </a>
     </div>
 </div>
-
 
 <div class="warning warning-avatar-exceed hide">
     <div class="warning__content">
@@ -457,19 +531,10 @@
             Access to premium parameters<br>
             is possible after connecting the wallet.
         </p>
-        <img class="warning-access-prem" src="{% static 'img/WalletON.svg' %}" alt="pic">
-    </div>
-</div>
 
-
-<div class="warning warning-req-param hide">
-    <div class="warning__content">
-        <h2 class="warning__title yellow">Warning!</h2>
-        <p class="description">
-            For a high-quality neurosensory connection, you need to fill in all <br>
-            the required parameters.
-        </p>
-    
+        <a href="!#">
+            <img class="warning-access-prem" src="./img/WalletON.svg" alt="pic">
+        </a>
     </div>
 </div>
 
@@ -477,17 +542,17 @@
     <div class="warning__content">
         <h2 class="warning__title yellow">Warning!</h2>
         <p class="description">
-            The token minting process has been launched.  <br>
-            Depending on the network load, it may not be fast. <br> 
-            Wait and check the wallet on the site.
+            AThe blacksmith says:<br>
+            Your token has been minted.
+            <br><br>
+            Look in your wallet.
         </p>
         <br><br>
-        
-        <img class="warning-minted-img" src="{% static 'img/wallet_off.svg' %}" alt="pic">
+        <a href="!#">
+            <img class="warning-access-prem" src="./img/wallet_off.svg" alt="pic">
+        </a>
     </div>
 </div>
-
-
 
 <div class="warning warning-cancels hide">
     <div class="warning__content">
@@ -517,21 +582,69 @@
     </div>
 </div>
 
+<div class="warning warning-in-blsmith hide">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="description">
+            The blacksmith is busy minting<br>
+            you Magic Ball.<br>
+            Please wait!<br>
+        </p>
+        <img class="warning-in-blsmith__pic" src="./img/blsm.gif" alt="blsm">
+    </div>
+</div>
 
 <!-- mobile thumb -->
 
 <div class="mobile-thumb hide">
     <h2 class="mobile-thumb__title">Hello stranger!</h2>
     <p class="mobile-thumb__description description">
-        Leprechaun Jerom invites you to get acquainted with the Azagnat project a magic ball, an immersive non-fungible
-        NFT token that will help you avoid making another mistake and show the path of fate.
-    </p>
+        Azagnat — interactive non-fungible token.</p>
     <p class="mobile-thumb__description description">
-        The Azagnat project is crowdfunding before the launch of a large-scale collection of an immersive token made
-        using 3D technology.<br>
-        The rarity of the traits of the new token will be controlled by holders. Token mutable will give more control
-        and predictability.
+        Magic Ball, in which the experience of all metaverses is accumulated.
     </p>
+
+    <p class="mobile-thumb__description description">
+        You can customize the appearance of the NFT Magic Ball at your discretion. Choose a design, shape, cover and avatar. Realize your craziest ideas. It is you who creates the visual part of your Azagnat Magic Ball.
+    </p>
+
+    <p class="mobile-thumb__description description">
+        Based on the parameters you choose, a rarity table will be created! It will directly depend on the number and value of the parameters used. The rarity table will be released once all NFTs have been minted.
+    </p>
+
+    <h2 class="mobile-thumb__title">Road map</h2>
+
+    <p class="mobile-thumb__description_Left description">
+        We won't promise what we can't deliver!
+        Let's not fantasize about the timing of implementation!
+    </p>
+
+    <p class="mobile-thumb__description_Left description">
+        We will jointly decide what functionality the next NFT will have and what service needs to be launched into space. Depending on the interests of the community in our project with you, we will make further plans.
+    </p>
+
+    <p class="mobile-thumb__description_Left description marginNull">
+        Now we can share with you our plans for building the Azagnat ecosystem:
+    </p>
+
+    <ol class="mobile-thumb__list description" type="1">
+        <li>Launch of the private-mint Magic Ball collection;</li>
+        <li>Launch of the public-mint Magic Bal collection;</li> 
+        <li>Creation of a rare table;</li> 
+        <li>Creation of a mobile application;</li> 
+        <li>Creating a Telegram web-app bot;</li> 
+        <li>Launching an NFT lottery inside the token;</li> 
+        <li>Launch of Azagnat Oracle;</li> 
+        <li>Opening a merch-store (shop):</li> 
+            <ol type="a">
+                <li>Hoodie with augmented reality,</li>
+                <li>Amulets,</li> 
+                <li>Branded Magic Balls,</li> 
+            </ol>
+        <li>And much more and interesting...</li> 
+    </ol>
+
+
     <div class="mobile-thumb-warning">
         <h2 class="mobile-thumb-warning__title">Attention!</h2>
         <p class="description">
@@ -543,26 +656,35 @@
         While you're here, I'll show you an<br> example of a token:
     </p>
     <div class="mobile-thumb-example-container">
-        <a href="{{ token_1.animation_url }}"><img src="{{ token_1.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
-        <a href="{{ token_2.animation_url }}"><img src="{{ token_2.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
-        <a href="{{ token_3.animation_url }}"><img src="{{ token_3.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
+        <img src="./assets/screen1.4452a8c6.png" alt="screen" class="mobile-thumb-example-container__item">
+        <img src="./assets/screen1.4452a8c6.png" alt="screen" class="mobile-thumb-example-container__item">
+        <img src="./assets/screen3.1dca7805.png" alt="screen" class="mobile-thumb-example-container__item">
     </div>
     <h2 class="mobile-thumb-about__title">Learn more about the project</h2>
+
+    <p class="mobile-thumb-about__description description">
+        Join us on Discord. The whole life of the project is there.
+    </p>
+    <a href="https://discord.gg/pAM5MtFBXV" target="_blank" class="mobile-thumb-about__link">
+        <img src="./img/discord.svg" alt="discord">
+    </a>
     <p class="mobile-thumb-about__description description">
         You can follow the milestones of the project on Twitter
     </p>
     <a href="https://twitter.com/JeromLeprechaun" target="_blank" class="mobile-thumb-about__link">
-        <img src="{% static 'img/twt.svg' %}" alt="twt">
+        <img src="./img/twt.svg" alt="twitter">
     </a>
     <p class="mobile-thumb-about__description description">
-        Jerome tells his stories and arranges contests where you can win premium promo codes, are held in Telegram
+        Jerome has a Telegram channel where he sometimes talks about his life, makes riddles, with prizes in the form of codes for premium discounts of 50%, 70% and 90%. Join us - it will be fun!
     </p>
-    <a href="https://t.me/AzagnatNFT"  target="_blank" class="mobile-thumb-about__link">
-        <img src="{% static 'img/tel.svg' %}" alt="twt">
+    <a href="https://t.me/Azagnat" target="_blank" class="mobile-thumb-about__link">
+        <img src="./img/telegram-icon.svg" alt="telegram">
     </a>
     <p class="mobile-thumb-about__description description">
-        Join us!<br>
-        AND...
+        Break a leg.
+        <br>
+        <br>
+        and...
     </p>
     <p class="mobile-thumb__luck">
         Good luck!<br>
@@ -572,36 +694,6 @@
 
 </div>
 
-<template id="ref_template">
-    <div class="warning-minted-tokens-token">
-    <img src="{% static 'img/screenThumb.png' %}" alt="pic" class="warning-minted-tokens-token__img">
-        <div class="token-content">
-            <h3 class="token-content__title">AZAGNAT <span>#7518</span></h3>
-            <p class="token-content__cost description">Cost: <span>1.63</span> SOL</p>
-            <p class="token-content__ref description">Paid by referral: <span>1.17</span> SOL</p>
-            <p class="token-content__ref-deals description">Referral deals: <span>6</span></p>
-            <div class="token-content__links">
-                <p class="token-content__links__title description">View in:</p>
-                <a href="!#"><img src="{% static 'img/new_window.svg' %}" alt="link"></a>
-                <a href="!#"><img src="{% static 'img/solana.svg' %}" alt="link"></a>
-                <a href="!#"><img src="{% static 'img/solscan.svg' %}" alt="link"></a>
-                <a href="!#"><img src="{% static 'img/solana_fm.svg' %}" alt="link"></a>
-            </div>
-            <div class="token-content__button" onclick="let area = document.createElement('textarea');document.body.appendChild(area);  area.value = title;area.select(); document.execCommand('copy'); document.body.removeChild(area);">Copy referal link</div>
-        </div>
-    </div>
-</template>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RC4LTDWF8E"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-RC4LTDWF8E');
-</script>
-<script src="https://unpkg.com/@solana/web3.js@1.29.2/lib/index.iife.min.js"></script>
-<script src="{% static 'assets/wallet.js' %}"></script>
 
 
 </body>

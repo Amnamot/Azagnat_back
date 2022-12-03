@@ -45,14 +45,14 @@ def minttask(self, data, publickey):
         
         with open('core/token/avatar.txt', 'w') as f:
             f.write(data['userObj']['imgData'])
-        result = subprocess.run('node core/utils/client/build/node/cli.js upload core/token/avatar.txt -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+        result = subprocess.run('bundlr upload core/token/avatar.txt -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
         avatar_link = result.stdout.split()[5].decode('utf8').replace("'", '"')
         
         if data['idBodyColor'] == '2':
             if 'customImgData' in data:
                 with open("core/token/custom.png", "wb") as fh:
                     fh.write(base64.b64decode(data['customImgData']))
-                result = subprocess.run('node core/utils/client/build/node/cli.js upload core/token/custom.png -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+                result = subprocess.run('bundlr upload core/token/custom.png -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
                 body = ['',data['metalness'],data['roughness'],'',result.stdout.split()[5].decode('utf8').replace("'", '"'),'','','']
                 
         elif data['idBodyColor'] == '1':
@@ -98,7 +98,7 @@ def minttask(self, data, publickey):
                 if 'customBgImgData' in data:
                     with open('core/token/custom.txt','w') as f:
                         f.write(data['customBgImgData'])
-                    result = subprocess.run('node core/utils/client/build/node/cli.js upload core/token/custom.txt -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+                    result = subprocess.run('bundlr upload core/token/custom.txt -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
                     background = ['','','','','',result.stdout.split()[5].decode('utf8').replace("'", '"'),'']
                     
             elif data['idBackground'] == '5':
@@ -167,11 +167,11 @@ def minttask(self, data, publickey):
         with open('core/token/token.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
         
-        result = subprocess.run('node core/utils/client/build/node/cli.js upload core/token/token.html -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+        result = subprocess.run('bundlr upload core/token/token.html -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
         html = result.stdout.split()[5].decode('utf8').replace("'", '"') + '?ext=html'
         with open("core/token/screenshot.png", "wb") as fh:
             fh.write(base64.b64decode(data['screenshot']))
-        result = subprocess.run('node core/utils/client/build/node/cli.js upload core/token/screenshot.png -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+        result = subprocess.run('bundlr upload core/token/screenshot.png -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
         screenshot = result.stdout.split()[5].decode('utf8').replace("'", '"') + '?ext=png'
         metadata = {}
         metadata['name'] = f"Azagnat #{config_len}"
@@ -196,7 +196,7 @@ def minttask(self, data, publickey):
         with open('core/token/metadata.json', 'w') as f:
             json.dump(metadata, f, indent=4, ensure_ascii=False)
         
-        result = subprocess.run('node core/utils/client/build/node/cli.js upload core/token/metadata.json -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+        result = subprocess.run('bundlr upload core/token/metadata.json -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
         metadata_url = result.stdout.split()[5].decode('utf8').replace("'", '"')
         d = {}
         d['name'] = f"Azagnat #{config_len}"

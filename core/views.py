@@ -78,6 +78,16 @@ def homepage(request):
         re = Returned.objects.create()
     return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active, 'token_1': token_1, 'token_2': token_2, 'token_3': token_3})
 
+
+def explorer(request):
+    return render(request, 'explorer.html')
+
+def creating(request):
+    return render(request, 'creating.html')
+
+def ownership(request):
+    return render(request, 'ownership.html')
+
 @csrf_exempt
 @require_POST
 def auth(request):
