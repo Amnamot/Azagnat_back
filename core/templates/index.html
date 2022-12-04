@@ -16,7 +16,7 @@
     <meta name="theme-color" content="#ffffff">
   <script type="module" crossorigin src="{% static 'assets/main.57e6299a.js' %}"></script>
   <link rel="modulepreload" href="{% static 'assets/vendor.42a5c5ba.js' %}">
-  <link rel="stylesheet" href="{% static 'assets/main.894c0a95.js' %}">
+  <link rel="stylesheet" href="{% static 'assets/main.894c0a95.css' %}">
 </head>
 <body>
 <header class="header">
@@ -426,13 +426,13 @@
             <label class="checkbox">
                 <input class="checkbox" type="checkbox" name="create" id="create"/>
                 <div class="checkbox__checkmark"></div>
-                <div class="checkbox__body"><a href="./сreating.html">Conditions for creating</a>an appearance are met.</div>
+                <div class="checkbox__body"><a href="{% url 'сreating' %}">Conditions for creating</a>an appearance are met.</div>
               </label>
             <br>
             <label class="checkbox">
                 <input class="ownership" type="checkbox" name="ownership" id="ownership"/>
                 <div class="checkbox__checkmark"></div>
-                <div class="checkbox__body">I agree to comply with the <a href="./ownership.html">terms of ownership.</a></div>
+                <div class="checkbox__body">I agree to comply with the <a href="{% url 'ownership' %}">terms of ownership.</a></div>
               </label>
         </div>
         <div class="warning__button">OK! MINT</div>
