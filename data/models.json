@@ -2,26 +2,11 @@
     {
         "name": "Ostan",
         "local-path": "media/models/OstanDraco.glb",
-        "price": 0.0
+        "price": 1.0
     },
     {
         "name": "Hiron",
         "local-path": "media/models/HironDraco.glb",
-        "price": 0.2
-    },
-    {
-        "name": "Vesta",
-        "local-path": "media/models/VestalDraco.glb",
-        "price": 0.0
-    },
-    {
-        "name": "Beroz",
-        "local-path": "media/models/BerozDraco.glb",
-        "price": 0.2
-    },
-    {
-        "name": "Vega",
-        "local-path": "media/models/VegaDraco.glb",
-        "price": 0.2
+        "price": 2.0
     }
 ]

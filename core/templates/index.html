@@ -136,7 +136,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="sol text">+ <span>0</span> SOL</div>
                                 <div class="addOption"></div>
                             </div>
                             <div class="ball-settings__container ball-settings__container--body-color">
@@ -160,7 +160,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <div class="sol text">+ <span>0.03</span> SOL</div>
+                                <div class="sol text">+ <span>0</span> SOL</div>
                                 <div class="addOption body-color-add"></div>
                             </div>
                             <div class="ball-settings__container metalness-conyainer">
@@ -200,7 +200,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <div class="sol text">+ <span>0.01</span> SOL</div>
+                                <div class="sol text">+ <span>0</span> SOL</div>
                                 <div class="addOption background-settings-add"></div>
                             </div>
                             <div class="ball-settings__container">
@@ -219,7 +219,7 @@
                                         </div>
                                     </div>
                                 </label>
-                                <div class="sol text">+ <span>0.01</span> SOL</div>
+                                <div class="sol text">+ <span>0</span> SOL</div>
                                 <div class="addOption change-ticker-color-add"></div>
                             </div>
                         </fieldset>
@@ -263,8 +263,8 @@
                 receive a 20% discount, and you will get back 10% of the base price of the token. Keep in mind that your
                 link can make a lot of purchases!
             </p>
-            <p class="referral__link description">○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○</p>
-            <p class="referral__link-copy description">Copy</p>
+            <!-- <p class="referral__link description">○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○</p>
+            <p class="referral__link-copy description">Copy</p> -->
             <p class="referral__sum description">
                 In total, the referral program returned: <span>XXXX</span> SOL
                 <img src="{% static 'img/flower.png' %}" alt="flower">
@@ -461,28 +461,9 @@
 <div class="warning warning-minted-tokens hide">
     <div class="warning__content">
         <h2 class="warning__title warning__title-img-wallet"></h2>
-        <p class="warning__description description wallet-address">0xA366D36A7df28b0081d261C5b4A444C9855a7C6e</p>
-        <div class="warning-minted-tokens-token">
-            <img src="./img/screenThumb.png" alt="pic" class="warning-minted-tokens-token__img">
-            <div class="token-content">
-                <h3 class="token-content__title">AZAGNAT <span>#7518</span></h3>
-                <p class="token-content__cost description">Cost: <span>1.63</span> SOL</p>
-                <p class="token-content__ref description">Paid by referral: <span>1.17</span> SOL</p>
-                <p class="token-content__ref-deals description">Referral deals: <span>6</span></p>
-                <div class="token-content__links">
-                    <p class="token-content__links__title description">View in:</p>
-                    <a href="!#"><img src="./img/new_window.svg" alt="link"></a>
-                    <a href="!#"><img src="./img/solana.svg" alt="link"></a>
-                    <!-- <a href="!#"><img src="./img/solscan.svg" alt="link"></a> -->
-                    <a href="!#"><img src="./img/solana_fm.svg" alt="link"></a>
-                </div>
-                <div class="token-content__button">Copy referal link</div>
-            </div>
-        </div>
-        <div class="warning__info"> connect and watch in Telegram bot 
-            <a class="img" href="!#"><img src="./img/telegram-icon.svg" alt="telegram"></a>
-        </div>
-        <!-- <div class="warning__button">CLOSE</div> -->
+        <p class="warning__description description wallet-address"></p>
+        
+        <div class="warning__button">Disconnect</div>
     </div>
 </div>
 
@@ -499,7 +480,7 @@
             Telegram channel of the project.
         </p>
         <a href="https://t.me/Azagnat" target="_blank">
-            <img class="warning-ref-redeemed__img" src="./img/tel.svg" alt="pic">
+            <img class="warning-ref-redeemed__img" src="{% static 'img/tel.svg' %}" alt="pic">
         </a>
     </div>
 </div>
@@ -531,10 +512,7 @@
             Access to premium parameters<br>
             is possible after connecting the wallet.
         </p>
-
-        <a href="!#">
-            <img class="warning-access-prem" src="./img/WalletON.svg" alt="pic">
-        </a>
+        <img class="warning-access-prem" src="{% static 'img/WalletON.svg' %}" alt="pic">
     </div>
 </div>
 
@@ -548,9 +526,7 @@
             Look in your wallet.
         </p>
         <br><br>
-        <a href="!#">
-            <img class="warning-access-prem" src="./img/wallet_off.svg" alt="pic">
-        </a>
+        <img class="warning-access-prem" src="{% static 'img/wallet_off.svg' %}" alt="pic">
     </div>
 </div>
 
@@ -579,18 +555,6 @@
             appearance of the token, and get back to<br>
             me soon.<br>
         </p>
-    </div>
-</div>
-
-<div class="warning warning-in-blsmith hide">
-    <div class="warning__content">
-        <h2 class="warning__title yellow">Warning!</h2>
-        <p class="description">
-            The blacksmith is busy minting<br>
-            you Magic Ball.<br>
-            Please wait!<br>
-        </p>
-        <img class="warning-in-blsmith__pic" src="./img/blsm.gif" alt="blsm">
     </div>
 </div>
 
@@ -656,9 +620,9 @@
         While you're here, I'll show you an<br> example of a token:
     </p>
     <div class="mobile-thumb-example-container">
-        <img src="./assets/screen1.4452a8c6.png" alt="screen" class="mobile-thumb-example-container__item">
-        <img src="./assets/screen1.4452a8c6.png" alt="screen" class="mobile-thumb-example-container__item">
-        <img src="./assets/screen3.1dca7805.png" alt="screen" class="mobile-thumb-example-container__item">
+        <a href="{{ token_1.animation_url }}"><img src="{{ token_1.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
+        <a href="{{ token_2.animation_url }}"><img src="{{ token_2.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
+        <a href="{{ token_3.animation_url }}"><img src="{{ token_3.image }}" style="border-width: 4px;border-style: solid;border-color: rgb(9, 178, 36);" alt="screen" class="mobile-thumb-example-container__item" width="516" height="516"></a>
     </div>
     <h2 class="mobile-thumb-about__title">Learn more about the project</h2>
 
@@ -666,19 +630,19 @@
         Join us on Discord. The whole life of the project is there.
     </p>
     <a href="https://discord.gg/pAM5MtFBXV" target="_blank" class="mobile-thumb-about__link">
-        <img src="./img/discord.svg" alt="discord">
+        <img src="{% static 'img/discord.svg' %}" alt="discord">
     </a>
     <p class="mobile-thumb-about__description description">
         You can follow the milestones of the project on Twitter
     </p>
     <a href="https://twitter.com/JeromLeprechaun" target="_blank" class="mobile-thumb-about__link">
-        <img src="./img/twt.svg" alt="twitter">
+        <img src="{% static 'img/twt.svg' %}" alt="twitter">
     </a>
     <p class="mobile-thumb-about__description description">
         Jerome has a Telegram channel where he sometimes talks about his life, makes riddles, with prizes in the form of codes for premium discounts of 50%, 70% and 90%. Join us - it will be fun!
     </p>
     <a href="https://t.me/Azagnat" target="_blank" class="mobile-thumb-about__link">
-        <img src="./img/telegram-icon.svg" alt="telegram">
+        <img src="{% static 'img/telegram-icon.svg' %}" alt="telegram">
     </a>
     <p class="mobile-thumb-about__description description">
         Break a leg.
@@ -694,7 +658,30 @@
 
 </div>
 
+<template id="ref_template">
+    <div class="warning-minted-tokens-token">
+        <img src="{% static 'img/screenThumb.png' %}" alt="pic" class="warning-minted-tokens-token__img">
+        <div class="token-content">
+            <h3 class="token-content__title">AZAGNAT <span>#7518</span></h3>
+            <p class="token-content__cost description">Cost: <span>1.63</span> SOL</p>
+            <p class="token-content__ref description">Paid by referral: <span>1.17</span> SOL</p>
+            <p class="token-content__ref-deals description">Referral deals: <span>6</span></p>
+            <div class="token-content__links">
+                <p class="token-content__links__title description">View in:</p>
+                <a href="!#"><img src="{% static 'img/new_window.svg' %}" alt="link"></a>
+                <a href="!#"><img src="{% static 'img/solana.svg' %}" alt="link"></a>
+                <a href="!#"><img src="{% static 'img/solana_fm.svg' %}" alt="link"></a>
+            </div>
+            <div class="token-content__button" onclick="let area = document.createElement('textarea');document.body.appendChild(area);  area.value = title;area.select(); document.execCommand('copy'); document.body.removeChild(area);">Copy referal link</div>
+        </div>
+    </div>
+    <div class="warning__info"> connect and watch in Telegram bot 
+        <a class="img" href="!#"><img src="{% static 'img/telegram-icon.svg' %}" alt="telegram"></a>
+    </div>
+</template>
 
+<script src="https://unpkg.com/@solana/web3.js@1.29.2/lib/index.iife.min.js"></script>
+<script src="{% static 'assets/wallet.js' %}"></script>
 
 </body>
 </html>
