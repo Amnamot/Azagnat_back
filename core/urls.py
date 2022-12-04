@@ -9,6 +9,6 @@ urlpatterns = [
     path('freedice', FreeDice.as_view()),
     path('premiumdice', PremiumDice.as_view()),
     path('explorer/', explorer),
-    path('creating/', creating),
-    path('ownership/', ownership),
+    path('creating/', creating, name='creating'),
+    path('ownership/', ownership, name='ownership'),
 ]
