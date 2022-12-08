@@ -6,9 +6,8 @@ urlpatterns = [
     path('auth', auth, name='auth'),
     path('mint', mint, name='mint'),
     path('getprice', getprice, name='getprice'),
-    path('freedice', FreeDice.as_view()),
-    path('premiumdice', PremiumDice.as_view()),
     path('explorer/', explorer),
     path('creating/', creating, name='creating'),
     path('ownership/', ownership, name='ownership'),
+    path('getconfig', Explorer.as_view())
 ]

@@ -28,6 +28,26 @@ def generator(n):
         s = s + str(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789')[0])
     return s
 
+def enc(num, guide):
+    old = 0
+    fib_old = 0
+    fib = guide
+
+    data = []
+
+    i = 0
+
+    length = len(str(num))
+
+    while i < length:
+        fib_old = fib
+        fib = fib + old
+        char = int(str(num)[i])
+        data.append((char+fib)+(fib*char))
+        old = fib_old
+        i+=1
+    return data
+
 
 def homepage(request):
     token_1 = {"name": "Azagnat #00001", "image": "https://arweave.net/fZpv225Ubj9iwUOV4mGgg-_HZ1uG3mmrogP0rPzU0bY?ext=png", "symbol": "AZGT", "attributes": [{"value": "Buben", "trait_type": "Name"}, {"value": "2022-06-22", "trait_type": "Date of Birth"}, {"value": "Man", "trait_type": "Gender"}, {"value": "Russian", "trait_type": "Language"}, {"value": "Vega", "trait_type": "Ball_name"}, {"value": "Material", "trait_type": "Body_view"}, {"value": "Select image", "trait_type": "Background"}, {"value": "Custom color", "trait_type": "Ticker"}], "description": "Non-fungible Magic Ball", "external_url": "https://azagnat.art", "animation_url": "https://arweave.net/i9_WZEM_VFVSuIIxbc5l4NdKJXOC_nxoNk7ozkadm_0?ext=html"}
@@ -124,186 +144,117 @@ def mint(request):
 @csrf_exempt
 @require_POST
 def getprice(request):
-    price = {}
-    price['model_price'] = .0
-    price['body_price'] = .0
-    price['bg_price'] = .0
-    price['ticker_price'] = .0
-    baseprice = BasePrice.objects.get(id=1).price
-    data = json.loads(request.body.decode('utf8').replace("'", '"'))
-    if 'p' in data['get_par']:
-        if Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).isactive:
-            price['global_price'] = baseprice - (baseprice * (Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).percent / 100))
-        else:
-            price['global_price'] = baseprice
-    elif 'r' in data['get_par']:
-        price['global_price'] = baseprice - (baseprice * 0.2)
-    elif 'a' in data['get_par']:
-        price['global_price'] = baseprice - (baseprice * 0.2)
-    else:
-        price['global_price'] = baseprice
-
-    if data['model'] == None:
-        price['model_price'] = .0
-        price['global_price'] += price['model_price']
-    else:
-        price['model_price'] = Models.objects.get(id=int(data['model'])+1).price * baseprice
-        price['global_price'] += price['model_price']
-
-    try:
-        if data['idBodyColor'] == '3':
-            price['body_price'] = BodyViewPrice.objects.get(id=1).select_image * baseprice
-            price['global_price'] += price['body_price']
-        elif data['idBodyColor'] == '2':
-            price['body_price'] = BodyViewPrice.objects.get(id=1).custom_image * baseprice
-            price['global_price'] += price['body_price']
-        elif data['idBodyColor'] == '1':
-            price['body_price'] = BodyViewPrice.objects.get(id=1).custom_color * baseprice
-            price['global_price'] += price['body_price']
-        elif data['idBodyColor'] == '0':
-            price['body_price'] = .0
-            price['global_price'] += price['body_price']
-        elif data['idBodyColor'] == '4':
-            if data['selectedMaterialId'] == None:
-                price['body_price'] = .0
-            else:
-                price['body_price'] = Materials.objects.get(id=int(data['selectedMaterialId'])+1).price * baseprice
-                price['global_price'] += price['body_price']
-    except KeyError:
-        pass
-    try:
-        if data['idBackground'] == '5':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).select_image * baseprice
-            price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '4':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).custom_image * baseprice
-            price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '3':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).radial_gradient * baseprice
-            price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '2':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).linear_gradient * baseprice
-            price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '1':
-            price['bg_price'] = BackgroundPrice.objects.get(id=1).single_color * baseprice
-            price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '0':
-            price['bg_price'] = .0
-            price['global_price'] += price['bg_price']
-    except KeyError:
-        pass
-
-    if 'tickerColor' in data:
-        if data['tickerColor'] == "#004f20":
-            price['ticker_price'] = .0
-            price['global_price'] += price['ticker_price']
-        else:
-            price['ticker_price'] = TickerPrice.objects.get(id=1).color * baseprice
-            price['global_price'] += price['ticker_price']
-    else:
-        price['ticker_price'] = .0
-        price['global_price'] += price['ticker_price']
-    return JsonResponse(price)
+    
+    return JsonResponse()
 
 
-class FreeDice(APIView):
+class Explorer(APIView):
     def get(self, request):
-        x = 20
-        y = 3
-        o = 0.245
-        a = (-o*x+sqrt(((o*x)**2)+(4*o*x)/y))/2
-        b = y-(1/a)
-        r = float("{:.2f}".format(random.uniform(0, 10)))
-        k = "{:.3f}".format((1/(o*r+a))+b)
-        win = float(k) * float(request.GET['bet'])
+        d = []
+        configs = Config.objects.filter(address=request.data['publickey'])
+        for config in configs:
+            config.metadata['contract'] = config.contract
+            d.append(config.metadata)
+        return Response(d)
 
-        solana_client = Client('https://api.devnet.solana.com')
+# class FreeDice(APIView):
+#     def get(self, request):
+#         x = 20
+#         y = 3
+#         o = 0.245
+#         a = (-o*x+sqrt(((o*x)**2)+(4*o*x)/y))/2
+#         b = y-(1/a)
+#         r = float("{:.2f}".format(random.uniform(0, 10)))
+#         k = "{:.3f}".format((1/(o*r+a))+b)
+#         win = float(k) * float(request.GET['bet'])
 
-
-        with open('id.json', 'r') as f:
-            lines = json.load(f)
-        key_from_file = [int(x) for x in lines]
-
-        keypair = Keypair(key_from_file[:32])
-
-        txn = Transaction().add(transfer(TransferParams(
-        from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(win * 1000000000))))
-        resp = solana_client.send_transaction(txn, keypair)
-
-        with open('wins_eng_free.json', 'r') as f:
-            text = random.choice(json.load(f))
-        text = text.replace("#name#", "jerom")
-        text = text.replace("#win#", str(win))
-        return Response({'win': text})
+#         solana_client = Client('https://api.devnet.solana.com')
 
 
+#         with open('id.json', 'r') as f:
+#             lines = json.load(f)
+#         key_from_file = [int(x) for x in lines]
 
-class PremiumDice(APIView):
-    def get(self, request):
-        res = {}
-        x = 97
-        y = 76
-        o = 0.0099
-        a = (-o*x+sqrt(((o*x)**2)+(4*o*x)/y))/2
-        b = y-(1/a)
-        s = random.randint(1, 98)
-        if request.GET['isunder']:
-            if s <= int(request.GET['select']):
-                k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
-                w = float(k) * float(request.GET['bet'])
-                with open('wins_eng_prem.json', 'r') as f:
-                    text = random.choice(json.load(f)[0])
-                if text.find('#name#') != -1:
-                    text.replace("#name#", "jerom")
-                text = text.replace('#nonce#', str(s))
-                text = text.replace("#win#", str(w))
-                res['win'] = text
+#         keypair = Keypair(key_from_file[:32])
 
-                solana_client = Client('https://api.devnet.solana.com')
+#         txn = Transaction().add(transfer(TransferParams(
+#         from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(win * 1000000000))))
+#         resp = solana_client.send_transaction(txn, keypair)
+
+#         with open('wins_eng_free.json', 'r') as f:
+#             text = random.choice(json.load(f))
+#         text = text.replace("#name#", "jerom")
+#         text = text.replace("#win#", str(win))
+#         return Response({'win': text})
 
 
-                with open('id.json', 'r') as f:
-                    lines = json.load(f)
-                key_from_file = [int(x) for x in lines]
 
-                keypair = Keypair(key_from_file[:32])
+# class PremiumDice(APIView):
+#     def get(self, request):
+#         res = {}
+#         x = 97
+#         y = 76
+#         o = 0.0099
+#         a = (-o*x+sqrt(((o*x)**2)+(4*o*x)/y))/2
+#         b = y-(1/a)
+#         s = random.randint(1, 98)
+#         if request.GET['isunder']:
+#             if s <= int(request.GET['select']):
+#                 k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
+#                 w = float(k) * float(request.GET['bet'])
+#                 with open('wins_eng_prem.json', 'r') as f:
+#                     text = random.choice(json.load(f)[0])
+#                 if text.find('#name#') != -1:
+#                     text.replace("#name#", "jerom")
+#                 text = text.replace('#nonce#', str(s))
+#                 text = text.replace("#win#", str(w))
+#                 res['win'] = text
 
-                txn = Transaction().add(transfer(TransferParams(
-                from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
-                resp = solana_client.send_transaction(txn, keypair)
-            else:
-                with open('wins_eng_prem.json', 'r') as f:
-                    text = random.choice(json.load(f)[1])
-                text = text.replace('#nonce#', str(s))
-                res['win'] = text
-        else:
-            ss = request.GET['select']*-1+99
-            if s > ss:
-                k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
-                w = float(k) * float(request.GET['bet'])
-                with open('wins_eng_prem.json', 'r') as f:
-                    text = random.choice(json.load(f)[0])
-                if text.find('#name#') != -1:
-                    text.replace("#name#", "jerom")
-                text = text.replace('#nonce#', str(s))
-                text = text.replace("#win#", str(w))
-                res['win'] = text
-                solana_client = Client('https://api.devnet.solana.com')
+#                 solana_client = Client('https://api.devnet.solana.com')
 
 
-                with open('id.json', 'r') as f:
-                    lines = json.load(f)
-                key_from_file = [int(x) for x in lines]
+#                 with open('id.json', 'r') as f:
+#                     lines = json.load(f)
+#                 key_from_file = [int(x) for x in lines]
 
-                keypair = Keypair(key_from_file[:32])
+#                 keypair = Keypair(key_from_file[:32])
 
-                txn = Transaction().add(transfer(TransferParams(
-                from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
-                resp = solana_client.send_transaction(txn, keypair)
-            else:
-                with open('wins_eng_prem.json', 'r') as f:
-                    text = random.choice(json.load(f)[1])
-                text = text.replace('#nonce#', str(s))
-                res['win'] = text
+#                 txn = Transaction().add(transfer(TransferParams(
+#                 from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
+#                 resp = solana_client.send_transaction(txn, keypair)
+#             else:
+#                 with open('wins_eng_prem.json', 'r') as f:
+#                     text = random.choice(json.load(f)[1])
+#                 text = text.replace('#nonce#', str(s))
+#                 res['win'] = text
+#         else:
+#             ss = request.GET['select']*-1+99
+#             if s > ss:
+#                 k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
+#                 w = float(k) * float(request.GET['bet'])
+#                 with open('wins_eng_prem.json', 'r') as f:
+#                     text = random.choice(json.load(f)[0])
+#                 if text.find('#name#') != -1:
+#                     text.replace("#name#", "jerom")
+#                 text = text.replace('#nonce#', str(s))
+#                 text = text.replace("#win#", str(w))
+#                 res['win'] = text
+#                 solana_client = Client('https://api.devnet.solana.com')
+
+
+#                 with open('id.json', 'r') as f:
+#                     lines = json.load(f)
+#                 key_from_file = [int(x) for x in lines]
+
+#                 keypair = Keypair(key_from_file[:32])
+
+#                 txn = Transaction().add(transfer(TransferParams(
+#                 from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
+#                 resp = solana_client.send_transaction(txn, keypair)
+#             else:
+#                 with open('wins_eng_prem.json', 'r') as f:
+#                     text = random.choice(json.load(f)[1])
+#                 text = text.replace('#nonce#', str(s))
+#                 res['win'] = text
         
-        return Response(res)
+#         return Response(res)
