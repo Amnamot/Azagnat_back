@@ -110,11 +110,11 @@
 	<script src="{% static 'assets/explorer/app.min.js' %}"></script>
 	<script src="https://unpkg.com/@solana/web3.js@1.29.2/lib/index.iife.min.js"></script>
 	<script>
-		async function getpublic() {
+		function getpublic() {
 			const app_url = 'https://azagnat.art/';
 			const redirect_link = 'https://azagnat.art/explorer/';
 			const keypair = solanaWeb3.Keypair.generate();
-			const rez = await fetch(`https://phantom.app/ul/v1/connect?app_url=${app_url}&dapp_encryption_public_key=${keypair.publicKey}&redirect_link=${redirect_link}`);
+			window.location = `https://phantom.app/ul/v1/connect?app_url=${app_url}&dapp_encryption_public_key=${keypair.publicKey}&redirect_link=${redirect_link}`;
 		}
 		window.addEventListener('load', function(){
 			getpublic();
