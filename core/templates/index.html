@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Magic Ball</title>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
@@ -14,9 +14,9 @@
     <link rel="mask-icon" href="{% static 'safari-pinned-tab.svg' %}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-  <script type="module" crossorigin src="{% static 'assets/main.3ddf3c70.js' %}"></script>
-  <link rel="modulepreload" href="{% static 'assets/vendor.42a5c5ba.js' %}">
-  <link rel="stylesheet" href="{% static 'assets/main.97a7da93.css' %}">
+    <script type="module" crossorigin src="{% static 'assets/main.56319e2c.js' %}"></script>
+    <link rel="modulepreload" href="{% static 'assets/vendor.0168db68.js' %}">
+    <link rel="stylesheet" href="{% static 'assets/main.4788b908.css' %}">
 </head>
 <body>
 <header class="header">
@@ -260,7 +260,7 @@
                     Σ = <span>0.00</span> SOL
                 </div>
                 <!-- <input class="mint__submit" type="submit" value="MINT"> -->
-                <input class="mint__submit" type="submit" value="Mint through: 3 day 12 h. 17 min.">
+                <input id = 'mint_start' class="mint__submit" type="submit" value="Mint through: 3 day 12 h. 17 min.">
             </section>
         </form>
         <section class="referral">
@@ -338,9 +338,9 @@
 </div>
 
 <!-- wait -->
-<div id="wait" class="hide">
-    <h2>S00N</h2>
-</div>
+<!-- <div id="wait" class="hide">
+    <h2>S00N open on 12.24.2022 12:00 (UTC)</h2>
+</div> -->
 <!-- warnings -->
 
 <div class="warning warning-RoadMap hide">
@@ -453,11 +453,10 @@
             </div>
         </div>
         <div class="warning__info"> connect and watch in Telegram bot 
-            <a class="img" href="!#"><img src="{% static 'img/telegram-icon.svg' %}" alt="telegram"></a>
+            <a class="img" href="!#"><img src="{% static 'img/tel.svg' %}" alt="telegram"></a>
         </div>
     </div>
 </div>
-
 <div class="warning warning-ref-redeemed hide">
     <div class="warning__content">
         <h2 class="warning__title warning__title-img">Error!</h2>
@@ -593,26 +592,29 @@
         We will jointly decide what functionality the next NFT will have and what service needs to be launched into space. Depending on the interests of the community in our project with you, we will make further plans.
     </p>
 
-    <p class="mobile-thumb__description_Left description marginNull">
-        Now we can share with you our plans for building the Azagnat ecosystem:
-    </p>
-
-    <ol class="mobile-thumb__list description" type="1">
-        <li>Launch of the private-mint Magic Ball collection;</li>
-        <li>Launch of the public-mint Magic Bal collection;</li> 
-        <li>Creation of a rare table;</li> 
-        <li>Creation of a mobile application;</li> 
-        <li>Creating a Telegram web-app bot;</li> 
-        <li>Launching an NFT lottery inside the token;</li> 
-        <li>Launch of Azagnat Oracle;</li> 
-        <li>Opening a merch-store (shop):</li> 
-            <ol type="a">
-                <li>Hoodie with augmented reality,</li>
-                <li>Amulets,</li> 
-                <li>Branded Magic Balls,</li> 
-            </ol>
-        <li>And much more and interesting...</li> 
-    </ol>
+    <div class="mobile-thumb__block-center">
+        <p class="mobile-thumb__description_Left description marginNull">
+            Now we can share with you our plans for building the Azagnat ecosystem:
+        </p>
+    
+        <ol class="mobile-thumb__list description" type="1">
+            <li>Launch of the private-mint Magic Ball collection;</li>
+            <li>Launch of the public-mint Magic Bal collection;</li> 
+            <li>Creation of a rare table;</li> 
+            <li>Creation of a mobile application;</li> 
+            <li>Creating a Telegram web-app bot;</li> 
+            <li>Launching an NFT lottery inside the token;</li> 
+            <li>Launch of Azagnat Oracle;</li> 
+            <li>Opening a merch-store (shop):</li> 
+                <ol type="a">
+                    <li>Hoodie with augmented reality,</li>
+                    <li>Amulets,</li> 
+                    <li>Branded Magic Balls,</li> 
+                </ol>
+            <li>And much more and interesting...</li> 
+        </ol>
+    </div>
+    
 
 
     <div class="mobile-thumb-warning">
@@ -701,29 +703,7 @@
 
 </div>
 
-<template id="ref_template">
-    <div class="warning-minted-tokens-token">
-        <img src="{% static 'img/screenThumb.png' %}" alt="pic" class="warning-minted-tokens-token__img">
-        <div class="token-content">
-            <h3 class="token-content__title">AZAGNAT <span>#7518</span></h3>
-            <p class="token-content__cost description">Cost: <span>1.63</span> SOL</p>
-            <p class="token-content__ref description">Paid by referral: <span>1.17</span> SOL</p>
-            <p class="token-content__ref-deals description">Referral deals: <span>6</span></p>
-            <div class="token-content__links">
-                <p class="token-content__links__title description">View in:</p>
-                <a href="!#"><img src="{% static 'img/new_window.svg' %}" alt="link"></a>
-                <a href="!#"><img src="{% static 'img/solana.svg' %}" alt="link"></a>
-                <a href="!#"><img src="{% static 'img/solana_fm.svg' %}" alt="link"></a>
-            </div>
-            <div class="token-content__button" onclick="let area = document.createElement('textarea');document.body.appendChild(area);  area.value = title;area.select(); document.execCommand('copy'); document.body.removeChild(area);">Copy referal link</div>
-        </div>
-    </div>
-    <div class="warning__info"> connect and watch in Telegram bot 
-        <a class="img" href="!#"><img src="{% static 'img/telegram-icon.svg' %}" alt="telegram"></a>
-    </div>
-</template>
 
-<script src="https://unpkg.com/@solana/web3.js@1.29.2/lib/index.iife.min.js"></script>
-<script src="{% static 'assets/wallet.1.js' %}"></script>
+
 </body>
 </html>
