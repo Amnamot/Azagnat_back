@@ -100,7 +100,10 @@ def homepage(request):
 
 
 def explorer(request):
-    return render(request, 'explorer.html')
+    return render(request, 'explorer/explorer.html')
+
+def deepconnect(request):
+    return render(request, 'explorer/connect.html')
 
 def creating(request):
     return render(request, 'creating.html')

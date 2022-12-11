@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+	<title>Magic Ball</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="{% static 'assets/explorer/style.min.css' %}">
+	<link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<link
+	rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+/>
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+	<div class="width">
+		<h1>Non-fungible Magic Ball</h1>
+	</div>
+	<div id="TgBack">></div>
+</header>
+      <main class="width">
+          <div id="shop">  <div id="shop_load" class="load"><i class="bi bi-arrow-repeat"></i></div>  <div class="notFoundItem width" id="shop_notFound" style="display:none ;">    <p class="bold">Azagnat’s were not found in your wallet.</p>    <p>You can mint <br /> the Magic Ball on the: <br/> <a href='https://azagnat.art'        class='link_underline'>azagnat.art</a></p>  </div>  <template id="template_NFT_item">  <div class="NFT_item">    <picture><source srcset="none" type="image/webp"><img class="tg_send" src="none" alt="NFT"></picture>    <div class="NFT_item_info">      <div class="button button_open button_cat">        <p>Open</p>        <!--  <i class="bi bi-box-arrow-up-right"></i> -->        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M38.8537 1.416C39.9062 2.456 39.9163 4.15229 38.8763 5.20476L20.0047 24.3029C18.9647 25.3554 17.2684 25.3655 16.2159 24.3255C15.1635 23.2855 15.1534 21.5892 16.1933 20.5367L35.065 1.43861C36.105 0.386126 37.8013 0.376007 38.8537 1.416Z" fill="#09B324"/><path fill-rule="evenodd" clip-rule="evenodd" d="M23.252 2.67911C23.252 1.19948 24.4514 0 25.9311 0H37.3202C38.7998 0 39.9993 1.19948 39.9993 2.67911V13.9922C39.9993 15.4719 38.7998 16.6713 37.3202 16.6713C35.8406 16.6713 34.6411 15.4719 34.6411 13.9922V5.35821H25.9311C24.4514 5.35821 23.252 4.15874 23.252 2.67911Z" fill="#09B324"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0 7.72891C0 6.24928 1.19948 5.0498 2.67911 5.0498H18.3275C19.8072 5.0498 21.0066 6.24928 21.0066 7.72891C21.0066 9.20854 19.8072 10.408 18.3275 10.408H5.35821V35.1732H30.1233L30.1227 22.204C30.1226 20.7244 31.3221 19.5248 32.8017 19.5248C34.2813 19.5247 35.4809 20.7241 35.4809 22.2038L35.4816 37.8522C35.4816 38.5627 35.1994 39.2442 34.6969 39.7467C34.1945 40.2491 33.5131 40.5314 32.8025 40.5314H2.67911C1.19948 40.5314 0 39.3319 0 37.8523V7.72891Z" fill="#09B324"/></svg>      </div>      <div class="button button_cat" onclick="window.location = `https://explorer.solana.com`;">        <svg width="46" height="43" viewBox="0 0 46 43" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.85082 32.8305C8.12595 32.494 8.49566 32.3047 8.88256 32.3047H44.6926C45.346 32.3047 45.6727 33.2722 45.2084 33.8295L38.1324 42.4737C37.8573 42.8102 37.4876 42.9995 37.1007 42.9995H1.29927C0.645831 42.9995 0.319113 42.032 0.783396 41.4747L7.85082 32.8305Z" fill="url(#paint0_linear_1522_320)"/><path d="M7.85082 0.525801C8.12595 0.189288 8.49566 0 8.88256 0H44.6926C45.346 0 45.6727 0.967474 45.2084 1.52482L38.1324 10.169C37.8573 10.5055 37.4876 10.6948 37.1007 10.6948H1.29927C0.645831 10.6948 0.319113 9.72732 0.783396 9.16997L7.85082 0.525801Z" fill="url(#paint1_linear_1522_320)"/><path d="M38.1324 16.5737C37.8573 16.2371 37.4876 16.0479 37.1007 16.0479H1.29927C0.645831 16.0479 0.319113 17.0153 0.783396 17.5727L7.85942 26.2168C8.13455 26.5534 8.50426 26.7426 8.89116 26.7426H44.7012C45.3546 26.7426 45.6813 25.7752 45.217 25.2178L38.1324 16.5737Z" fill="url(#paint2_linear_1522_320)"/><defs><linearGradient id="paint0_linear_1522_320" x1="41.2735" y1="-5.16569" x2="7.76148" y2="47.3148" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="paint1_linear_1522_320" x1="30.4378" y1="-12.0844" x2="-3.07421" y2="40.3961" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient><linearGradient id="paint2_linear_1522_320" x1="35.8211" y1="-8.6464" x2="2.30915" y2="43.8341" gradientUnits="userSpaceOnUse"><stop stop-color="#00FFA3"/><stop offset="1" stop-color="#DC1FFF"/></linearGradient></defs></svg>      </div>      <div class="button button_info button_cat _popup-link">        <i class="bi bi-three-dots-vertical"></i>      </div>    </div>  </div></template>  <div class="modal" id="modalNft" onClick='document.querySelector("#modalNft").style.display="none"'
+	style="display:none ;">
+	<div class="modal-dialog width">
+		<div class="modal_nft">
+			<div class="modal_nft_img">
+				<picture><source srcset="default" type="image/webp"><img src="default"></picture></img>
+			</div>
+			<div>
+				<h2>Properties</h2>
+				<div class="modal_nft_properties">
+					<div class="modal_nft_properti">
+						<p class="tittle"></p>
+						<p class="text"></p>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="button button_inf" onClick='document.querySelector("#modalNft").style.display="none"'>
+				CLOSE
+			</div> -->
+		</div>
+	</div>
+</div></div>
+      </main>
+      <footer class="footer">
+</footer>
+    </div>
+    <script src="{% static 'assets/explorer/vendors.min.js' %}"></script>
+	<script src="{% static 'assets/explorer/app.min.js' %}"></script>
+  </body>
+</html>
