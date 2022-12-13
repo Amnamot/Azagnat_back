@@ -16,6 +16,8 @@ from solana.rpc.api import Client
 from solana.publickey import PublicKey
 from solana.transaction import Transaction
 from solana.system_program import TransferParams, transfer
+from nacl.public import PrivateKey, PublicKey
+import base58
 
 
 
@@ -103,6 +105,9 @@ def explorer(request):
     return render(request, 'explorer/explorer.html')
 
 def deepconnect(request):
+    secretKeyNew = PrivateKey.generate()
+    
+
     return render(request, 'explorer/connect.html')
 
 def creating(request):
@@ -150,15 +155,6 @@ def getprice(request):
     
     return JsonResponse()
 
-
-class Explorer(APIView):
-    def get(self, request):
-        d = []
-        configs = Config.objects.filter(address=request.data['publickey'])
-        for config in configs:
-            config.metadata['contract'] = config.contract
-            d.append(config.metadata)
-        return Response(d)
 
 # class FreeDice(APIView):
 #     def get(self, request):

@@ -10,5 +10,4 @@ urlpatterns = [
     path('connect/', deepconnect),
     path('creating/', creating, name='creating'),
     path('ownership/', ownership, name='ownership'),
-    path('getconfig', Explorer.as_view())
 ]

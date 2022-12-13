@@ -79,13 +79,11 @@
     </div>
     <script src="{% static 'assets/explorer/vendors.min.js' %}"></script>
 	<script src="{% static 'assets/explorer/app.min.js' %}"></script>
-	<script src="https://unpkg.com/@solana/web3.js@1.29.2/lib/index.iife.min.js"></script>
 	<script>
 		function getpublic() {
 			const app_url = 'https://azagnat.art/';
 			const redirect_link = 'https://azagnat.art/explorer/';
-			const keypair = solanaWeb3.Keypair.generate();
-			window.location = `https://phantom.app/ul/v1/connect?app_url=${app_url}&dapp_encryption_public_key=${keypair.publicKey}&redirect_link=${redirect_link}`;
+			window.location = `https://phantom.app/ul/v1/connect?app_url=${app_url}&dapp_encryption_public_key={{publickey}}&redirect_link=${redirect_link}`;
 		}
         const btn_phantom = document.querySelector('#button_phantom')
 		btn_phantom.addEventListener('click', function(){
@@ -93,5 +91,4 @@
 		})
 	</script>
 </body>
-
 </html>
