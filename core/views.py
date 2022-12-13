@@ -18,6 +18,10 @@ from solana.transaction import Transaction
 from solana.system_program import TransferParams, transfer
 from nacl.public import PrivateKey, PublicKey
 import base58
+import logging
+
+
+logger = logging.getLogger('django')
 
 
 
@@ -52,6 +56,7 @@ def enc(num, guide):
 
 
 def homepage(request):
+    logger.info('azagnat')
     token_1 = {"name": "Azagnat #00001", "image": "https://arweave.net/fZpv225Ubj9iwUOV4mGgg-_HZ1uG3mmrogP0rPzU0bY?ext=png", "symbol": "AZGT", "attributes": [{"value": "Buben", "trait_type": "Name"}, {"value": "2022-06-22", "trait_type": "Date of Birth"}, {"value": "Man", "trait_type": "Gender"}, {"value": "Russian", "trait_type": "Language"}, {"value": "Vega", "trait_type": "Ball_name"}, {"value": "Material", "trait_type": "Body_view"}, {"value": "Select image", "trait_type": "Background"}, {"value": "Custom color", "trait_type": "Ticker"}], "description": "Non-fungible Magic Ball", "external_url": "https://azagnat.art", "animation_url": "https://arweave.net/i9_WZEM_VFVSuIIxbc5l4NdKJXOC_nxoNk7ozkadm_0?ext=html"}
     token_2 = {"name": "Azagnat #00002", "image": "https://arweave.net/9xf_L3YUKvg6e93EnXeOMQNF9kZt-ylh7hCVjSedG78?ext=png", "symbol": "AZGT", "attributes": [{"value": "Millie", "trait_type": "Name"}, {"value": "2004-02-19", "trait_type": "Date of Birth"}, {"value": "Woman", "trait_type": "Gender"}, {"value": "English", "trait_type": "Language"}, {"value": "Vesta", "trait_type": "Ball_name"}, {"value": "Material", "trait_type": "Body_view"}, {"value": "Custom image", "trait_type": "Background"}, {"value": "Custom color", "trait_type": "Ticker"}], "description": "Non-fungible Magic Ball", "external_url": "https://azagnat.art", "animation_url": "https://arweave.net/tyOiQCVaa63urscZEtuZsE3L4zQfAkfzOowY7CsdDhs?ext=html"}
     token_3 = {"name": "Azagnat #00010", "image": "https://arweave.net/i79oAQkvaoFTgUnUFLj-mB6cjMPoMJlZhF80jrWbhaU?ext=png", "symbol": "AZGT", "attributes": [{"value": "blackcat", "trait_type": "Name"}, {"value": "2022-08-10", "trait_type": "Date of Birth"}, {"value": "Man", "trait_type": "Gender"}, {"value": "Russian", "trait_type": "Language"}, {"value": "Ostan", "trait_type": "Ball_name"}, {"value": "Custom color", "trait_type": "Body_view"}, {"value": "Single color", "trait_type": "Background"}, {"value": "Custom color", "trait_type": "Ticker"}], "description": "Non-fungible Magic Ball", "external_url": "https://azagnat.art", "animation_url": "https://arweave.net/GSx_OTKejNwDCyr2yJsRwtbx5w7uSWYBHr3Xj4BjlCA?ext=html"}
