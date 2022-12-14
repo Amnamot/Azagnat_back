@@ -111,11 +111,11 @@ def explorer(request):
 
 def deepconnect(request):
     secretKeyNew = PrivateKey.generate()
-    
-
-    return render(request, 'explorer/connect.html')
+    p = str(base58.b58encode(bytes(secretKeyNew.public_key)))
+    return render(request, 'explorer/connect.html', {'publickey': p[2:len(p)-1]})
 
 def creating(request):
+    
     return render(request, 'creating.html')
 
 def ownership(request):
