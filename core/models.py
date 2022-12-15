@@ -102,6 +102,7 @@ class Ambassador(models.Model):
         on_delete=models.CASCADE
     )
     code = models.URLField(unique=True, null=True, blank=True)
+    percent = models.IntegerField(default=0)
 
 
     def save(self):

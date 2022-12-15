@@ -20,11 +20,7 @@ from nacl.public import PrivateKey, PublicKey
 import base58
 import logging
 
-
 logger = logging.getLogger('django')
-
-
-
 
 month = ['','January','February','March','April','May','June','July','August','September','Octomber','November','December']
 
@@ -34,32 +30,9 @@ def generator(n):
         s = s + str(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789')[0])
     return s
 
-def enc(num, guide):
-    old = 0
-    fib_old = 0
-    fib = guide
-
-    data = []
-
-    i = 0
-
-    length = len(str(num))
-
-    while i < length:
-        fib_old = fib
-        fib = fib + old
-        char = int(str(num)[i])
-        data.append((char+fib)+(fib*char))
-        old = fib_old
-        i+=1
-    return data
-
 
 def homepage(request):
     logger.info('azagnat')
-    token_1 = {"name": "Azagnat #00001", "image": "https://arweave.net/fZpv225Ubj9iwUOV4mGgg-_HZ1uG3mmrogP0rPzU0bY?ext=png", "symbol": "AZGT", "attributes": [{"value": "Buben", "trait_type": "Name"}, {"value": "2022-06-22", "trait_type": "Date of Birth"}, {"value": "Man", "trait_type": "Gender"}, {"value": "Russian", "trait_type": "Language"}, {"value": "Vega", "trait_type": "Ball_name"}, {"value": "Material", "trait_type": "Body_view"}, {"value": "Select image", "trait_type": "Background"}, {"value": "Custom color", "trait_type": "Ticker"}], "description": "Non-fungible Magic Ball", "external_url": "https://azagnat.art", "animation_url": "https://arweave.net/i9_WZEM_VFVSuIIxbc5l4NdKJXOC_nxoNk7ozkadm_0?ext=html"}
-    token_2 = {"name": "Azagnat #00002", "image": "https://arweave.net/9xf_L3YUKvg6e93EnXeOMQNF9kZt-ylh7hCVjSedG78?ext=png", "symbol": "AZGT", "attributes": [{"value": "Millie", "trait_type": "Name"}, {"value": "2004-02-19", "trait_type": "Date of Birth"}, {"value": "Woman", "trait_type": "Gender"}, {"value": "English", "trait_type": "Language"}, {"value": "Vesta", "trait_type": "Ball_name"}, {"value": "Material", "trait_type": "Body_view"}, {"value": "Custom image", "trait_type": "Background"}, {"value": "Custom color", "trait_type": "Ticker"}], "description": "Non-fungible Magic Ball", "external_url": "https://azagnat.art", "animation_url": "https://arweave.net/tyOiQCVaa63urscZEtuZsE3L4zQfAkfzOowY7CsdDhs?ext=html"}
-    token_3 = {"name": "Azagnat #00010", "image": "https://arweave.net/i79oAQkvaoFTgUnUFLj-mB6cjMPoMJlZhF80jrWbhaU?ext=png", "symbol": "AZGT", "attributes": [{"value": "blackcat", "trait_type": "Name"}, {"value": "2022-08-10", "trait_type": "Date of Birth"}, {"value": "Man", "trait_type": "Gender"}, {"value": "Russian", "trait_type": "Language"}, {"value": "Ostan", "trait_type": "Ball_name"}, {"value": "Custom color", "trait_type": "Body_view"}, {"value": "Single color", "trait_type": "Background"}, {"value": "Custom color", "trait_type": "Ticker"}], "description": "Non-fungible Magic Ball", "external_url": "https://azagnat.art", "animation_url": "https://arweave.net/GSx_OTKejNwDCyr2yJsRwtbx5w7uSWYBHr3Xj4BjlCA?ext=html"}
     try:
         config_len = str(MintCount.objects.get(id=1).general_sum + 1)
     except ObjectDoesNotExist:
@@ -103,7 +76,7 @@ def homepage(request):
         re = Returned.objects.get(id=1)
     except ObjectDoesNotExist:
         re = Returned.objects.create()
-    return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active, 'token_1': token_1, 'token_2': token_2, 'token_3': token_3})
+    return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
 
 
 def explorer(request):
@@ -115,7 +88,6 @@ def deepconnect(request):
     return render(request, 'explorer/connect.html', {'publickey': p[2:len(p)-1]})
 
 def creating(request):
-    
     return render(request, 'creating.html')
 
 def ownership(request):
@@ -142,7 +114,7 @@ def auth(request):
     r = JsonResponse(ref_data)
     r.set_cookie('publickey', publickey)
     return r
-     
+
 @csrf_exempt
 @require_POST
 def mint(request):
@@ -157,8 +129,86 @@ def mint(request):
 @csrf_exempt
 @require_POST
 def getprice(request):
-    
-    return JsonResponse()
+    price = {}
+    price['model_price'] = .0
+    price['body_price'] = .0
+    price['bg_price'] = .0
+    price['ticker_price'] = .0
+    baseprice = BasePrice.objects.get(id=1).price
+    data = json.loads(request.body.decode('utf8').replace("'", '"'))
+    if 'p' in data['get_par']:
+        if Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).isactive:
+            price['global_price'] = baseprice - (baseprice * (Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).percent / 100))
+        else:
+            price['global_price'] = baseprice
+    elif 'r' in data['get_par']:
+        price['global_price'] = baseprice - (baseprice * 0.2)
+    elif 'a' in data['get_par']:
+        price['global_price'] = baseprice - (baseprice * 0.2)
+    else:
+        price['global_price'] = baseprice
+
+    if data['model'] == None:
+        price['model_price'] = .0
+        price['global_price'] += price['model_price']
+    else:
+        price['model_price'] = Models.objects.get(id=int(data['model'])+1).price
+        price['global_price'] += price['model_price']
+
+    try:
+        if data['idBodyColor'] == '3':
+            price['body_price'] = BodyViewPrice.objects.get(id=1).select_image
+            price['global_price'] += price['body_price']
+        elif data['idBodyColor'] == '2':
+            price['body_price'] = BodyViewPrice.objects.get(id=1).custom_image
+            price['global_price'] += price['body_price']
+        elif data['idBodyColor'] == '1':
+            price['body_price'] = BodyViewPrice.objects.get(id=1).custom_color
+            price['global_price'] += price['body_price']
+        elif data['idBodyColor'] == '0':
+            price['body_price'] = .0
+            price['global_price'] += price['body_price']
+        elif data['idBodyColor'] == '4':
+            if data['selectedMaterialId'] == None:
+                price['body_price'] = .0
+            else:
+                price['body_price'] = Materials.objects.get(id=int(data['selectedMaterialId'])+1).price
+                price['global_price'] += price['body_price']
+    except KeyError:
+        pass
+    try:
+        if data['idBackground'] == '5':
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).select_image
+            price['global_price'] += price['bg_price']
+        elif data['idBackground'] == '4':
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).custom_image
+            price['global_price'] += price['bg_price']
+        elif data['idBackground'] == '3':
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).radial_gradient
+            price['global_price'] += price['bg_price']
+        elif data['idBackground'] == '2':
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).linear_gradient
+            price['global_price'] += price['bg_price']
+        elif data['idBackground'] == '1':
+            price['bg_price'] = BackgroundPrice.objects.get(id=1).single_color
+            price['global_price'] += price['bg_price']
+        elif data['idBackground'] == '0':
+            price['bg_price'] = .0
+            price['global_price'] += price['bg_price']
+    except KeyError:
+        pass
+
+    if 'tickerColor' in data:
+        if data['tickerColor'] == "#004f20":
+            price['ticker_price'] = .0
+            price['global_price'] += price['ticker_price']
+        else:
+            price['ticker_price'] = TickerPrice.objects.get(id=1).color
+            price['global_price'] += price['ticker_price']
+    else:
+        price['ticker_price'] = .0
+        price['global_price'] += price['ticker_price']
+    return JsonResponse(price)
 
 
 # class FreeDice(APIView):

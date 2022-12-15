@@ -258,7 +258,7 @@ def minttask(self, data, publickey):
         elif 'a' in data['get_par']:
             baseprice = BasePrice.objects.get(id=1).price
             a = Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a'])
-            res = send_sol(a.address.address, int((baseprice*0.2)*1000000000))
+            res = send_sol(a.address.address, int((baseprice*a.percent/100)*1000000000))
             SentTrans.objects.create(to_id = a.address.address, contract=config, many_sol="{:.3f}".format(baseprice*0.2), tx=res['result'])
             re = Returned.objects.get(id=1)
             re.count = re.count + (baseprice*0.2)
