@@ -254,7 +254,7 @@ window.addEventListener('load', function () {
     data['get_par'] = params;
     data = JSON.stringify(data); 
     const xhr = new XMLHttpRequest(); 
-    xhr.open("POST", "/getprice"); 
+    xhr.open("POST", "https://azagnat.art/getprice"); 
     xhr.responseType = 'json'; 
     xhr.setRequestHeader("Content-Type", "application/json"); 
     xhr.send(data); 
@@ -269,5 +269,3 @@ window.addEventListener('load', function () {
         }
     }
 })
-
-

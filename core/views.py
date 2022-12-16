@@ -18,9 +18,9 @@ from solana.transaction import Transaction
 from solana.system_program import TransferParams, transfer
 from nacl.public import PrivateKey, PublicKey
 import base58
-import logging
+# import logging
 
-logger = logging.getLogger('django')
+# logger = logging.getLogger('django')
 
 month = ['','January','February','March','April','May','June','July','August','September','Octomber','November','December']
 
@@ -32,7 +32,7 @@ def generator(n):
 
 
 def homepage(request):
-    logger.info('azagnat')
+    # logger.info('azagnat')
     try:
         config_len = str(MintCount.objects.get(id=1).general_sum + 1)
     except ObjectDoesNotExist:
@@ -144,7 +144,7 @@ def getprice(request):
     elif 'r' in data['get_par']:
         price['global_price'] = baseprice - (baseprice * 0.2)
     elif 'a' in data['get_par']:
-        price['global_price'] = baseprice - (baseprice * 0.2)
+        price['global_price'] = baseprice - (baseprice * (Ambassador.objects.get(code=f'{DOMEN}?p='+data['get_par']['a']).percent / 100))
     else:
         price['global_price'] = baseprice
 
