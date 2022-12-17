@@ -18,9 +18,9 @@ from solana.transaction import Transaction
 from solana.system_program import TransferParams, transfer
 from nacl.public import PrivateKey, PublicKey
 import base58
-# import logging
+import logging
 
-# logger = logging.getLogger('django')
+logger = logging.getLogger('django')
 
 month = ['','January','February','March','April','May','June','July','August','September','Octomber','November','December']
 
@@ -32,7 +32,7 @@ def generator(n):
 
 
 def homepage(request):
-    # logger.info('azagnat')
+    logger.info('azagnat')
     if 'a' in request.GET:
         try:
             Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
