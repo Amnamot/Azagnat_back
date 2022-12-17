@@ -24,7 +24,7 @@
 			<div class="width">
 				<h1>Non-fungible Magic Ball</h1>
 			</div>
-			<div id="TgBack">></div>
+			<div id="TgBack" style="display: none;">></div>
 		</header>
 		<main class="width">
 			<div id="shop">
@@ -112,7 +112,8 @@
 						</div>
 					</div>
 				</template>
-				<div class="modal" id="modalNft" onClick='document.querySelector("#modalNft").style.display="none"'
+				<div class="modal" id="modalNft"
+					onClick='document.querySelector("#modalNft").style.display="none"; document.querySelector("body").style.overflow = "auto"; '
 					style="display:none ;">
 					<div class="modal-dialog width">
 						<div class="modal_nft">
@@ -141,8 +142,8 @@
 		<footer class="footer">
 		</footer>
 	</div>
-	<script src="{% static 'assets/explorer/vendor.min.js' %}"></script>
-	<script src="{% static 'assets/explorer/app.min.js' %}"></script>
+	<script src="{% static 'assets/explorer/vendors.js' %}"></script>
+	<script src="{% static 'assets/explorer/app.js' %}"></script>
 </body>
 
 </html>

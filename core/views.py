@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
@@ -33,6 +33,13 @@ def generator(n):
 
 def homepage(request):
     # logger.info('azagnat')
+    if 'a' in request.GET:
+        try:
+            Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
+        except ObjectDoesNotExist:
+            return HttpResponseForbidden()
+    else:
+        return HttpResponseForbidden()
     try:
         config_len = str(MintCount.objects.get(id=1).general_sum + 1)
     except ObjectDoesNotExist:
@@ -92,6 +99,7 @@ def creating(request):
 
 def ownership(request):
     return render(request, 'ownership.html')
+
 
 @csrf_exempt
 @require_POST
