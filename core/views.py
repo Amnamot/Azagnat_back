@@ -19,6 +19,7 @@ from solana.system_program import TransferParams, transfer
 from nacl.public import PrivateKey, PublicKey
 import base58
 import logging
+from user_agents import parse
 
 logger = logging.getLogger('django')
 
@@ -33,6 +34,11 @@ def generator(n):
 
 def homepage(request):
     logger.info('azagnat')
+    user_agent = parse(request.META['HTTP_USER_AGENT'])
+
+    if user_agent.is_mobile:
+        return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
+    
     if 'a' in request.GET:
         try:
             Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
