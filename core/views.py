@@ -36,16 +36,7 @@ def homepage(request):
     logger.info('azagnat')
     user_agent = parse(request.META['HTTP_USER_AGENT'])
 
-    if user_agent.is_mobile:
-        return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
     
-    if 'a' in request.GET:
-        try:
-            Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
-        except ObjectDoesNotExist:
-            return render(request, 'private.html')
-    else:
-        return render(request, 'private.html')
     try:
         config_len = str(MintCount.objects.get(id=1).general_sum + 1)
     except ObjectDoesNotExist:
@@ -89,6 +80,19 @@ def homepage(request):
         re = Returned.objects.get(id=1)
     except ObjectDoesNotExist:
         re = Returned.objects.create()
+
+    if user_agent.is_mobile:
+        return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
+    
+    if 'a' in request.GET:
+        try:
+            Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
+        except ObjectDoesNotExist:
+            return render(request, 'private.html')
+    else:
+        return render(request, 'private.html')
+
+    
     return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
 
 
