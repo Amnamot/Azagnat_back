@@ -43,9 +43,9 @@ def homepage(request):
         try:
             Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
         except ObjectDoesNotExist:
-            return HttpResponseForbidden()
+            return render(request, 'private.html')
     else:
-        return HttpResponseForbidden()
+        return render(request, 'private.html')
     try:
         config_len = str(MintCount.objects.get(id=1).general_sum + 1)
     except ObjectDoesNotExist:
@@ -105,6 +105,7 @@ def creating(request):
 
 def ownership(request):
     return render(request, 'ownership.html')
+
 
 
 @csrf_exempt
