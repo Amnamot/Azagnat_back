@@ -1,6 +1,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from nacl.public import PrivateKey
 
 load_dotenv()
 
@@ -203,3 +204,6 @@ LOGGING = {
         },
     },
 }
+
+
+secretKeyNew = PrivateKey.generate()
