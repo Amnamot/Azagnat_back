@@ -100,7 +100,7 @@ def explorer(request):
 
 def deepconnect(request):
     p = str(base58.b58encode(bytes(secretKeyNew.public_key)))
-    return render(request, 'explorer/connect.html', {'publickey': p[2:len(p)-1], 'secret': secretKeyNew})
+    return render(request, 'explorer/connect.html', {'publickey': p[2:len(p)-1], 'secret': str(base58.b58encode(bytes(secretKeyNew)))})
 
 def creating(request):
     return render(request, 'creating.html')
