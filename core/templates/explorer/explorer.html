@@ -61,10 +61,10 @@
 				{% for item in items %}
 				<div class="NFT_item">
 					<picture>
-						<source srcset="https://arweave.net/ErM_R2W6lUQSBv7lXyeh5pLjX9MYwAG15ND0lEq95gQ?ext=png" type="image/webp"><img class="tg_send" src="https://arweave.net/ErM_R2W6lUQSBv7lXyeh5pLjX9MYwAG15ND0lEq95gQ?ext=png" alt="NFT">
+						<source srcset="{{item.image}}" type="image/webp"><img class="tg_send" src="{{item.image}}" alt="NFT">
 					</picture>
 					<div class="NFT_item_info">
-						<a href="https://arweave.net/7_rkkADfHgZu6M_-Cs5_lpyuFqT9uKZRxb9_GenlIdc?ext=html" class="button button_open button_cat">
+						<a href="{{item.animation_url}}" class="button button_open button_cat">
 							<p>Open</p><svg width="40"
 								height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd" clip-rule="evenodd"
@@ -78,7 +78,7 @@
 									fill="#09B324" />
 							</svg>
 						</a>
-						<div class="button button_cat" onclick="window.location = `https://explorer.solana.com/address/HVhu2V2nivTD825g1HKmftyJ9qPW2qace5ViB6ZMHwco`;">
+						<div class="button button_cat" onclick="window.location = `https://explorer.solana.com/address/{{item.contract}}`;">
 							<svg width="46" height="43" viewBox="0 0 46 43" fill="none"
 								xmlns="http://www.w3.org/2000/svg">
 								<path
