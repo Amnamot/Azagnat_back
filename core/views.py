@@ -116,7 +116,7 @@ def explorer(request):
         d['background'] = config.metadata['attributes'][6]['value']
         d['ticker'] = config.metadata['attributes'][7]['value']
         items.append(d)
-    return render(request, 'explorer/explorer.html', {'items': items})
+    return render(request, 'explorer/explorer.html', {'items': items, 'istoken': False if len(items)!=0 else True})
 
 def deepconnect(request):
     p = str(base58.b58encode(bytes(PrivateKey(base58.b58decode(secretKeyNew)).public_key)))

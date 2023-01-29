@@ -29,7 +29,8 @@
 		<main class="width">
 			<div id="shop">
 				<!-- <div id="shop_load" class="load"><i class="bi bi-arrow-repeat"></i></div> -->
-				<div class="notFoundItem width" id="shop_notFound" style="display:none ;">
+				{% if istoken %}
+				<div class="notFoundItem width" id="shop_notFound">
 					<div class="notFoundItem_center">
 						<p class="bold">Azagnat’s were not found in your wallet.</p>
 						<p>You can mint <br /> the Magic Ball on the: <br /> <a href='https://azagnat.art'
@@ -58,6 +59,7 @@
 							</a> </div>
 					</div>
 				</div>
+				{% endif %}
 				{% for item in items %}
 				<div class="NFT_item">
 					<picture>
