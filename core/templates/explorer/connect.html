@@ -81,10 +81,9 @@
 	<!-- <script src="{% static 'assets/explorer/vendors.js' %}"></script>
 	<script src="{% static 'assets/explorer/app.js' %}"></script> -->
 	<script>
-		document.querySelector('.header .width h1').innerHTML = window.location.href
 		function getpublic() {
 			const app_url = 'https://azagnat.art/';
-			const redirect_link = 'https://t.me/Azagnat_bot';
+			const redirect_link = 'https://azagnat.art/explorer';
 			window.location = `https://phantom.app/ul/v1/connect?app_url=${app_url}&dapp_encryption_public_key={{publickey}}&redirect_link=${redirect_link}`;
 		}
         const btn_phantom = document.querySelector('#button_phantom')
