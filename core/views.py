@@ -100,7 +100,7 @@ def explorer(request):
     box = Box(PrivateKey(base58.b58decode(secretKeyNew)), PublicKey(base58.b58decode(request.GET['phantom_encryption_public_key'])))
 
     plaintext = box.decrypt(base58.b58decode(request.GET['data']), base58.b58decode(request.GET['nonce']))
-    configs = Config.objects.filter(address__address=plaintext['public_key'])
+    configs = Config.objects.filter(address__address=json.loads(plaintext)['public_key'])
     items = []
     for config in configs:
         d = {}
