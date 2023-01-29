@@ -206,4 +206,4 @@ LOGGING = {
 }
 
 
-secretKeyNew = PrivateKey.generate()
+secretKeyNew = '6Dz9mGviYi5j3CGrvAevvfJao383RzuFEyu35wnf2wo5'

@@ -19,6 +19,7 @@ from solana.system_program import TransferParams, transfer
 import base58
 import logging
 from user_agents import parse
+from nacl.public import Box, PrivateKey, PublicKey
 
 logger = logging.getLogger('django')
 
@@ -96,11 +97,30 @@ def homepage(request):
 
 
 def explorer(request):
-    return render(request, 'explorer/explorer.html')
+    box = Box(PrivateKey(base58.b58decode(secretKeyNew)), PublicKey(base58.b58decode(request.GET['phantom_encryption_public_key'])))
+
+    plaintext = box.decrypt(base58.b58decode(request.GET['data']), base58.b58decode(request.GET['nonce']))
+    configs = Address.objects.get(address='AZZZdSAJGZVBFYgYBzj3CRNzhJDfWuxLUTFForV8J82U')
+    items = []
+    for config in configs:
+        d = {}
+        d['image'] = config.metadata['image']
+        d['animation_url'] = config.metadata['animation_url']
+        d['explorer'] = config.contract
+        d['name'] = config.metadata['attributes'][0]['value']
+        d['date'] = config.metadata['attributes'][1]['value']
+        d['gender'] = config.metadata['attributes'][2]['value']
+        d['lang'] = config.metadata['attributes'][3]['value']
+        d['ball_name'] = config.metadata['attributes'][4]['value']
+        d['body_view'] = config.metadata['attributes'][5]['value']
+        d['background'] = config.metadata['attributes'][6]['value']
+        d['ticker'] = config.metadata['attributes'][7]['value']
+        items.append(d)
+    return render(request, 'explorer/explorer.html', {'items': items})
 
 def deepconnect(request):
-    p = str(base58.b58encode(bytes(secretKeyNew.public_key)))
-    return render(request, 'explorer/connect.html', {'publickey': p[2:len(p)-1], 'secret': str(base58.b58encode(bytes(secretKeyNew)))})
+    p = str(base58.b58encode(bytes(PrivateKey(base58.b58decode(secretKeyNew)).public_key)))
+    return render(request, 'explorer/connect.html', {'publickey': p[2:len(p)-1]})
 
 def creating(request):
     return render(request, 'creating.html')
