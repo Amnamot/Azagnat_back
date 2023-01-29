@@ -108,7 +108,7 @@
 									</linearGradient>
 								</defs>
 							</svg> </div>
-						<div class="button button_info button_cat _popup-link" onclick="modalopen('{{item.name}}','{{item.data}}','{{item.gender}}','{{item.lang}}', '{{item.ball_name}}', '{{item.body_view}}', '{{item.background}}', '{{item.ticker}}')"> <i
+						<div class="button button_info button_cat _popup-link" onclick="modalopen('{{item.image}}','{{item.name}}','{{item.date}}','{{item.gender}}','{{item.lang}}', '{{item.ball_name}}', '{{item.body_view}}', '{{item.background}}', '{{item.ticker}}')"> <i
 								class="bi bi-three-dots-vertical"></i> </div>
 					</div>
 				</div>
@@ -120,7 +120,8 @@
 						<div class="modal_nft">
 							<div class="modal_nft_img">
 								<picture>
-									<source srcset="https://arweave.net/ErM_R2W6lUQSBv7lXyeh5pLjX9MYwAG15ND0lEq95gQ?ext=png" type="image/webp"><img src="https://arweave.net/ErM_R2W6lUQSBv7lXyeh5pLjX9MYwAG15ND0lEq95gQ?ext=png">
+									<source srcset="https://arweave.net/ErM_R2W6lUQSBv7lXyeh5pLjX9MYwAG15ND0lEq95gQ?ext=png" type="image/webp">
+									<img src="https://arweave.net/ErM_R2W6lUQSBv7lXyeh5pLjX9MYwAG15ND0lEq95gQ?ext=png">
 								</picture></img>
 							</div>
 							<div>
@@ -170,7 +171,9 @@
 		</footer>
 	</div>
 	<script>
-		function modalopen(name, date, gender, lang, ball_name, body_view, background, ticker){
+		function modalopen(image, name, date, gender, lang, ball_name, body_view, background, ticker){
+			document.querySelector('#modalNft .modal_nft_img source').srcset = image
+			document.querySelector('#modalNft .modal_nft_img img').src = image
 			document.querySelector('#modalNft .modal_nft_properties .name').innerHTML = name
 			document.querySelector('#modalNft .modal_nft_properties .date').innerHTML = date
 			document.querySelector('#modalNft .modal_nft_properties .gender').innerHTML = gender
