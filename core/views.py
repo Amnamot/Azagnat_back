@@ -84,13 +84,13 @@ def homepage(request):
     if user_agent.is_mobile:
         return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
     
-    if 'a' in request.GET:
-        try:
-            Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
-        except ObjectDoesNotExist:
-            return render(request, 'private.html')
-    else:
-        return render(request, 'private.html')
+    # if 'a' in request.GET:
+    #     try:
+    #         Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
+    #     except ObjectDoesNotExist:
+    #         return render(request, 'private.html')
+    # else:
+    #     return render(request, 'private.html')
 
     
     return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
