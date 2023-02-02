@@ -1,7 +1,6 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-from nacl.public import PrivateKey
 
 load_dotenv()
 
@@ -171,6 +170,9 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
 CELERY_IMPORTS = ('core.tasks',)
+
+
+task_routes = {'core.tasks.minttask': {'queue': 'mint'}}
 
 if DEBUG:
     DOMEN = 'http://127.0.0.1:8000'

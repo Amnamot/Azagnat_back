@@ -38,8 +38,6 @@ class Config(models.Model):
     body_view = models.CharField(max_length=5200000, null=True, blank=True)
     html = models.URLField()
     cost = models.FloatField()
-    # ispre = models.BooleanField()
-    # spin = models.PositiveIntegerField(default=0)
     whatref = models.CharField(null=True, blank=True, max_length=8)
     whatpro = models.CharField(null=True, blank=True, max_length=8)
     whatamb = models.CharField(null=True, blank=True, max_length=8)

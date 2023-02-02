@@ -160,7 +160,8 @@ def minttask(self, data, publickey):
             back_type = int(data['idBackground'])-1 if data['idBackground']!='0' else data['idBackground'],
             curve_radius = curve,
             tick = ticker,
-            ticker_path = tick_path
+            ticker_path = tick_path,
+            hat = True if model_link == 'https://arweave.net/54_M2OvAOnO-vKmL34wE0QxPFKcl6KgHIlWxBotnpS4' else False
         )
         type_body = ['Default','Custom color', 'Custom image', 'Select image', 'Material']
         type_back = ['Default','Single color', 'Linear gradient', 'Radial gradient', 'Custom image', 'Select image']
@@ -186,12 +187,34 @@ def minttask(self, data, publickey):
         a.append({'trait_type' : 'Gender', 'value': gender})
         a.append({'trait_type' : 'Language', 'value': lang})
         a.append({'trait_type' : 'Ball_name', 'value': model_name})
-        a.append({'trait_type' : 'Body_view', 'value': type_body[int(data['idBodyColor'])]})
-        a.append({'trait_type' : 'Background', 'value': type_back[int(data['idBackground'])]})
+        value = '#1c1c1c'
+        if data['idBodyColor'] == '1':
+            value = data['customBodyColor']
+        elif data['idBodyColor'] == '2':
+            value = 'Custom image'
+        elif data['idBodyColor'] == '3':
+            value = SelectImageBody.objects.get(id=int(data['selectedImgId'])+1)
+        elif data['idBodyColor'] == '4':
+            value = Materials.objects.get(id=int(data['selectedMaterialId'])+1).name
+
+        a.append({'trait_type' : 'Body_view', 'value': value})
+        value = '#0A3104'
+        if data['idBackground'] == '1':
+            value = data['backgroundColor']
+        elif data['idBackground'] == '2':
+            value = data['backgroundColor1'] + ' ' + data['backgroundColor2']
+        elif data['idBackground'] == '3':
+            value = data['backgroundColor3'] + ' ' + data['backgroundColor4']
+        elif data['idBackground'] == '4':
+            value = 'Custom image'
+        elif data['idBackground'] == '5':
+            value = SelectImageBackground.objects.get(id=int(data['selectedBgImgId'])+1).name
+        
+        a.append({'trait_type' : 'Background', 'value': value})
         if 'tickerColor' in data:
-            a.append({'trait_type' : 'Ticker', 'value': 'Custom color'})
+            a.append({'trait_type' : 'Ticker', 'value': ticker})
         else:
-            a.append({'trait_type' : 'Ticker', 'value': 'Default'})
+            a.append({'trait_type' : 'Ticker', 'value': ticker})
         metadata['attributes'] = a
         with open('core/token/metadata.json', 'w') as f:
             json.dump(metadata, f, indent=4, ensure_ascii=False)
