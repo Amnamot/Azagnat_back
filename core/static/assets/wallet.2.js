@@ -1,4 +1,12 @@
-(window.innerWidth < 1024 || window.innerHeight < 500) &&
+let isMobile = {
+	Android: function() {return navigator.userAgent.match(/Android/i);},
+	BlackBerry: function() {return navigator.userAgent.match(/BlackBerry/i);},
+	iOS: function() {return navigator.userAgent.match(/iPhone|iPad|iPod/i);},
+	Opera: function() {return navigator.userAgent.match(/Opera Mini/i);},
+	Windows: function() {return navigator.userAgent.match(/IEMobile/i);},
+	any: function() {return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());}
+};
+(isMobile.any()) &&
     (document.querySelector(".mobile-thumb").classList.remove("hide"),
     (document.body.style.overflow = "hidden"),
     (els = document.querySelectorAll(".mobile-thumb-example-container__item")).forEach((a) => {
