@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Promocode, Config, Address, RefferalCode, Ambassador, BasePrice, Models, Materials, BackgroundPrice, BodyViewPrice, TickerPrice, SelectImageBody, SelectImageBackground, Returned, ReceivedTrans, SentTrans, MintCount
+from .models import Promocode, Config, Address, RefferalCode, Ambassador, BasePrice, Models, Materials, BackgroundPrice, BodyViewPrice, TickerPrice, SelectImageBody, SelectImageBackground, Returned, MintCount
 
 @admin.register(Promocode)
 class PromocodeAdmin(admin.ModelAdmin):
@@ -61,16 +61,6 @@ class RafferalCodeAdmin(admin.ModelAdmin):
 @admin.register(Ambassador)
 class AmbassadorAdmin(admin.ModelAdmin):
     list_display = ['address', 'code']
-
-
-@admin.register(SentTrans)
-class SentTransAdmin(admin.ModelAdmin):
-    list_display = ['to','contract', 'many_sol', 'tx', 'date']
-
-
-@admin.register(ReceivedTrans)
-class ReceivedTransAdmin(admin.ModelAdmin):
-    list_display = ['from_send','contract', 'many_sol', 'tx', 'date']
 
 
 @admin.register(MintCount)

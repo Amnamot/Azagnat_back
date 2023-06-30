@@ -1,5 +1,5 @@
 import json
-from .models import Ambassador, Config, BasePrice, ReceivedTrans, RefferalCode, Returned, Promocode, MintCount, SentTrans, Models, Materials, SelectImageBody, SelectImageBackground
+from .models import Ambassador, Config, BasePrice, RefferalCode, Returned, Promocode, MintCount, Models, Materials, SelectImageBody, SelectImageBackground
 import random
 from solana.keypair import Keypair
 from solana.rpc.api import Client
@@ -180,7 +180,7 @@ def minttask(self, data, publickey):
         metadata['description'] = 'Non-fungible Magic Ball'
         metadata['image'] = screenshot
         metadata['animation_url'] = html
-        metadata['external_url'] = 'https://azagnat.art'
+        metadata['external_url'] = 'https://azagnat.top'
         a = []
         a.append({'trait_type' : 'Name', 'value': name})
         a.append({'trait_type' : 'Date of Birth', 'value': date})
@@ -256,7 +256,6 @@ def minttask(self, data, publickey):
         config.base_cost = BasePrice.objects.get(id=1).price
         config.save()
 
-        ReceivedTrans.objects.create(from_send_id = publickey, contract=config, many_sol=data['global_price'], tx=data['tx'])
         ref_code = RefferalCode()
         ref_code.config_id = contract
         ref_code.code = generator(8)
@@ -266,7 +265,6 @@ def minttask(self, data, publickey):
             baseprice = BasePrice.objects.get(id=1).price
             a = RefferalCode.objects.get(code=data['get_par']['r'])
             res = send_sol(a.config.address.address, int((baseprice*0.1)*1000000000))
-            SentTrans.objects.create(to_id = a.config.address.address, contract=config, many_sol="{:.3f}".format(baseprice*0.1), tx=res['result'])
             r = RefferalCode.objects.get(code=data['get_par']['r'])
             r.paid = r.paid + (baseprice*0.1)
             r.deals = r.deals + 1
@@ -282,7 +280,6 @@ def minttask(self, data, publickey):
             baseprice = BasePrice.objects.get(id=1).price
             a = Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a'])
             res = send_sol(a.address.address, int((baseprice*a.percent/100)*1000000000))
-            SentTrans.objects.create(to_id = a.address.address, contract=config, many_sol="{:.3f}".format(baseprice*0.2), tx=res['result'])
             re = Returned.objects.get(id=1)
             re.count = re.count + (baseprice*0.2)
             re.save()

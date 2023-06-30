@@ -23,8 +23,6 @@ class Address(models.Model):
     def __str__(self):
         return self.address
 
-    
-
 
 class Config(models.Model):
     address = models.ForeignKey(
@@ -195,7 +193,7 @@ class Materials(models.Model):
         else:
             materials.append(data)
         with open("data/materials.json", 'w', encoding='utf-8') as f:
-            json.dump(materials,f,indent=4,ensure_ascii=False)
+            json.dump(materials, f, indent=4, ensure_ascii=False)
     
     def __str__(self):
         return self.name
@@ -317,38 +315,6 @@ class TickerPrice(models.Model):
 
 #=========================
 #transaction
-
-class SentTrans(models.Model):
-    to = models.ForeignKey(
-        Address,
-        on_delete=models.CASCADE
-    )
-    contract = models.OneToOneField(
-        Config,
-        on_delete=models.CASCADE
-    )
-    many_sol = models.FloatField()
-    tx = models.CharField(max_length=500)
-    date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.tx
-
-class ReceivedTrans(models.Model):
-    from_send = models.ForeignKey(
-        Address,
-        on_delete=models.CASCADE
-    )
-    contract = models.OneToOneField(
-        Config,
-        on_delete=models.CASCADE
-    )
-    many_sol = models.FloatField()
-    tx = models.CharField(max_length=500)
-    date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.tx
 
 
 class Returned(models.Model):

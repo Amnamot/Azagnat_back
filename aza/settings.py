@@ -20,7 +20,7 @@ DEBUG = True
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['azagnat.art', 'www.azagnat.art', '195.231.34.246', '0.0.0.0', 'localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['azagnat.top', 'www.azagnat.top', '195.231.34.246', '0.0.0.0', 'localhost', '127.0.0.1']
 
 
 
@@ -177,7 +177,7 @@ task_routes = {'core.tasks.minttask': {'queue': 'mint'}}
 if DEBUG:
     DOMEN = 'http://127.0.0.1:8000'
 else:
-    DOMEN = 'https://azagnat.art/'
+    DOMEN = 'https://azagnat.top/'
 RPC = os.getenv('RPC')
 
 

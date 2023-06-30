@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
@@ -8,14 +8,7 @@ import json
 import random
 from .tasks import minttask
 from aza.settings import DOMEN, secretKeyNew
-from math import sqrt
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from solana.keypair import Keypair
-from solana.rpc.api import Client
 from solana.publickey import PublicKey
-from solana.transaction import Transaction
-from solana.system_program import TransferParams, transfer
 import base58
 import logging
 from user_agents import parse
@@ -98,7 +91,6 @@ def homepage(request):
 
 def explorer(request):
     box = Box(PrivateKey(base58.b58decode(secretKeyNew)), PublicKey(base58.b58decode(request.GET['phantom_encryption_public_key'])))
-
     plaintext = box.decrypt(base58.b58decode(request.GET['data']), base58.b58decode(request.GET['nonce']))
     configs = Config.objects.filter(address__address=json.loads(plaintext)['public_key'])
     items = []
