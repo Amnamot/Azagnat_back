@@ -113,6 +113,24 @@ class Ambassador(models.Model):
 
     def __str__(self):
         return self.code
+    
+
+class EasyMint(models.Model):
+    code = models.URLField(unique=True, null=True, blank=True)
+
+
+    def save(self):
+        if self.code == None:
+            self.code = DOMEN + '?e=' + generator(8)
+        
+        super().save()
+
+    class Meta:
+        verbose_name = 'Easy mint'
+        verbose_name_plural = "Easy mints"
+
+    def __str__(self):
+        return self.code
 
     
 #==============================
@@ -313,10 +331,6 @@ class TickerPrice(models.Model):
     
 
 
-#=========================
-#transaction
-
-
 class Returned(models.Model):
     count = models.FloatField(default=0)
 
@@ -328,3 +342,6 @@ class Returned(models.Model):
 class MintCount(models.Model):
     general_sum = models.PositiveIntegerField(default=0)
 
+
+class MintActive(models.Model):
+    is_active = models.BooleanField(default=False)

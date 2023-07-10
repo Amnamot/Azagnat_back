@@ -14,6 +14,195 @@
         "map": "../media/models/materials/violet_crystal_albedo.jpg",
         "normalMap": "../media/models/materials/violet_crystal_normal.jpg",
         "roughnessMap": "../media/models/materials/violet_crystal_roughness.jpg",
+        "metalness": 0.16,
+        "roughness": 1.0
+    },
+    {
+        "id": 2,
+        "name": "Metal scr.",
+        "map": "../media/models/materials/scratched_metal_albedo.jpg",
+        "normalMap": "../media/models/materials/scratched_metal_normal.jpg",
+        "roughnessMap": "../media/models/materials/scratched_metal_roughness.jpg",
+        "metalness": 1.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 3,
+        "name": "Wood",
+        "map": "../media/models/materials/quarter_sawn_lumber_albedo.jpg",
+        "normalMap": "../media/models/materials/quarter_sawn_lumber_normal.jpg",
+        "roughnessMap": "../media/models/materials/quarter_sawn_lumber_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 4,
+        "name": "Walnut wood",
+        "map": "../media/models/materials/walnut_wood_albedo.jpg",
+        "normalMap": "../media/models/materials/walnut_wood_normal.jpg",
+        "roughnessMap": "../media/models/materials/walnut_wood_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 5,
+        "name": "Concrete",
+        "map": "../media/models/materials/white_concrete_albedo.jpg",
+        "normalMap": "../media/models/materials/white_concrete_normal.jpg",
+        "roughnessMap": "../media/models/materials/white_concrete_roughness.jpg",
+        "metalness": 0.35,
+        "roughness": 1.0
+    },
+    {
+        "id": 6,
+        "name": "Darck cracks",
+        "map": "../media/models/materials/darck_cracks_albedo.jpg",
+        "normalMap": "../media/models/materials/darck_cracks_normal.jpg",
+        "roughnessMap": "../media/models/materials/darck_cracks_roughness.jpg",
+        "metalness": 1.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 7,
+        "name": "Plastic line",
+        "map": "../media/models/materials/black_plastic_albedo.jpg",
+        "normalMap": "../media/models/materials/black_plastic_normal.jpg",
+        "roughnessMap": "../media/models/materials/black_plastic_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 8,
+        "name": "Cow fur",
+        "map": "../media/models/materials/cow_fur_albedo.jpg",
+        "normalMap": "../media/models/materials/cow_fur_normal.jpg",
+        "roughnessMap": "../media/models/materials/cow_fur_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 9,
+        "name": "Maple wood",
+        "map": "../media/models/materials/maple_wood_albedo.jpg",
+        "normalMap": "../media/models/materials/maple_wood_normal.jpg",
+        "roughnessMap": "../media/models/materials/maple_wood_roughness.jpg",
+        "metalness": 0.1,
+        "roughness": 1.0
+    },
+    {
+        "id": 10,
+        "name": "Oxidized copper",
+        "map": "../media/models/materials/oxidized-copper-albedo.jpg",
+        "normalMap": "../media/models/materials/oxidized-copper-normal.jpg",
+        "roughnessMap": "../media/models/materials/oxidized-coppper-roughness.jpg",
+        "metalness": 1.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 11,
+        "name": "Carbon fiber",
+        "map": "../media/models/materials/CarbonFiber_albedo.jpg",
+        "normalMap": "../media/models/materials/CarbonFiber_normal.jpg",
+        "roughnessMap": "../media/models/materials/CarbonFiber_roughness.jpg",
+        "metalness": 0.6,
+        "roughness": 1.0
+    },
+    {
+        "id": 12,
+        "name": "Copper hammered",
+        "map": "../media/models/materials/CopperHammered_albedo.jpg",
+        "normalMap": "../media/models/materials/CopperHammered_normal.jpg",
+        "roughnessMap": "../media/models/materials/CopperHammered_roughness.jpg",
+        "metalness": 1.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 13,
+        "name": "Terracotta",
+        "map": "../media/models/materials/glazed_terracotta_albedo.jpg",
+        "normalMap": "../media/models/materials/glazed_terracotta_normal.jpg",
+        "roughnessMap": "../media/models/materials/glazed_terracotta_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 14,
+        "name": "Lava",
+        "map": "../media/models/materials/lava_albedo.jpg",
+        "normalMap": "../media/models/materials/lava_normal.jpg",
+        "roughnessMap": "../media/models/materials/lava_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 15,
+        "name": "Worn metal",
+        "map": "../media/models/materials/worn_metal_albedo.jpg",
+        "normalMap": "../media/models/materials/worn_metal_normal.jpg",
+        "roughnessMap": "../media/models/materials/worn_metal_roughness.jpg",
+        "metalness": 1.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 16,
+        "name": "Steel",
+        "map": "../media/models/materials/steel_albefo.jpg",
+        "normalMap": "../media/models/materials/steel_normal.jpg",
+        "roughnessMap": "../media/models/materials/steel_roughness.jpg",
+        "metalness": 1.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 17,
+        "name": "Organic",
+        "map": "../media/models/materials/organic_albedo.jpg",
+        "normalMap": "../media/models/materials/organic_normal.jpg",
+        "roughnessMap": "../media/models/materials/organic_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 0.0
+    },
+    {
+        "id": 18,
+        "name": "Marble red",
+        "map": "../media/models/materials/marble_02_albedo.jpg",
+        "normalMap": "../media/models/materials/marble_02_normal.jpg",
+        "roughnessMap": "../media/models/materials/marble_02_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 19,
+        "name": "Marble green",
+        "map": "../media/models/materials/Marble_01_albedo.jpg",
+        "normalMap": "../media/models/materials/marble_01_normal.jpg",
+        "roughnessMap": "../media/models/materials/marble_01_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 20,
+        "name": "Light gold",
+        "map": "../media/models/materials/light_gold_albedo.jpg",
+        "normalMap": "../media/models/materials/light_gold_normal.jpg",
+        "roughnessMap": "../media/models/materials/light_gold_roughness.jpg",
+        "metalness": 1.0,
+        "roughness": 0.9
+    },
+    {
+        "id": 21,
+        "name": "Ice cracked",
+        "map": "../media/models/materials/ice_cracked_albedo.jpg",
+        "normalMap": "../media/models/materials/ice_cracked_normal.jpg",
+        "roughnessMap": "../media/models/materials/ice_cracked_roughness.jpg",
+        "metalness": 0.0,
+        "roughness": 1.0
+    },
+    {
+        "id": 22,
+        "name": "Gold scuffed",
+        "map": "../media/models/materials/gold-scuffed_albedo.jpg",
+        "normalMap": "../media/models/materials/gold-scuffed_normal.jpg",
+        "roughnessMap": "../media/models/materials/gold-scuffed_roughness.jpg",
         "metalness": 1.0,
         "roughness": 1.0
     }

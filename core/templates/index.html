@@ -259,8 +259,12 @@
                 <div class="mint__sum">
                     Σ = <span>0.00</span> SOL
                 </div>
-                <!-- <input class="mint__submit" type="submit" value="MINT"> -->
-                <input id = 'mint_start' class="mint__submit" type="submit" value="Mint through: 3 day 12 h. 17 min.">
+                {% if mint_active %}
+                <input class="mint__submit" type="submit" value="MINT">
+                {% else %}
+                <input class="mint__submit" disabled type="button" value="MINT">
+                {% endif %}
+                <!-- <input id = 'mint_start' class="mint__submit" type="submit" value="Mint through: 3 day 12 h. 17 min."> -->
             </section>
         </form>
         <section class="referral">

@@ -7,12 +7,9 @@ from django.core.exceptions import ObjectDoesNotExist
 import json
 import random
 from .tasks import minttask
-from aza.settings import DOMEN, secretKeyNew
-from solana.publickey import PublicKey
-import base58
+from aza.settings import DOMEN
 import logging
 from user_agents import parse
-from nacl.public import Box, PrivateKey, PublicKey
 
 logger = logging.getLogger('django')
 
@@ -67,6 +64,13 @@ def homepage(request):
                 is_active = False
         except ObjectDoesNotExist:
             return redirect(homepage)
+    elif 'e' in request.GET:
+        try:
+            easy = EasyMint.objects.get(code=f'{DOMEN}?e='+request.GET.get('e'))
+            is_active = True
+            percent = 90
+        except ObjectDoesNotExist:
+            return redirect(homepage)
     else:
         is_active = True
     try:
@@ -86,33 +90,8 @@ def homepage(request):
     #     return render(request, 'private.html')
 
     
-    return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
+    return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active, "mint_active": MintActive.objects.all().last().is_active})
 
-
-def explorer(request):
-    box = Box(PrivateKey(base58.b58decode(secretKeyNew)), PublicKey(base58.b58decode(request.GET['phantom_encryption_public_key'])))
-    plaintext = box.decrypt(base58.b58decode(request.GET['data']), base58.b58decode(request.GET['nonce']))
-    configs = Config.objects.filter(address__address=json.loads(plaintext)['public_key'])
-    items = []
-    for config in configs:
-        d = {}
-        d['image'] = config.metadata['image']
-        d['animation_url'] = config.metadata['animation_url']
-        d['explorer'] = config.contract
-        d['name'] = config.metadata['attributes'][0]['value']
-        d['date'] = config.metadata['attributes'][1]['value']
-        d['gender'] = config.metadata['attributes'][2]['value']
-        d['lang'] = config.metadata['attributes'][3]['value']
-        d['ball_name'] = config.metadata['attributes'][4]['value']
-        d['body_view'] = config.metadata['attributes'][5]['value']
-        d['background'] = config.metadata['attributes'][6]['value']
-        d['ticker'] = config.metadata['attributes'][7]['value']
-        items.append(d)
-    return render(request, 'explorer/explorer.html', {'items': items, 'istoken': False if len(items)!=0 else True})
-
-def deepconnect(request):
-    p = str(base58.b58encode(bytes(PrivateKey(base58.b58decode(secretKeyNew)).public_key)))
-    return render(request, 'explorer/connect.html', {'publickey': p[2:len(p)-1]})
 
 def creating(request):
     return render(request, 'creating.html')
@@ -174,6 +153,8 @@ def getprice(request):
         price['global_price'] = baseprice - (baseprice * 0.2)
     elif 'a' in data['get_par']:
         price['global_price'] = baseprice - (baseprice * (Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a']).percent / 100))
+    elif 'e' in data['get_par']:
+        price['global_price'] = price['global_price'] - (price['global_price'] * (90 / 100))
     else:
         price['global_price'] = baseprice
 
@@ -238,106 +219,3 @@ def getprice(request):
         price['ticker_price'] = .0
         price['global_price'] += price['ticker_price']
     return JsonResponse(price)
-
-
-# class FreeDice(APIView):
-#     def get(self, request):
-#         x = 20
-#         y = 3
-#         o = 0.245
-#         a = (-o*x+sqrt(((o*x)**2)+(4*o*x)/y))/2
-#         b = y-(1/a)
-#         r = float("{:.2f}".format(random.uniform(0, 10)))
-#         k = "{:.3f}".format((1/(o*r+a))+b)
-#         win = float(k) * float(request.GET['bet'])
-
-#         solana_client = Client('https://api.devnet.solana.com')
-
-
-#         with open('id.json', 'r') as f:
-#             lines = json.load(f)
-#         key_from_file = [int(x) for x in lines]
-
-#         keypair = Keypair(key_from_file[:32])
-
-#         txn = Transaction().add(transfer(TransferParams(
-#         from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(win * 1000000000))))
-#         resp = solana_client.send_transaction(txn, keypair)
-
-#         with open('wins_eng_free.json', 'r') as f:
-#             text = random.choice(json.load(f))
-#         text = text.replace("#name#", "jerom")
-#         text = text.replace("#win#", str(win))
-#         return Response({'win': text})
-
-
-
-# class PremiumDice(APIView):
-#     def get(self, request):
-#         res = {}
-#         x = 97
-#         y = 76
-#         o = 0.0099
-#         a = (-o*x+sqrt(((o*x)**2)+(4*o*x)/y))/2
-#         b = y-(1/a)
-#         s = random.randint(1, 98)
-#         if request.GET['isunder']:
-#             if s <= int(request.GET['select']):
-#                 k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
-#                 w = float(k) * float(request.GET['bet'])
-#                 with open('wins_eng_prem.json', 'r') as f:
-#                     text = random.choice(json.load(f)[0])
-#                 if text.find('#name#') != -1:
-#                     text.replace("#name#", "jerom")
-#                 text = text.replace('#nonce#', str(s))
-#                 text = text.replace("#win#", str(w))
-#                 res['win'] = text
-
-#                 solana_client = Client('https://api.devnet.solana.com')
-
-
-#                 with open('id.json', 'r') as f:
-#                     lines = json.load(f)
-#                 key_from_file = [int(x) for x in lines]
-
-#                 keypair = Keypair(key_from_file[:32])
-
-#                 txn = Transaction().add(transfer(TransferParams(
-#                 from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
-#                 resp = solana_client.send_transaction(txn, keypair)
-#             else:
-#                 with open('wins_eng_prem.json', 'r') as f:
-#                     text = random.choice(json.load(f)[1])
-#                 text = text.replace('#nonce#', str(s))
-#                 res['win'] = text
-#         else:
-#             ss = request.GET['select']*-1+99
-#             if s > ss:
-#                 k = "{:.3f}".format((1/((o*float(request.GET['select']))+a))+b+1)
-#                 w = float(k) * float(request.GET['bet'])
-#                 with open('wins_eng_prem.json', 'r') as f:
-#                     text = random.choice(json.load(f)[0])
-#                 if text.find('#name#') != -1:
-#                     text.replace("#name#", "jerom")
-#                 text = text.replace('#nonce#', str(s))
-#                 text = text.replace("#win#", str(w))
-#                 res['win'] = text
-#                 solana_client = Client('https://api.devnet.solana.com')
-
-
-#                 with open('id.json', 'r') as f:
-#                     lines = json.load(f)
-#                 key_from_file = [int(x) for x in lines]
-
-#                 keypair = Keypair(key_from_file[:32])
-
-#                 txn = Transaction().add(transfer(TransferParams(
-#                 from_pubkey=keypair.public_key, to_pubkey=PublicKey(request.GET['tokinId']), lamports=int(w * 1000000000))))
-#                 resp = solana_client.send_transaction(txn, keypair)
-#             else:
-#                 with open('wins_eng_prem.json', 'r') as f:
-#                     text = random.choice(json.load(f)[1])
-#                 text = text.replace('#nonce#', str(s))
-#                 res['win'] = text
-        
-#         return Response(res)

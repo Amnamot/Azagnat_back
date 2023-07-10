@@ -1,9 +1,13 @@
 from django.contrib import admin
-from .models import Promocode, Config, Address, RefferalCode, Ambassador, BasePrice, Models, Materials, BackgroundPrice, BodyViewPrice, TickerPrice, SelectImageBody, SelectImageBackground, Returned, MintCount
+from .models import *
 
 @admin.register(Promocode)
 class PromocodeAdmin(admin.ModelAdmin):
     list_display = ['code', 'percent', 'isactive']
+
+@admin.register(EasyMint)
+class EasyMintAdmin(admin.ModelAdmin):
+    list_display = ['code']
 
 @admin.register(BasePrice)
 class BasePriceAdmin(admin.ModelAdmin):
@@ -48,6 +52,7 @@ class SelectImageBackgroundAdmin(admin.ModelAdmin):
 
 admin.site.register(Returned)
 admin.site.register(Address)
+admin.site.register(MintActive)
 
 
 @admin.register(Config)
