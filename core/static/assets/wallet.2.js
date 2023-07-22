@@ -40,37 +40,45 @@ async function connect_wallet(){
     let c = getProvider();
     try {
         await c.connect();
-    } catch (d) {}
-    sessionStorage.setItem("islog", !0);
-    let b = {};
-    (b.publickey = c.publicKey.toString()), (b = JSON.stringify(b));
-    let a = new XMLHttpRequest();
-    a.open("POST", "/auth"),
-        (a.responseType = "json"),
-        a.setRequestHeader("Content-Type", "application/json"),
-        a.send(b),
-        (a.onload = () => {
-            200 == a.status && (document.querySelector(".header-wallet").src = "static/img/wallet_off.svg");
-        });
+    } catch (err) {}
+    let data = {};
+    data["publickey"] = c.publicKey.toString()
+    data = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/auth");
+    xhr.responseType = 'json';
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> ' + xhr.response["code"]
+            document.querySelector('.paid_deals').textContent = 'Paid: ' +  xhr.response["paid"] + 'SOL / Deals: ' + xhr.response["deals"]
+            document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"
+        }
+    }
 }
-
 
 async function connect_wallet_warning(){
     let c = getProvider();
     try {
         await c.connect();
-    } catch (d) {}
-    sessionStorage.setItem("islog", !0);
-    let b = {};
-    (b.publickey = c.publicKey.toString()), (b = JSON.stringify(b));
-    let a = new XMLHttpRequest();
-    a.open("POST", "/auth"),
-        (a.responseType = "json"),
-        a.setRequestHeader("Content-Type", "application/json"),
-        a.send(b),
-        (a.onload = () => {
-            200 == a.status && ((document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"), document.querySelector(".warning-access-prem").classList.add("hide"));
-        });
+    } catch (err) {}
+    let data = {};
+    data["publickey"] = c.publicKey.toString()
+    data = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/auth");
+    xhr.responseType = 'json';
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> ' + xhr.response["code"]
+            document.querySelector('.paid_deals').textContent = 'Paid: ' +  xhr.response["paid"] + 'SOL / Deals: ' + xhr.response["deals"]
+            document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"
+            document.querySelector(".warning-access-prem").classList.add("hide")
+        }
+    }
 }
 
 async function trans(b) {
@@ -86,44 +94,51 @@ async function trans(b) {
     return await a.confirmTransaction(f), f;
 }
 
+async function getAllAzagnat(address){
+    let url = 'https://azagnat.top/api/getAllAzagnat/' + address;
+    let response = await fetch(url);
+
+    let data = await response.json();
+
+    let nfts = []
+    for (let el of data) {
+        let d = {}
+        d["mintAddress"] = el["mintAddress"]
+        let response = await fetch(el["uri"]);
+        let metadata = await response.json();
+        d["name"] = metadata["name"]
+        d["image"] = metadata["image"]
+        d["animation_url"] = metadata["animation_url"]
+        nfts.push(d)
+    }
+
+    return nfts
+}
+
 
 const header_wallet = document.querySelector('.header-wallet')
 header_wallet.addEventListener('click', () => {
     provider = getProvider();
     if (provider.isConnected){
-        let b = {};
-        (b.publickey = provider.publicKey.toString()), (b = JSON.stringify(b));
-        let a = new XMLHttpRequest();
-        a.open("POST", "/auth"),
-        (a.responseType = "json"),
-        a.setRequestHeader("Content-Type", "application/json"),
-        a.send(b),
-        (a.onload = () => {
-            if (200 == a.status) {
-                let b = document.querySelectorAll(".warning-minted-tokens-token");
-                b.forEach((a) => {
-                    a.remove();
-                }),
-                (document.querySelector(".wallet-address").innerHTML = provider.publicKey.toString()),
-                (tp = document.querySelector(".wallet-address")),
-                (template = document.querySelector("#ref_template")),
-                a.response.refs.forEach((a) => {
-                    let b = template.content.cloneNode(!0);
-                    (b.querySelector(".warning-minted-tokens-token__img").src = a.screen),
-                        (b.querySelector(".token-content__title span").innerHTML = a.token_id),
-                        ((p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost),
-                        (p[1].querySelector("span").innerHTML = a.paid),
-                        (p[2].querySelector("span").innerHTML = a.deals),
-                        ((l = b.querySelectorAll(".token-content__links a"))[0].href = a.token_link),
-                        (l[1].href = "https://explorer.solana.com/address/" + a.contract + "/metadata?cluster=devnet"),
-                        (l[2].href = "https://solscan.io/token/" + a.contract + "?cluster=devnet"),
-                        (l[3].href = "https://solana.fm/address/" + a.contract + "?cluster=devnet-solana");
-                    let c = b.querySelector(".token-content__button");
-                    c.setAttribute("title", a.ref_link), tp.after(b);
-                }),
-                document.querySelector(".warning-minted-tokens").classList.remove("hide");
+        getAllAzagnat(provider.publicKey.toString()).then(function(elements){
+            let b = document.querySelectorAll(".warning-minted-tokens-token");
+            b.forEach((a) => {
+                a.remove();
+            })
+            tp = document.querySelector(".wallet-address")
+            template = document.querySelector("#ref_template")
+            for (let element of elements) {
+                let b = template.content.cloneNode(!0);
+                b.querySelector(".warning-minted-tokens-token__img").src = element["image"]
+                b.querySelector(".token-content__title").innerHTML = element["name"],
+                // (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost
+                (l = b.querySelectorAll(".token-content__links a"))[0].href = element["animation_url"]
+                l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=devnet"
+                l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=devnet"
+                tp.after(b);
             }
-        });
+            document.querySelector(".warning-minted-tokens").classList.remove("hide");
+        })
     } else {
         connect_wallet();
     }
@@ -133,39 +148,25 @@ const wallet_info_warning = document.querySelector('.warning-access-prem')
 wallet_info_warning.addEventListener('click', () => {
     provider = getProvider();
     if (provider.isConnected){
-        let b = {};
-        (b.publickey = provider.publicKey.toString()), (b = JSON.stringify(b));
-        let a = new XMLHttpRequest();
-        a.open("POST", "/auth"),
-        (a.responseType = "json"),
-        a.setRequestHeader("Content-Type", "application/json"),
-        a.send(b),
-        (a.onload = () => {
-            if (200 == a.status) {
-                let b = document.querySelectorAll(".warning-minted-tokens-token");
-                b.forEach((a) => {
-                    a.remove();
-                }),
-                (document.querySelector(".wallet-address").innerHTML = provider.publicKey.toString()),
-                (tp = document.querySelector(".wallet-address")),
-                (template = document.querySelector("#ref_template")),
-                a.response.refs.forEach((a) => {
-                    let b = template.content.cloneNode(!0);
-                    (b.querySelector(".warning-minted-tokens-token__img").src = a.screen),
-                        (b.querySelector(".token-content__title span").innerHTML = a.token_id),
-                        ((p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost),
-                        (p[1].querySelector("span").innerHTML = a.paid),
-                        (p[2].querySelector("span").innerHTML = a.deals),
-                        ((l = b.querySelectorAll(".token-content__links a"))[0].href = a.token_link),
-                        (l[1].href = "https://explorer.solana.com/address/" + a.contract + "/metadata?cluster=devnet"),
-                        (l[2].href = "https://solscan.io/token/" + a.contract + "?cluster=devnet"),
-                        (l[3].href = "https://solana.fm/address/" + a.contract + "?cluster=devnet-solana");
-                    let c = b.querySelector(".token-content__button");
-                    c.setAttribute("title", a.ref_link), tp.after(b);
-                }),
-                document.querySelector(".warning-minted-tokens").classList.remove("hide");
+        getAllAzagnat(provider.publicKey.toString()).then(function(elements){
+            let b = document.querySelectorAll(".warning-minted-tokens-token");
+            b.forEach((a) => {
+                a.remove();
+            })
+            tp = document.querySelector(".wallet-address")
+            template = document.querySelector("#ref_template")
+            for (let element of elements) {
+                let b = template.content.cloneNode(!0);
+                b.querySelector(".warning-minted-tokens-token__img").src = element["image"]
+                b.querySelector(".token-content__title").innerHTML = element["name"],
+                // (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost
+                (l = b.querySelectorAll(".token-content__links a"))[0].href = element["animation_url"]
+                l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=devnet"
+                l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=devnet"
+                tp.after(b);
             }
-        });
+            document.querySelector(".warning-minted-tokens").classList.remove("hide");
+        })
     } else {
         connect_wallet_warning();
     }

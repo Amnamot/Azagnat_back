@@ -1,22 +1,22 @@
 {
-    "name": "Azagnat #00006",
+    "name": "Azagnat #00005",
     "symbol": "AZGT",
     "description": "Non-fungible Magic Ball",
-    "image": "https://arweave.net/QW9ceL6tqkilDFKXKTHv-eUXbaAyzEZFWaYfauhsQck?ext=png",
-    "animation_url": "https://arweave.net/gf19OHdjlt0vCA6JM8DOR800kfLsa7DFDd2dpjXHxts?ext=html",
-    "external_url": "https://azagnat.art",
+    "image": "https://arweave.net/M0NNApuJNlXTQLyopxMlcQ2YU92kkvz5MA1Vxj3sWcM?ext=png",
+    "animation_url": "https://arweave.net/peEoZLYOvVHP3yw66hhScmiZhAUguU1H38fl7yJ-R9M?ext=html",
+    "external_url": "https://azagnat.top",
     "attributes": [
         {
             "trait_type": "Name",
-            "value": "toton"
+            "value": "Aimesh"
         },
         {
             "trait_type": "Date of Birth",
-            "value": "2022-10-20"
+            "value": "2023-07-10"
         },
         {
             "trait_type": "Gender",
-            "value": "Woman"
+            "value": "Man"
         },
         {
             "trait_type": "Language",
@@ -28,15 +28,15 @@
         },
         {
             "trait_type": "Body_view",
-            "value": "Default"
+            "value": "#1c1c1c"
         },
         {
             "trait_type": "Background",
-            "value": "Default"
+            "value": "#0A3104"
         },
         {
             "trait_type": "Ticker",
-            "value": "Default"
+            "value": "#004f20"
         }
     ]
 }

@@ -112,13 +112,21 @@ def auth(request):
     except ObjectDoesNotExist:
         a = Address.objects.create(address=publickey)
 
-    ref_data = {
-       'refs' :[]
-    }
-    configs = Config.objects.filter(address_id=publickey)
-    for config in configs:
-        data = config.refferalcode
-        ref_data['refs'].append({'ref_link': f'{DOMEN}?r={data.code}', 'token_id': data.config.metadata['name'].split()[1], 'cost' : "{:.3f}".format(config.cost), 'paid' : "{:.3f}".format(data.paid), 'deals' : data.deals, 'screen' : data.config.metadata['image'], 'token_link': config.html, 'contract': config.contract})
+
+    try:
+        r = RefferalCode.objects.get(config=a)
+        ref_data = {
+            'code': r.code,
+            'paid': r.paid,
+            'deals': r.deals
+        }
+    except RefferalCode.DoesNotExist:
+        ref_data = {
+            'code': '',
+            'paid': '',
+            'deals': ''
+        }
+
     r = JsonResponse(ref_data)
     r.set_cookie('publickey', publickey)
     return r

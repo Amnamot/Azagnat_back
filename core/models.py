@@ -54,7 +54,7 @@ class Config(models.Model):
 
 class RefferalCode(models.Model):
     config = models.OneToOneField(
-        Config,
+        Address,
         on_delete=models.CASCADE
     )
     code = models.CharField(max_length=10, unique=True)
@@ -63,13 +63,10 @@ class RefferalCode(models.Model):
 
     class Meta:
         verbose_name = 'refferal_code'
-        verbose_name_plural = "refferal_codes"
+        verbose_name_plural = "refferal_code"
 
     def __str__(self):
         return self.code
-
-
-
 
 
 class Promocode(models.Model):

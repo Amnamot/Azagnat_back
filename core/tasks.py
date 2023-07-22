@@ -1,5 +1,5 @@
 import json
-from .models import Ambassador, Config, BasePrice, RefferalCode, Returned, Promocode, MintCount, Models, Materials, SelectImageBody, SelectImageBackground
+from .models import *
 import random
 from solana.keypair import Keypair
 from solana.rpc.api import Client
@@ -11,6 +11,7 @@ import base64
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from celery import shared_task
 from aza.settings import RPC, DOMEN
+from django.db import IntegrityError
 
 def send_sol(to, s):
     solana_client = Client(RPC)
@@ -257,9 +258,12 @@ def minttask(self, data, publickey):
         config.save()
 
         ref_code = RefferalCode()
-        ref_code.config_id = contract
+        ref_code.config = Address.objects.get(address=publickey)
         ref_code.code = generator(8)
-        ref_code.save()
+        try:
+            ref_code.save()
+        except IntegrityError:
+            pass
         
         if 'r' in data['get_par']:
             baseprice = BasePrice.objects.get(id=1).price
@@ -283,6 +287,9 @@ def minttask(self, data, publickey):
             re = Returned.objects.get(id=1)
             re.count = re.count + (baseprice*0.2)
             re.save()
+        elif 'e' in data['get_par']:
+            e = EasyMint.objects.get(code=f'{DOMEN}?p='+data['get_par']['e'])
+            e.delete()
 
     return config_len
         
