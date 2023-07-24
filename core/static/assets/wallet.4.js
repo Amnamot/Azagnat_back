@@ -120,6 +120,7 @@ const header_wallet = document.querySelector('.header-wallet')
 header_wallet.addEventListener('click', () => {
     provider = getProvider();
     if (provider.isConnected){
+        document.querySelector(".wallet-address").innerHTML = provider.publicKey.toString()
         getAllAzagnat(provider.publicKey.toString()).then(function(elements){
             let b = document.querySelectorAll(".warning-minted-tokens-token");
             b.forEach((a) => {
@@ -148,6 +149,7 @@ const wallet_info_warning = document.querySelector('.warning-access-prem')
 wallet_info_warning.addEventListener('click', () => {
     provider = getProvider();
     if (provider.isConnected){
+        document.querySelector(".wallet-address").innerHTML = provider.publicKey.toString()
         getAllAzagnat(provider.publicKey.toString()).then(function(elements){
             let b = document.querySelectorAll(".warning-minted-tokens-token");
             b.forEach((a) => {
