@@ -167,7 +167,7 @@ def getprice(request):
         price['global_price'] = baseprice
 
     if data['model'] == None:
-        price['model_price'] = .0
+        price['model_price'] = Models.objects.get(id=1).price
         price['global_price'] += price['model_price']
     else:
         price['model_price'] = Models.objects.get(id=int(data['model'])+1).price
