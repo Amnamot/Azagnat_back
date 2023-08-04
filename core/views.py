@@ -161,8 +161,6 @@ def getprice(request):
         price['global_price'] = baseprice - (baseprice * 0.2)
     elif 'a' in data['get_par']:
         price['global_price'] = baseprice - (baseprice * (Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a']).percent / 100))
-    elif 'e' in data['get_par']:
-        price['global_price'] = price['global_price'] - (price['global_price'] * (90 / 100))
     else:
         price['global_price'] = baseprice
 
@@ -226,4 +224,8 @@ def getprice(request):
     else:
         price['ticker_price'] = .0
         price['global_price'] += price['ticker_price']
+
+
+    if 'e' in data['get_par']:
+        price['global_price'] = price['global_price'] - (price['global_price'] * (90 / 100))
     return JsonResponse(price)

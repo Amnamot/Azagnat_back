@@ -3,7 +3,7 @@
         "bodyImages": [
             {
                 "name": "Abstract",
-                "path": "../media/body-img/Abstract.jpeg"
+                "path": "../media/body-img/Abstract.jpg"
             },
             {
                 "name": "Cloud",
@@ -65,7 +65,7 @@
         "backgroundImages": [
             {
                 "name": "Abstract",
-                "path": "../media/body-img/Abstract.jpeg"
+                "path": "../media/body-img/Abstract.jpg"
             },
             {
                 "name": "Cloud",
