@@ -278,8 +278,7 @@ def minttask(self, data, publickey):
             re.save()
         elif 'p' in data['get_par']:
             p = Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p'])
-            p.isactive = False
-            p.save()
+            p.delete()
         elif 'a' in data['get_par']:
             baseprice = BasePrice.objects.get(id=1).price
             a = Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a'])

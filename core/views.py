@@ -8,12 +8,8 @@ import json
 import random
 from .tasks import minttask
 from aza.settings import DOMEN
-import logging
-from user_agents import parse
 
-logger = logging.getLogger('django')
-
-month = ['','January','February','March','April','May','June','July','August','September','Octomber','November','December']
+month = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'Octomber', 'November', 'December']
 
 def generator(n):
     s = ''
@@ -23,10 +19,7 @@ def generator(n):
 
 
 def homepage(request):
-    logger.info('azagnat')
-    user_agent = parse(request.META['HTTP_USER_AGENT'])
 
-    
     try:
         config_len = str(MintCount.objects.get(id=1).general_sum + 1)
     except ObjectDoesNotExist:
@@ -36,61 +29,42 @@ def homepage(request):
     if len(config_len) < 5:
         config_len = str((5 - len(config_len)) * '0') + config_len
 
-    percent = 'X'
-    
-    if ('r' in request.GET and 'p' in request.GET):
+    is_active = False
+
+    if len(request.GET.dict().items()) > 1:
         return redirect(homepage)
-    elif 'r' in request.GET:
+    
+    if 'r' in request.GET:
         try:
             RefferalCode.objects.get(code=request.GET.get('r'))
-            percent = 20
             is_active = True
         except ObjectDoesNotExist:
-            return redirect(homepage)
+            is_active = False
     elif 'a' in request.GET:
         try:
             Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
-            percent = 20
             is_active = True
         except ObjectDoesNotExist:
-            return redirect(homepage)
+            is_active = False
     elif 'p' in request.GET:
         try:
-            pro = Promocode.objects.get(code=f'{DOMEN}?p='+request.GET.get('p'))
-            if pro.isactive:
-                is_active = True
-                percent = pro.percent
-            else:
-                is_active = False
+            Promocode.objects.get(code=f'{DOMEN}?p='+request.GET.get('p'))
+            is_active = True
         except ObjectDoesNotExist:
-            return redirect(homepage)
+            is_active = False
     elif 'e' in request.GET:
         try:
-            easy = EasyMint.objects.get(code=f'{DOMEN}?e='+request.GET.get('e'))
+            EasyMint.objects.get(code=f'{DOMEN}?e='+request.GET.get('e'))
             is_active = True
-            percent = 90
         except ObjectDoesNotExist:
-            return redirect(homepage)
-    else:
-        is_active = True
+            is_active = False
     try:
         re = Returned.objects.get(id=1)
     except ObjectDoesNotExist:
         re = Returned.objects.create()
-
-    if user_agent.is_mobile:
-        return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active})
     
-    # if 'a' in request.GET:
-    #     try:
-    #         Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
-    #     except ObjectDoesNotExist:
-    #         return render(request, 'private.html')
-    # else:
-    #     return render(request, 'private.html')
-
-    
-    return render(request, 'index.html', {'id': config_len, 'percent' : percent, 'returned': "{:.3f}".format(re.count), 'is_active': is_active, "mint_active": MintActive.objects.all().last().is_active})
+    print(is_active)
+    return render(request, 'index.html', {'id': config_len, 'returned': "{:.3f}".format(re.count), 'is_active': is_active, "mint_active": MintActive.objects.all().last().is_active})
 
 
 def creating(request):

@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 else:
-    STATIC_ROOT = '/var/www/azagnat.art/html/static'
+    STATIC_ROOT = '/var/www/azagnat/static'
 
 DATA_ROOT = os.path.join(BASE_DIR, "data/")
 DATA_URL = '/data/'
@@ -152,7 +152,7 @@ MEDIA_URL = '/media/'
 if DEBUG:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 else:
-    MEDIA_ROOT = '/var/www/azagnat.art/html/media'
+    MEDIA_ROOT = '/var/www/azagnat/media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -178,34 +178,5 @@ if DEBUG:
     DOMEN = 'http://127.0.0.1:8000'
 else:
     DOMEN = 'https://azagnat.top/'
+    
 RPC = os.getenv('RPC')
-
-if not DEBUG:
-    LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'formatters': {
-            'verbose': {
-                'format': '{asctime} {levelname} {module} {message}',
-                'style': '{',
-            }
-        },
-        'handlers': {
-            'file': {
-                'level': 'INFO',
-                'class': 'logging.FileHandler',
-                'filename': 'debug.log',
-                'formatter': 'verbose'
-            },
-        },
-        'loggers': {
-            'django': {
-                'handlers': ['file'],
-                'level': 'INFO',
-                'propagate': True,
-            },
-        },
-    }
-
-
-secretKeyNew = '6Dz9mGviYi5j3CGrvAevvfJao383RzuFEyu35wnf2wo5'

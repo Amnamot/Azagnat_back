@@ -72,7 +72,6 @@ class RefferalCode(models.Model):
 class Promocode(models.Model):
     code = models.URLField(unique=True, null=True, blank=True)
     percent = models.PositiveIntegerField()
-    isactive = models.BooleanField(default=True)
 
 
     def save(self):

@@ -20,8 +20,6 @@
 </head>
 <body>
 <header class="header">
-    <!-- кнопку тон пока оставил -->
-    <!-- <div class="button"><img src="./img/tonLogo.svg" alt="TON" class="header-logo"></div> -->
     <img src="{% static 'img/solana_logo.svg' %}" alt="solana logo" class="header-logo">
     <div class="header-texts">
         <h1 class="header-title">AZAGNAT</h1>
@@ -30,7 +28,6 @@
         </p>
     </div>
     <div class="header-info">
-        <!-- <div class="button" id="RoadMap">Road map</div> -->
         <img src="{% static 'img/WalletON.svg' %}" alt="Wallet" class="header-wallet">
     </div>
 </header>
@@ -354,55 +351,6 @@
     </div>
 </div>
 
-<!-- wait -->
-<!-- <div id="wait" class="hide">
-    <h2>S00N</h2>
-    <br>
-    <p class="main-description__text description">
-        open on 12.24.2022 12:00 (UTC)
-    </p>
-</div> -->
-<!-- warnings -->
-
-<div class="warning warning-RoadMap hide">
-    <div class="warning__content">
-        <h2 class="warning__title green">Road map</h2>
-        <p class="description text">
-            We won't promise what we can't deliver!
-            Let's not fantasize about the timing of implementation!
-        </p>
-        <br>
-        <p class="description text">
-            We will jointly decide what functionality the next NFT will have and what service needs to be launched into space. Depending on the interests of the community in our project with you, we will make further plans.
-        </p>
-        <br>
-        <p class="description marginNull text">
-            Now we can share with you our plans for building the Azagnat ecosystem:
-        </p>
-        <ol class="warning-RoadMap_list description text" type="1">
-            <li>Launch of the private-mint Magic Ball collection;</li>
-            <li>Launch of the public-mint Magic Bal collection;</li> 
-            <li>Creation of a rare table;</li> 
-            <li>Creation of a mobile application;</li> 
-            <li>Creating a Telegram web-app bot;</li> 
-            <li>Launching an NFT lottery inside the token;</li> 
-            <li>Launch of Azagnat Oracle;</li> 
-            <li>Opening a merch-store (shop):</li> 
-                <ol type="a">
-                    <li>Hoodie with augmented reality,</li>
-                    <li>Amulets,</li> 
-                    <li>Branded Magic Balls,</li> 
-                </ol>
-            <li>And much more and interesting...</li> 
-        </ol>
-        <div class="warning-welcomes-buttons">
-            <img src="{% static 'img/flower.png' %}" alt="pic">
-        </div>
-
-
-    </div>
-</div>
-
 <div class="warning warning-mint hide">
     <div class="warning__content">
         <h2 class="warning__title yellow">Warning!</h2>
@@ -456,14 +404,14 @@
     <div class="warning__content">
         <div style="display: flex; align-items: center;">
             <h2 class="warning__title warning__title-img-wallet"></h2>
-            <button type="button" style="border-radius: 15px; padding: 10px 40px; font-size: 16px; font-weight: 700; background-color: #09B224; border: none;;">Disconnect waallet</button>
+            <button type="button" onclick="disconnect()" style="border-radius: 15px; padding: 10px 40px; font-size: 16px; font-weight: 700; background-color: #09B224; border: none;;">Disconnect waallet</button>
         </div>
         <p class="warning__description description wallet-address"></p>
 
         
         <div style="text-align: center; display: flex;flex-direction: column; justify-content: center; font-size: 20px;">
-            <p class="refferal_code"></p>
             <p class="paid_deals"></p>
+            <p class="refferal_code"></p>
             <button type="button" style="border-radius: 15px; padding: 10px 40px; font-size: 16px; font-weight: 700; background-color: #09B224; border: none;">Copy referal link</button>
         </div>
         <div class="warning__info"> The most you'll get from Azagnat is in the Telegram bot
@@ -472,7 +420,7 @@
     </div>
 </div>
 
-<div class="warning warning-ref-redeemed hide">
+<div class="warning warning-ref-redeemed {% if is_active %} hide {% else %} {% endif %}">
     <div class="warning__content">
         <h2 class="warning__title warning__title-img">Error!</h2>
         <p class="description">
@@ -518,6 +466,17 @@
             is possible after connecting the wallet.
         </p>
         <img class="warning-access-prem" src="{% static 'img/WalletON.svg' %}" alt="pic">
+    </div>
+</div>
+
+<div class="warning warning-req-param hide">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="description">
+            For a high-quality neurosensory connection, you need to fill in all <br>
+            the required parameters.
+        </p>
+    
     </div>
 </div>
 
@@ -650,40 +609,6 @@
         </div>
     </div>
     <div class="NFT__dotts slider_dots"></div>
-
-    <!-- <h2 class="mobile-thumb__title">Road map</h2>
-
-    <p class="mobile-thumb__description_Left description">
-        We won't promise what we can't deliver!
-        Let's not fantasize about the timing of implementation!
-    </p>
-
-    <p class="mobile-thumb__description_Left description">
-        We will jointly decide what functionality the next NFT will have and what service needs to be launched into space. Depending on the interests of the community in our project with you, we will make further plans.
-    </p> -->
-
-    <!-- <div class="mobile-thumb__block-center">
-        <p class="mobile-thumb__description_Left description marginNull">
-            Now we can share with you our plans for building the Azagnat ecosystem:
-        </p>
-    
-        <ol class="mobile-thumb__list description" type="1">
-            <li>Launch of the private-mint Magic Ball collection;</li>
-            <li>Launch of the public-mint Magic Bal collection;</li> 
-            <li>Creation of a rare table;</li> 
-            <li>Creation of a mobile application;</li> 
-            <li>Creating a Telegram web-app bot;</li> 
-            <li>Launching an NFT lottery inside the token;</li> 
-            <li>Launch of Azagnat Oracle;</li> 
-            <li>Opening a merch-store (shop):</li> 
-                <ol type="a">
-                    <li>Hoodie with augmented reality,</li>
-                    <li>Amulets,</li> 
-                    <li>Branded Magic Balls,</li> 
-                </ol>
-            <li>And much more and interesting...</li> 
-        </ol>
-    </div> -->
 
     <h2 class="mobile-thumb-about__title">Learn more about the project</h2>
 

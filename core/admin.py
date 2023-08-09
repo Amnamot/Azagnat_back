@@ -3,7 +3,7 @@ from .models import *
 
 @admin.register(Promocode)
 class PromocodeAdmin(admin.ModelAdmin):
-    list_display = ['code', 'percent', 'isactive']
+    list_display = ['code', 'percent']
 
 @admin.register(EasyMint)
 class EasyMintAdmin(admin.ModelAdmin):

@@ -84,7 +84,7 @@ async function connect_wallet_warning(){
 }
 
 async function trans(b) {
-    let a = new solanaWeb3.Connection("https://muddy-delicate-wish.solana-mainnet.quiknode.pro/9e593e2e9badac3955449e1531708d6f7ec664ff/", "confirmed"),
+    let a = new solanaWeb3.Connection("https://hidden-delicate-dream.solana-mainnet.discover.quiknode.pro/95a60c1ceffbc01a10866084a228f1d5cb9ca5ea/", "confirmed"),
         e = getProvider(),
         c = await a.getAccountInfo(e.publicKey);
     if (1e9 * b > c.lamports) return [(1e9 * b - c.lamports) / 1e9, (1e9 * b) / 1e9, c.lamports / 1e9];
@@ -403,3 +403,7 @@ window.addEventListener('load', function () {
 })
 
 
+function disconnect(){
+    let a = getProvider();
+    a.disconnect(), (document.querySelector(".header-wallet").src = "static/img/WalletON.svg");
+}
