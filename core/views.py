@@ -29,7 +29,7 @@ def homepage(request):
     if len(config_len) < 5:
         config_len = str((5 - len(config_len)) * '0') + config_len
 
-    is_active = False
+    is_active = True
 
     if len(request.GET.dict().items()) > 1:
         return redirect(homepage)
@@ -63,7 +63,6 @@ def homepage(request):
     except ObjectDoesNotExist:
         re = Returned.objects.create()
     
-    print(is_active)
     return render(request, 'index.html', {'id': config_len, 'returned': "{:.3f}".format(re.count), 'is_active': is_active, "mint_active": MintActive.objects.all().last().is_active})
 
 

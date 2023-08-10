@@ -62,8 +62,8 @@ class RefferalCode(models.Model):
     deals = models.PositiveIntegerField(default=0)
 
     class Meta:
-        verbose_name = 'refferal_code'
-        verbose_name_plural = "refferal_code"
+        verbose_name = '1refferal_code'
+        verbose_name_plural = "1refferal_code"
 
     def __str__(self):
         return self.code
@@ -81,8 +81,8 @@ class Promocode(models.Model):
         super().save()
 
     class Meta:
-        verbose_name = 'promocode'
-        verbose_name_plural = "promocodes"
+        verbose_name = '3promocode'
+        verbose_name_plural = "3promocodes"
 
     def __str__(self):
         return self.code
@@ -104,8 +104,8 @@ class Ambassador(models.Model):
         super().save()
 
     class Meta:
-        verbose_name = 'ambassador'
-        verbose_name_plural = "ambassadors"
+        verbose_name = '2ambassador'
+        verbose_name_plural = "2ambassadors"
 
     def __str__(self):
         return self.code
@@ -122,8 +122,8 @@ class EasyMint(models.Model):
         super().save()
 
     class Meta:
-        verbose_name = 'Easy mint'
-        verbose_name_plural = "Easy mints"
+        verbose_name = '4Easy mint'
+        verbose_name_plural = "4Easy mints"
 
     def __str__(self):
         return self.code
