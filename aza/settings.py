@@ -20,7 +20,7 @@ DEBUG = True
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['azagnat.top', 'www.azagnat.top', '195.231.34.246', '0.0.0.0', 'localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['azagnat.top', 'www.azagnat.top', '80.211.128.250', '0.0.0.0', 'localhost', '127.0.0.1']
 
 
 

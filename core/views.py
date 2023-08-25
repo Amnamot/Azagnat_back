@@ -145,19 +145,19 @@ def getprice(request):
         price['global_price'] += price['model_price']
 
     try:
-        if data['idBodyColor'] == '3':
+        if data['idBody'] == '3':
             price['body_price'] = BodyViewPrice.objects.get(id=1).select_image
             price['global_price'] += price['body_price']
-        elif data['idBodyColor'] == '2':
+        elif data['idBody'] == '2':
             price['body_price'] = BodyViewPrice.objects.get(id=1).custom_image
             price['global_price'] += price['body_price']
-        elif data['idBodyColor'] == '1':
+        elif data['idBody'] == '1':
             price['body_price'] = BodyViewPrice.objects.get(id=1).custom_color
             price['global_price'] += price['body_price']
-        elif data['idBodyColor'] == '0':
+        elif data['idBody'] == '0':
             price['body_price'] = .0
             price['global_price'] += price['body_price']
-        elif data['idBodyColor'] == '4':
+        elif data['idBody'] == '4':
             if data['selectedMaterialId'] == None:
                 price['body_price'] = .0
             else:
@@ -166,36 +166,32 @@ def getprice(request):
     except KeyError:
         pass
     try:
-        if data['idBackground'] == '5':
+        if data['idBack'] == '5':
             price['bg_price'] = BackgroundPrice.objects.get(id=1).select_image
             price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '4':
+        elif data['idBack'] == '4':
             price['bg_price'] = BackgroundPrice.objects.get(id=1).custom_image
             price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '3':
+        elif data['idBack'] == '3':
             price['bg_price'] = BackgroundPrice.objects.get(id=1).radial_gradient
             price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '2':
+        elif data['idBack'] == '2':
             price['bg_price'] = BackgroundPrice.objects.get(id=1).linear_gradient
             price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '1':
+        elif data['idBack'] == '1':
             price['bg_price'] = BackgroundPrice.objects.get(id=1).single_color
             price['global_price'] += price['bg_price']
-        elif data['idBackground'] == '0':
+        elif data['idBack'] == '0':
             price['bg_price'] = .0
             price['global_price'] += price['bg_price']
     except KeyError:
         pass
 
-    if 'tickerColor' in data:
-        if data['tickerColor'] == "#004f20":
-            price['ticker_price'] = .0
-            price['global_price'] += price['ticker_price']
-        else:
-            price['ticker_price'] = TickerPrice.objects.get(id=1).color
-            price['global_price'] += price['ticker_price']
-    else:
+    if data['tickerId'] == "0":
         price['ticker_price'] = .0
+        price['global_price'] += price['ticker_price']
+    else:
+        price['ticker_price'] = TickerPrice.objects.get(id=1).color
         price['global_price'] += price['ticker_price']
 
 

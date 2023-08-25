@@ -396,8 +396,8 @@ window.addEventListener('load', function () {
             document.getElementsByClassName("sol text")[1].getElementsByTagName("span")[0].innerHTML = xhr.response.body_price.toFixed(2)
             document.getElementsByClassName("sol text")[2].getElementsByTagName("span")[0].innerHTML = xhr.response.bg_price.toFixed(2)
             document.getElementsByClassName("sol text")[3].getElementsByTagName("span")[0].innerHTML = xhr.response.ticker_price.toFixed(2)
-            document.getElementsByClassName("mint__sum")[0].getElementsByTagName("span")[0].innerHTML = xhr.response.global_price.toFixed(2)
-            document.querySelector(".warning-mint span").innerHTML = xhr.response.global_price.toFixed(2)
+            document.getElementsByClassName("mint__sum")[0].getElementsByTagName("span")[0].innerHTML = xhr.response.global_price.toFixed(3)
+            document.querySelector(".warning-mint span").innerHTML = xhr.response.global_price.toFixed(3)
         }
     }
 })
