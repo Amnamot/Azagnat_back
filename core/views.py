@@ -187,12 +187,15 @@ def getprice(request):
     except KeyError:
         pass
 
-    if data['tickerId'] == "0":
-        price['ticker_price'] = .0
-        price['global_price'] += price['ticker_price']
-    else:
-        price['ticker_price'] = TickerPrice.objects.get(id=1).color
-        price['global_price'] += price['ticker_price']
+    try:
+        if data['tickerId'] == "0":
+            price['ticker_price'] = .0
+            price['global_price'] += price['ticker_price']
+        else:
+            price['ticker_price'] = TickerPrice.objects.get(id=1).color
+            price['global_price'] += price['ticker_price']
+    except KeyError:
+        pass
 
 
     if 'e' in data['get_par']:
