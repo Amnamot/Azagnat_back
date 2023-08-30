@@ -164,8 +164,6 @@ def minttask(self, data, publickey):
             ticker_path = tick_path,
             hat = True if model_link == 'https://arweave.net/54_M2OvAOnO-vKmL34wE0QxPFKcl6KgHIlWxBotnpS4' else False
         )
-        type_body = ['Default','Custom color', 'Custom image', 'Select image', 'Material']
-        type_back = ['Default','Single color', 'Linear gradient', 'Radial gradient', 'Custom image', 'Select image']
         with open('core/token/token.html', 'w', encoding="utf8") as file:
             file.write(rendered_page)
         
@@ -192,9 +190,9 @@ def minttask(self, data, publickey):
         if data['idBodyColor'] == '1':
             value = data['customBodyColor']
         elif data['idBodyColor'] == '2':
-            value = 'Custom image'
+            value = data["bodyCustomName"]
         elif data['idBodyColor'] == '3':
-            value = SelectImageBody.objects.get(id=int(data['selectedImgId'])+1)
+            value = SelectImageBody.objects.get(id=int(data['selectedImgId'])+1).name
         elif data['idBodyColor'] == '4':
             value = Materials.objects.get(id=int(data['selectedMaterialId'])+1).name
 
@@ -207,7 +205,7 @@ def minttask(self, data, publickey):
         elif data['idBackground'] == '3':
             value = data['backgroundColor3'] + ' ' + data['backgroundColor4']
         elif data['idBackground'] == '4':
-            value = 'Custom image'
+            value = data["backgroundCustomName"]
         elif data['idBackground'] == '5':
             value = SelectImageBackground.objects.get(id=int(data['selectedBgImgId'])+1).name
         

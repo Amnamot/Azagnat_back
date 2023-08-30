@@ -252,6 +252,10 @@ window.addEventListener('load', function () {
         connect_wallet()
     }
 
+    const avatar_name = document.querySelector("#uploadBannerImage").nextElementSibling
+
+    avatar_name.innerText = localStorage.getItem("avatar_name") == null ? "select image" : localStorage.getItem("avatar_name")
+
     const body_color = document.querySelector("select.body-color")
 
     if (sessionStorage.getItem("idBodyColor") == '1'){
