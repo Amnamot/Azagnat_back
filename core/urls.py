@@ -8,4 +8,5 @@ urlpatterns = [
     path('getprice', getprice, name='getprice'),
     path('creating/', creating, name='creating'),
     path('ownership/', ownership, name='ownership'),
+    path('getcost/<str:address>/', cost),
 ]

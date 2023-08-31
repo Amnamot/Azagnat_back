@@ -104,6 +104,9 @@ def auth(request):
     r.set_cookie('publickey', publickey)
     return r
 
+def cost(request, address):
+    return JsonResponse({"cost": Config.objects.get(contract=address).cost})
+
 @csrf_exempt
 @require_POST
 def mint(request):

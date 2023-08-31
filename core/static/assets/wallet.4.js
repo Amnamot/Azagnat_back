@@ -111,6 +111,9 @@ async function getAllAzagnat(address){
         d["name"] = metadata["name"]
         d["image"] = metadata["image"]
         d["animation_url"] = metadata["animation_url"]
+        response = await fetch(`/getcost/${el["mintAddress"]}/`)
+        let r = await response.json();
+        d["cost"] = r["cost"]
         nfts.push(d)
     }
 
@@ -163,7 +166,7 @@ wallet_info_warning.addEventListener('click', () => {
                 let b = template.content.cloneNode(!0);
                 b.querySelector(".warning-minted-tokens-token__img").src = element["image"]
                 b.querySelector(".token-content__title").innerHTML = element["name"],
-                // (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost
+                (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = element["cost"]
                 (l = b.querySelectorAll(".token-content__links a"))[0].href = element["animation_url"]
                 l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=mainnet"
                 l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=mainnet"
