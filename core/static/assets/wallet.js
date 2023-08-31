@@ -137,8 +137,8 @@ header_wallet.addEventListener('click', () => {
                 let b = template.content.cloneNode(!0);
                 b.querySelector(".warning-minted-tokens-token__img").src = element["image"]
                 b.querySelector(".token-content__title").innerHTML = element["name"],
-                (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = element["cost"]
-                (l = b.querySelectorAll(".token-content__links a"))[0].href = element["animation_url"]
+                b.querySelector(".token-content").querySelectorAll("p")[0].querySelector("span").innerHTML = a.cost
+                b.querySelectorAll(".token-content__links a")[0].href = element["animation_url"]
                 l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=devnet"
                 l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=devnet"
                 tp.after(b);
