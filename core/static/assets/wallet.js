@@ -139,6 +139,7 @@ header_wallet.addEventListener('click', () => {
                 b.querySelector(".token-content__title").innerHTML = element["name"],
                 b.querySelector(".token-content").querySelectorAll("p")[0].querySelector("span").innerHTML = element["cost"]
                 b.querySelectorAll(".token-content__links a")[0].href = element["animation_url"]
+                const l = b.querySelectorAll(".token-content__links a")
                 l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=devnet"
                 l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=devnet"
                 tp.after(b);
