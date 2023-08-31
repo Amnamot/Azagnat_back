@@ -137,7 +137,7 @@ header_wallet.addEventListener('click', () => {
                 let b = template.content.cloneNode(!0);
                 b.querySelector(".warning-minted-tokens-token__img").src = element["image"]
                 b.querySelector(".token-content__title").innerHTML = element["name"],
-                // (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost
+                (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = element["cost"]
                 (l = b.querySelectorAll(".token-content__links a"))[0].href = element["animation_url"]
                 l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=devnet"
                 l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=devnet"
@@ -254,7 +254,7 @@ window.addEventListener('load', function () {
 
     const avatar_name = document.querySelector("#uploadBannerImage").nextElementSibling
 
-    avatar_name.innerText = localStorage.getItem("avatar_name") == null ? "select image" : localStorage.getItem("avatar_name")
+    avatar_name.innerText = localStorage.getItem("avatar_name") == null ? "select image" : localStorage.getItem("avatar_name").slice(0, 16)
 
     const body_color = document.querySelector("select.body-color")
 
