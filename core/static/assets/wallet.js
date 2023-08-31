@@ -1,222 +1,90 @@
-(window.innerWidth < 1024 || window.innerHeight < 500) &&
+let isMobile = {
+	Android: function() {return navigator.userAgent.match(/Android/i);},
+	BlackBerry: function() {return navigator.userAgent.match(/BlackBerry/i);},
+	iOS: function() {return navigator.userAgent.match(/iPhone|iPad|iPod/i);},
+	Opera: function() {return navigator.userAgent.match(/Opera Mini/i);},
+	Windows: function() {return navigator.userAgent.match(/IEMobile/i);},
+	any: function() {return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());}
+};
+(isMobile.any()) &&
     (document.querySelector(".mobile-thumb").classList.remove("hide"),
     (document.body.style.overflow = "hidden"),
     (els = document.querySelectorAll(".mobile-thumb-example-container__item")).forEach((a) => {
         a.removeAttribute("height"), a.removeAttribute("width");
-    }));
-const getProvider = () => {
-    if ("solana" in window) {
-        let a = window.solana;
-        if (a.isPhantom) return a;
-    }
-    window.open("https://phantom.app/", "_blank");
-};
-async function connect_wallet() {
-    let c = getProvider();
-    try {
-        await c.connect();
-    } catch (d) {}
-    sessionStorage.setItem("islog", !0);
-    let b = {};
-    (b.publickey = c.publicKey.toString()), (b = JSON.stringify(b));
-    let a = new XMLHttpRequest();
-    a.open("POST", "/auth"),
-        (a.responseType = "json"),
-        a.setRequestHeader("Content-Type", "application/json"),
-        a.send(b),
-        (a.onload = () => {
-            200 == a.status && (document.querySelector(".header-wallet").src = "static/img/wallet_off.svg");
-        });
-}
-async function connect_wallet_warn() {
-    let c = getProvider();
-    try {
-        await c.connect();
-    } catch (d) {}
-    sessionStorage.setItem("islog", !0);
-    let b = {};
-    (b.publickey = c.publicKey.toString()), (b = JSON.stringify(b));
-    let a = new XMLHttpRequest();
-    a.open("POST", "/auth"),
-        (a.responseType = "json"),
-        a.setRequestHeader("Content-Type", "application/json"),
-        a.send(b),
-        (a.onload = () => {
-            200 == a.status && ((document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"), document.querySelector(".warning-access-prem").classList.add("hide"));
-        });
-}
-let wallet = document.querySelector(".header-wallet");
+}));
+
 async function hide_over() {
     let a = getProvider();
     a.isConnected || (await new Promise((a) => setTimeout(a, 600)), document.querySelector(".warning-access-prem").classList.remove("hide"));
 }
-wallet.addEventListener("click", function () {
-    let c = getProvider();
-    if (c.isConnected) {
-        let b = {};
-        (b.publickey = c.publicKey.toString()), (b = JSON.stringify(b));
-        let a = new XMLHttpRequest();
-        a.open("POST", "/auth"),
-            (a.responseType = "json"),
-            a.setRequestHeader("Content-Type", "application/json"),
-            a.send(b),
-            (a.onload = () => {
-                if (200 == a.status) {
-                    let b = document.querySelectorAll(".warning-minted-tokens-token");
-                    b.forEach((a) => {
-                        a.remove();
-                    }),
-                        (document.querySelector(".wallet-address").innerHTML = c.publicKey.toString()),
-                        (tp = document.querySelector(".wallet-address")),
-                        (template = document.querySelector("#ref_template")),
-                        a.response.refs.forEach((a) => {
-                            let b = template.content.cloneNode(!0);
-                            (b.querySelector(".warning-minted-tokens-token__img").src = a.screen),
-                                (b.querySelector(".token-content__title span").innerHTML = a.token_id),
-                                ((p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost),
-                                (p[1].querySelector("span").innerHTML = a.paid),
-                                (p[2].querySelector("span").innerHTML = a.deals),
-                                ((l = b.querySelectorAll(".token-content__links a"))[0].href = a.token_link),
-                                (l[1].href = "https://explorer.solana.com/address/" + a.contract + "/metadata?cluster=devnet"),
-                                (l[2].href = "https://solscan.io/token/" + a.contract + "?cluster=devnet"),
-                                (l[3].href = "https://solana.fm/address/" + a.contract + "?cluster=devnet-solana");
-                            let c = b.querySelector(".token-content__button");
-                            c.setAttribute("title", a.ref_link), tp.after(b);
-                        }),
-                        document.querySelector(".warning-minted-tokens").classList.remove("hide");
-                }
-            });
-    } else connect_wallet();
-}),
-    (warn_wallet = document.querySelectorAll(".warning-access-prem")[1]).addEventListener("click", connect_wallet_warn);
+
 let f_select = document.querySelectorAll(".f-select");
-f_select[2].addEventListener("mouseover", hide_over),
-    f_select[3].addEventListener("mouseover", hide_over),
-    f_select[4].addEventListener("mouseover", hide_over),
-    f_select[5].addEventListener("mouseover", hide_over),
-    (welcome_b1 = document.querySelector(".warning-welcomes-buttons").querySelectorAll(".warning__button")[0]).addEventListener("click", () => {
-        localStorage.setItem("iswelcome", !0);
-    }),
-    window.addEventListener("load", () => {
-        null != localStorage.getItem("iswelcome") ? document.querySelector(".warning-welcomes").classList.add("hide") : document.querySelector(".warning-welcomes").classList.remove("hide"),
-            sessionStorage.getItem("islog") && connect_wallet();
-        let a = {};
-        a.model = parseInt(localStorage.getItem("mId"));
-        for (let c = 0; c < sessionStorage.length; c++) {
-            let d = sessionStorage.key(c);
-            a[d] = sessionStorage.getItem(d);
-        }
-        let e = window.location.search
-            .replace("?", "")
-            .split("&")
-            .reduce(function (a, c) {
-                var b = c.split("=");
-                return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
-            }, {});
-        (a.get_par = e), (a = JSON.stringify(a));
-        let b = new XMLHttpRequest();
-        b.open("POST", "/getprice"),
-            (b.responseType = "json"),
-            b.setRequestHeader("Content-Type", "application/json"),
-            b.send(a),
-            (b.onload = () => {
-                200 == b.status &&
-                    ((document.getElementsByClassName("sol text")[0].getElementsByTagName("span")[0].innerHTML = b.response.model_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[1].getElementsByTagName("span")[0].innerHTML = b.response.body_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[2].getElementsByTagName("span")[0].innerHTML = b.response.bg_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[3].getElementsByTagName("span")[0].innerHTML = b.response.ticker_price.toFixed(2)),
-                    (document.getElementsByClassName("mint__sum")[0].getElementsByTagName("span")[0].innerHTML = b.response.global_price.toFixed(2)),
-                    (document.querySelector(".warning-mint span").innerHTML = b.response.global_price.toFixed(2)),
-                    localStorage.setItem("model_price", b.response.model_price),
-                    sessionStorage.setItem("body_price", b.response.body_price),
-                    sessionStorage.setItem("bg_price", b.response.bg_price),
-                    sessionStorage.setItem("ticker_price", b.response.ticker_price),
-                    sessionStorage.setItem("global_price", b.response.global_price));
-            });
-    });
-let body_color = document.querySelector(".body-color");
-body_color.addEventListener("change", function () {
-    if ("0" == body_color.value) {
-        let a = {};
-        a.model = parseInt(localStorage.getItem("mId"));
-        for (let c = 0; c < sessionStorage.length; c++) {
-            let d = sessionStorage.key(c);
-            a[d] = sessionStorage.getItem(d);
-        }
-        a.idBodyColor = body_color.value;
-        let e = window.location.search
-            .replace("?", "")
-            .split("&")
-            .reduce(function (a, c) {
-                var b = c.split("=");
-                return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
-            }, {});
-        (a.get_par = e), (a = JSON.stringify(a));
-        let b = new XMLHttpRequest();
-        b.open("POST", "/getprice"),
-            (b.responseType = "json"),
-            b.setRequestHeader("Content-Type", "application/json"),
-            b.send(a),
-            (b.onload = () => {
-                200 == b.status &&
-                    ((document.getElementsByClassName("sol text")[0].getElementsByTagName("span")[0].innerHTML = b.response.model_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[1].getElementsByTagName("span")[0].innerHTML = b.response.body_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[2].getElementsByTagName("span")[0].innerHTML = b.response.bg_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[3].getElementsByTagName("span")[0].innerHTML = b.response.ticker_price.toFixed(2)),
-                    (document.getElementsByClassName("mint__sum")[0].getElementsByTagName("span")[0].innerHTML = b.response.global_price.toFixed(2)),
-                    (document.querySelector(".warning-mint span").innerHTML = b.response.global_price.toFixed(2)),
-                    localStorage.setItem("model_price", b.response.model_price),
-                    sessionStorage.setItem("body_price", b.response.body_price),
-                    sessionStorage.setItem("bg_price", b.response.bg_price),
-                    sessionStorage.setItem("ticker_price", b.response.ticker_price),
-                    sessionStorage.setItem("global_price", b.response.global_price));
-            });
+f_select[2].addEventListener("mouseover", hide_over);
+f_select[3].addEventListener("mouseover", hide_over);
+f_select[4].addEventListener("mouseover", hide_over);
+f_select[5].addEventListener("mouseover", hide_over);
+
+const getProvider = () => {
+    if ('phantom' in window) {
+      const provider = window.phantom?.solana;
+  
+      if (provider?.isPhantom) {
+        return provider;
+      }
     }
-});
-let background = document.querySelector(".background-settings");
-background.addEventListener("change", function () {
-    if ("0" == background.value) {
-        let c = document.querySelector(".background-settings-add");
-        for (; c.firstChild; ) c.removeChild(c.firstChild);
-        let a = {};
-        a.model = parseInt(localStorage.getItem("mId"));
-        for (let d = 0; d < sessionStorage.length; d++) {
-            let e = sessionStorage.key(d);
-            a[e] = sessionStorage.getItem(e);
+    window.open('https://phantom.app/', '_blank');
+};
+
+
+async function connect_wallet(){
+    let c = getProvider();
+    try {
+        await c.connect();
+    } catch (err) {}
+    sessionStorage.setItem("isConnected", true)
+    let data = {};
+    data["publickey"] = c.publicKey.toString()
+    data = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/auth");
+    xhr.responseType = 'json';
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> ' + xhr.response["code"]
+            document.querySelector('.paid_deals').textContent = 'Paid: ' +  xhr.response["paid"] + 'SOL / Deals: ' + xhr.response["deals"]
+            document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"
         }
-        (a.idBackground = background.value), sessionStorage.setItem("idBackground", background.value);
-        let f = window.location.search
-            .replace("?", "")
-            .split("&")
-            .reduce(function (a, c) {
-                var b = c.split("=");
-                return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
-            }, {});
-        (a.get_par = f), (a = JSON.stringify(a));
-        let b = new XMLHttpRequest();
-        b.open("POST", "/getprice"),
-            (b.responseType = "json"),
-            b.setRequestHeader("Content-Type", "application/json"),
-            b.send(a),
-            (b.onload = () => {
-                200 == b.status &&
-                    ((document.getElementsByClassName("sol text")[0].getElementsByTagName("span")[0].innerHTML = b.response.model_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[1].getElementsByTagName("span")[0].innerHTML = b.response.body_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[2].getElementsByTagName("span")[0].innerHTML = b.response.bg_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[3].getElementsByTagName("span")[0].innerHTML = b.response.ticker_price.toFixed(2)),
-                    (document.getElementsByClassName("mint__sum")[0].getElementsByTagName("span")[0].innerHTML = b.response.global_price.toFixed(2)),
-                    (document.querySelector(".warning-mint span").innerHTML = b.response.global_price.toFixed(2)),
-                    localStorage.setItem("model_price", b.response.model_price),
-                    sessionStorage.setItem("body_price", b.response.body_price),
-                    sessionStorage.setItem("bg_price", b.response.bg_price),
-                    sessionStorage.setItem("ticker_price", b.response.ticker_price),
-                    sessionStorage.setItem("global_price", b.response.global_price));
-            });
     }
-});
-let ticker = document.querySelector(".change-ticker-color");
+}
+
+async function connect_wallet_warning(){
+    let c = getProvider();
+    try {
+        await c.connect();
+    } catch (err) {}
+    sessionStorage.setItem("isConnected", true)
+    let data = {};
+    data["publickey"] = c.publicKey.toString()
+    data = JSON.stringify(data);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/auth");
+    xhr.responseType = 'json';
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> ' + xhr.response["code"]
+            document.querySelector('.paid_deals').textContent = 'Paid: ' +  xhr.response["paid"] + 'SOL / Deals: ' + xhr.response["deals"]
+            document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"
+            document.querySelector(".warning-access-prem").classList.add("hide")
+        }
+    }
+}
+
 async function trans(b) {
-    let a = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl("mainnet"), "confirmed"),
+    let a = new solanaWeb3.Connection("https://hidden-delicate-dream.solana-mainnet.discover.quiknode.pro/95a60c1ceffbc01a10866084a228f1d5cb9ca5ea/", "confirmed"),
         e = getProvider(),
         c = await a.getAccountInfo(e.publicKey);
     if (1e9 * b > c.lamports) return [(1e9 * b - c.lamports) / 1e9, (1e9 * b) / 1e9, c.lamports / 1e9];
@@ -227,155 +95,319 @@ async function trans(b) {
         f = await a.sendRawTransaction(h.serialize());
     return await a.confirmTransaction(f), f;
 }
-ticker.addEventListener("change", function () {
-    if ("0" == ticker.value) {
-        let a = {};
-        a.model = parseInt(localStorage.getItem("mId"));
-        for (let c = 0; c < sessionStorage.length; c++) {
-            let d = sessionStorage.key(c);
-            a[d] = sessionStorage.getItem(d);
-        }
-        a.tickerColor = "#004f20";
-        let e = window.location.search
-            .replace("?", "")
-            .split("&")
-            .reduce(function (a, c) {
-                var b = c.split("=");
-                return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
-            }, {});
-        (a.get_par = e), (a = JSON.stringify(a));
-        let b = new XMLHttpRequest();
-        b.open("POST", "/getprice"),
-            (b.responseType = "json"),
-            b.setRequestHeader("Content-Type", "application/json"),
-            b.send(a),
-            (b.onload = () => {
-                200 == b.status &&
-                    ((document.getElementsByClassName("sol text")[0].getElementsByTagName("span")[0].innerHTML = b.response.model_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[1].getElementsByTagName("span")[0].innerHTML = b.response.body_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[2].getElementsByTagName("span")[0].innerHTML = b.response.bg_price.toFixed(2)),
-                    (document.getElementsByClassName("sol text")[3].getElementsByTagName("span")[0].innerHTML = b.response.ticker_price.toFixed(2)),
-                    (document.getElementsByClassName("mint__sum")[0].getElementsByTagName("span")[0].innerHTML = b.response.global_price.toFixed(2)),
-                    (document.querySelector(".warning-mint span").innerHTML = b.response.global_price.toFixed(2)),
-                    localStorage.setItem("model_price", b.response.model_price),
-                    sessionStorage.setItem("body_price", b.response.body_price),
-                    sessionStorage.setItem("bg_price", b.response.bg_price),
-                    sessionStorage.setItem("ticker_price", b.response.ticker_price),
-                    sessionStorage.setItem("global_price", b.response.global_price));
-            });
+
+async function getAllAzagnat(address){
+    let url = 'https://azagnat.top/api/getAllAzagnat/' + address;
+    let response = await fetch(url);
+
+    let data = await response.json();
+
+    let nfts = []
+    for (let el of data) {
+        let d = {}
+        d["mintAddress"] = el["mintAddress"]
+        let response = await fetch(el["uri"]);
+        let metadata = await response.json();
+        d["name"] = metadata["name"]
+        d["image"] = metadata["image"]
+        d["animation_url"] = metadata["animation_url"]
+        response = await fetch(`/getcost/${el["mintAddress"]}/`)
+        let r = await response.json();
+        d["cost"] = r["cost"]
+        nfts.push(d)
     }
-});
-let mint = document.querySelectorAll(".warning__button")[2];
+
+    return nfts
+}
+
+
+const header_wallet = document.querySelector('.header-wallet')
+header_wallet.addEventListener('click', () => {
+    provider = getProvider();
+    if (provider.isConnected){
+        document.querySelector(".wallet-address").innerHTML = provider.publicKey.toString()
+        getAllAzagnat(provider.publicKey.toString()).then(function(elements){
+            let b = document.querySelectorAll(".warning-minted-tokens-token");
+            b.forEach((a) => {
+                a.remove();
+            })
+            tp = document.querySelector(".wallet-address")
+            template = document.querySelector("#ref_template")
+            for (let element of elements) {
+                let b = template.content.cloneNode(!0);
+                b.querySelector(".warning-minted-tokens-token__img").src = element["image"]
+                b.querySelector(".token-content__title").innerHTML = element["name"],
+                // (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost
+                (l = b.querySelectorAll(".token-content__links a"))[0].href = element["animation_url"]
+                l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=devnet"
+                l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=devnet"
+                tp.after(b);
+            }
+            document.querySelector(".warning-minted-tokens").classList.remove("hide");
+        })
+    } else {
+        connect_wallet();
+    }
+})
+
+const wallet_info_warning = document.querySelector('.warning-access-prem')
+wallet_info_warning.addEventListener('click', () => {
+    provider = getProvider();
+    if (provider.isConnected){
+        document.querySelector(".wallet-address").innerHTML = provider.publicKey.toString()
+        getAllAzagnat(provider.publicKey.toString()).then(function(elements){
+            let b = document.querySelectorAll(".warning-minted-tokens-token");
+            b.forEach((a) => {
+                a.remove();
+            })
+            tp = document.querySelector(".wallet-address")
+            template = document.querySelector("#ref_template")
+            for (let element of elements) {
+                let b = template.content.cloneNode(!0);
+                b.querySelector(".warning-minted-tokens-token__img").src = element["image"]
+                b.querySelector(".token-content__title").innerHTML = element["name"],
+                (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = element["cost"]
+                (l = b.querySelectorAll(".token-content__links a"))[0].href = element["animation_url"]
+                l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=mainnet"
+                l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=mainnet"
+                tp.after(b);
+            }
+            document.querySelector(".warning-minted-tokens").classList.remove("hide");
+        })
+    } else {
+        connect_wallet_warning();
+    }
+})
+
+
+let mint = document.querySelector(".warning__button");
 mint.addEventListener("click", async () => {
-    if (null == localStorage.getItem("userObj")) document.querySelector(".warning-req-param").classList.remove("hide");
-    else if (5 == Object.keys(JSON.parse(localStorage.getItem("userObj"))).length) {
-        await connect_wallet();
-        let a = {};
-        a.model = localStorage.getItem("mId");
-        for (let c = 0; c < sessionStorage.length; c++) {
-            let d = sessionStorage.key(c);
-            a[d] = sessionStorage.getItem(d);
-        }
-        let e = window.location.search
-            .replace("?", "")
-            .split("&")
-            .reduce(function (a, c) {
-                var b = c.split("=");
-                return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
-            }, {});
-        (a.get_par = e), (a = JSON.stringify(a));
-        let b = new XMLHttpRequest();
-        b.open("POST", "/getprice"),
-            (b.responseType = "json"),
-            b.setRequestHeader("Content-Type", "application/json"),
-            b.send(a),
-            (b.onload = () => {
-                if (200 == b.status) {
-                    (s = trans(b.response.global_price)), ((a = {}).model = localStorage.getItem("mId"));
-                    for (let c = 0; c < sessionStorage.length; c++) {
-                        let d = sessionStorage.key(c);
-                        a[d] = sessionStorage.getItem(d);
-                    }
-                    (a.global_price = b.response.global_price),
-                        s.then(
-                            (b) => {
-                                if (Array.isArray(b)) {
-                                    let d = document.querySelectorAll(".warning-balance .warning__content span");
-                                    (d[0].innerHTML = b[0]), (d[1].innerHTML = b[1]), (d[2].innerHTML = b[2]), document.querySelector(".warning-balance").classList.remove("hide");
-                                } else {
-                                    document.querySelector(".warning-minted").classList.remove("hide"), (a.tx = b), (a.userObj = JSON.parse(localStorage.getItem("userObj")));
-                                    let e = window.location.search
-                                        .replace("?", "")
-                                        .split("&")
-                                        .reduce(function (a, c) {
-                                            var b = c.split("=");
-                                            return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
-                                        }, {});
-                                    (a.get_par = e), (a = JSON.stringify(a));
-                                    console.log(a);
-                                    let c = new XMLHttpRequest();
-                                    c.open("POST", "/mint"),
-                                        (c.responseType = "json"),
-                                        c.setRequestHeader("Content-Type", "application/json"),
-                                        c.send(a),
-                                        (c.onload = () => {
-                                            c.status;
-                                        });
-                                }
-                            },
-                            (a) => {
-                                "failed to send transaction: Transaction simulation failed: Blockhash not found" == a.message
-                                    ? document.querySelector(".warning-cancels").classList.remove("hide")
-                                    : "User rejected the request." == a.message && document.querySelector(".warning-user-cancels").classList.remove("hide");
+    await connect_wallet();
+    let a = {};
+    a.model = localStorage.getItem("mId");
+    for (let c = 0; c < sessionStorage.length; c++) {
+        let d = sessionStorage.key(c);
+        a[d] = sessionStorage.getItem(d);
+    }
+    let e = window.location.search
+        .replace("?", "")
+        .split("&")
+        .reduce(function (a, c) {
+            var b = c.split("=");
+            return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
+        }, {});
+    (a.get_par = e), (a = JSON.stringify(a));
+    let b = new XMLHttpRequest();
+    b.open("POST", "/getprice"),
+        (b.responseType = "json"),
+        b.setRequestHeader("Content-Type", "application/json"),
+        b.send(a),
+        (b.onload = () => {
+            if (200 == b.status) {
+                (s = trans(b.response.global_price)), ((a = {}).model = localStorage.getItem("mId"));
+                for (let c = 0; c < sessionStorage.length; c++) {
+                    let d = sessionStorage.key(c);
+                    a[d] = sessionStorage.getItem(d);
+                }
+                (a.global_price = b.response.global_price),
+                    s.then(
+                        (b) => {
+                            if (Array.isArray(b)) {
+                                let d = document.querySelectorAll(".warning-balance .warning__content span");
+                                (d[0].innerHTML = b[0]), (d[1].innerHTML = b[1]), (d[2].innerHTML = b[2]), document.querySelector(".warning-balance").classList.remove("hide");
+                            } else {
+                                document.querySelector(".warning-minted").classList.remove("hide"), (a.tx = b), (a.userObj = JSON.parse(localStorage.getItem("userObj")));
+                                let e = window.location.search
+                                    .replace("?", "")
+                                    .split("&")
+                                    .reduce(function (a, c) {
+                                        var b = c.split("=");
+                                        return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
+                                    }, {});
+                                (a.get_par = e), (a = JSON.stringify(a));
+                                console.log(a);
+                                let c = new XMLHttpRequest();
+                                c.open("POST", "/mint"),
+                                    (c.responseType = "json"),
+                                    c.setRequestHeader("Content-Type", "application/json"),
+                                    c.send(a),
+                                    (c.onload = () => {
+                                        c.status;
+                                    });
                             }
-                        );
-                }
-            });
-    } else document.querySelector(".warning-req-param").classList.remove("hide");
-});
-const wallet_info_warn = document.querySelector(".warning-minted-img");
-wallet_info_warn.addEventListener("click", () => {
-    document.querySelector(".warning-minted").classList.add("hide");
-    let c = getProvider();
-    if (c.isConnected) {
-        let b = {};
-        (b.publickey = c.publicKey.toString()), (b = JSON.stringify(b));
-        let a = new XMLHttpRequest();
-        a.open("POST", "/auth"),
-            (a.responseType = "json"),
-            a.setRequestHeader("Content-Type", "application/json"),
-            a.send(b),
-            (a.onload = () => {
-                if (200 == a.status) {
-                    let b = document.querySelectorAll(".warning-minted-tokens-token");
-                    b.forEach((a) => {
-                        a.remove();
-                    }),
-                        (document.querySelector(".wallet-address").innerHTML = c.publicKey.toString()),
-                        (tp = document.querySelector(".wallet-address")),
-                        (template = document.querySelector("#ref_template")),
-                        a.response.refs.forEach((a) => {
-                            let b = template.content.cloneNode(!0);
-                            (b.querySelector(".warning-minted-tokens-token__img").src = a.screen),
-                                (b.querySelector(".token-content__title span").innerHTML = a.token_id),
-                                ((p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost),
-                                (p[1].querySelector("span").innerHTML = a.paid),
-                                (p[2].querySelector("span").innerHTML = a.deals),
-                                ((l = b.querySelectorAll(".token-content__links a"))[0].href = a.token_link),
-                                (l[1].href = "https://explorer.solana.com/address/" + a.contract + "/metadata?cluster=devnet"),
-                                (l[2].href = "https://solscan.io/token/" + a.contract + "?cluster=devnet"),
-                                (l[3].href = "https://solana.fm/address/" + a.contract + "?cluster=devnet-solana");
-                            let c = b.querySelector(".token-content__button");
-                            c.setAttribute("title", a.ref_link), tp.after(b);
-                        }),
-                        document.querySelector(".warning-minted-tokens").classList.remove("hide");
-                }
-            });
-    } else connect_wallet();
-});
-let dis = document.querySelectorAll(".warning__button")[3];
-dis.addEventListener("click", () => {
-    let a = getProvider();
-    a.disconnect(), (document.querySelector(".header-wallet").src = "static/img/WalletON.svg");
+                        },
+                        (a) => {
+                            "failed to send transaction: Transaction simulation failed: Blockhash not found" == a.message
+                                ? document.querySelector(".warning-cancels").classList.remove("hide")
+                                : "User rejected the request." == a.message && document.querySelector(".warning-user-cancels").classList.remove("hide");
+                        }
+                    );
+            }
+        });
 });
 
+window.addEventListener('load', function () {
+    const isConnected = sessionStorage.getItem("isConnected")
+    if (isConnected){
+        connect_wallet()
+    }
+
+    const avatar_name = document.querySelector("#uploadBannerImage").nextElementSibling
+
+    avatar_name.innerText = localStorage.getItem("avatar_name") == null ? "select image" : localStorage.getItem("avatar_name")
+
+    const body_color = document.querySelector("select.body-color")
+
+    if (sessionStorage.getItem("idBodyColor") == '1'){
+        body_color.getElementsByTagName("option")[1].selected = true
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > div.addOption.body-color-add > input[type=color]").value = sessionStorage.getItem("customBodyColor")
+    } else if (sessionStorage.getItem("idBodyColor") == '2'){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > label > div > div > div:nth-child(4)").click()
+        const body_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > label > div > div")
+        body_color_f_select.classList.remove("active")
+        const select_options = body_color_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+    } else if (sessionStorage.getItem("idBodyColor") == '3'){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > label > div > div > div:nth-child(5)").click()
+        const body_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > label > div > div")
+        body_color_f_select.classList.remove("active")
+        const select_options = body_color_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+        document.querySelector(`body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > div.addOption.body-color-add > div > div > div:nth-child(${Number(sessionStorage.getItem("selectedImgId")) + 2})`).click()
+        const img_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > div.addOption.body-color-add > div > div")
+        img_select.classList.remove("active")
+        const img_select_options = img_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of img_select_options){
+            select_option.classList.remove("active")
+        }
+    } else if (sessionStorage.getItem("idBodyColor") == '4'){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > label > div > div > div:nth-child(6)").click()
+        const body_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > label > div > div")
+        body_color_f_select.classList.remove("active")
+        const select_options = body_color_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+        document.querySelector(`body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > div.addOption.body-color-add > div > div > div:nth-child(${Number(sessionStorage.getItem('selectedMaterialId')) + 2})`).click()
+        const material_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > div.addOption.body-color-add > div > div")
+        material_select.classList.remove("active")
+        const material_select_options = material_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of material_select_options){
+            select_option.classList.remove("active")
+        }
+    }
+
+
+    if (sessionStorage.getItem("idBackground") == '1'){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div > div:nth-child(3)").click()
+        const back_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div")
+        back_color_f_select.classList.remove("active")
+        const select_options = back_color_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > div.addOption.background-settings-add > input[type=color]").value = sessionStorage.getItem("backgroundColor")
+    } else if (sessionStorage.getItem("idBackground") == '2'){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div > div:nth-child(4)").click()
+        const back_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div")
+        back_color_f_select.classList.remove("active")
+        const select_options = back_color_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > div.addOption.background-settings-add > input[type=color]:nth-child(1)").value = sessionStorage.getItem("backgroundColor1")
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > div.addOption.background-settings-add > input[type=color]:nth-child(2)").value = sessionStorage.getItem("backgroundColor2")
+    } else if (sessionStorage.getItem("idBackground") == '3'){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div > div:nth-child(5)").click()
+        const back_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div")
+        back_color_f_select.classList.remove("active")
+        const select_options = back_color_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > div.addOption.background-settings-add > input[type=color]:nth-child(1)").value = sessionStorage.getItem("backgroundColor3")
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > div.addOption.background-settings-add > input[type=color]:nth-child(2)").value = sessionStorage.getItem("backgroundColor4")
+    } else if (sessionStorage.getItem("idBackground") == '4'){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div > div:nth-child(6)").click()
+        const back_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div")
+        back_color_f_select.classList.remove("active")
+        const select_options = back_color_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+    } else if (sessionStorage.getItem("idBackground") == '5'){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div > div:nth-child(7)").click()
+        const back_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div")
+        back_color_f_select.classList.remove("active")
+        const select_options = back_color_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+        document.querySelector(`body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > div.addOption.background-settings-add > div > div > div:nth-child(${Number(sessionStorage.getItem("selectedBgImgId")) + 2})`).click()
+        const img_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > div.addOption.background-settings-add > div > div")
+        img_select.classList.remove("active")
+        const img_select_options = img_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of img_select_options){
+            select_option.classList.remove("active")
+        }
+    }
+
+
+    if (sessionStorage.getItem("tickerColor") != null){
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(6) > label > div > div > div:nth-child(3)").click()
+        const ticker_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(6) > label > div > div")
+        ticker_f_select.classList.remove("active")
+        const select_options = ticker_f_select.querySelectorAll(".f-select-option.active")
+        for (let select_option of select_options){
+            select_option.classList.remove("active")
+        }
+        document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(6) > div.addOption.change-ticker-color-add > input[type=color]").value = sessionStorage.getItem("tickerColor")
+    }
+
+    let data = {}; 
+    data['model'] = localStorage.getItem('mId'); 
+    for(let i=0; i<sessionStorage.length; i++) {
+        let key = sessionStorage.key(i);
+        data[key] = sessionStorage.getItem(key);
+    }
+    let params = window
+    .location
+    .search
+    .replace('?','')
+    .split('&')
+    .reduce(
+        function(p,e){
+            var a = e.split('=');
+            p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+            return p;
+        },
+        {}
+    );
+    data['get_par'] = params;
+    data = JSON.stringify(data); 
+    const xhr = new XMLHttpRequest(); 
+    xhr.open("POST", "/getprice"); 
+    xhr.responseType = 'json'; 
+    xhr.setRequestHeader("Content-Type", "application/json"); 
+    xhr.send(data); 
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            document.getElementsByClassName("sol text")[0].getElementsByTagName("span")[0].innerHTML = xhr.response.model_price.toFixed(2)
+            document.getElementsByClassName("sol text")[1].getElementsByTagName("span")[0].innerHTML = xhr.response.body_price.toFixed(2)
+            document.getElementsByClassName("sol text")[2].getElementsByTagName("span")[0].innerHTML = xhr.response.bg_price.toFixed(2)
+            document.getElementsByClassName("sol text")[3].getElementsByTagName("span")[0].innerHTML = xhr.response.ticker_price.toFixed(2)
+            document.getElementsByClassName("mint__sum")[0].getElementsByTagName("span")[0].innerHTML = xhr.response.global_price.toFixed(3)
+            document.querySelector(".warning-mint span").innerHTML = xhr.response.global_price.toFixed(3)
+        }
+    }
+})
+
+
+function disconnect(){
+    let a = getProvider();
+    a.disconnect(), (document.querySelector(".header-wallet").src = "static/img/WalletON.svg");
+}
