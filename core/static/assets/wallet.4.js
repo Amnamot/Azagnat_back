@@ -165,8 +165,8 @@ wallet_info_warning.addEventListener('click', () => {
                 b.querySelector(".token-content__title").innerHTML = element["name"],
                 // (p = b.querySelector(".token-content").querySelectorAll("p"))[0].querySelector("span").innerHTML = a.cost
                 (l = b.querySelectorAll(".token-content__links a"))[0].href = element["animation_url"]
-                l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=devnet"
-                l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=devnet"
+                l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=mainnet"
+                l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=mainnet"
                 tp.after(b);
             }
             document.querySelector(".warning-minted-tokens").classList.remove("hide");
@@ -179,71 +179,68 @@ wallet_info_warning.addEventListener('click', () => {
 
 let mint = document.querySelector(".warning__button");
 mint.addEventListener("click", async () => {
-    if (null == localStorage.getItem("userObj")) document.querySelector(".warning-req-param").classList.remove("hide");
-    else if (5 == Object.keys(JSON.parse(localStorage.getItem("userObj"))).length) {
-        await connect_wallet();
-        let a = {};
-        a.model = localStorage.getItem("mId");
-        for (let c = 0; c < sessionStorage.length; c++) {
-            let d = sessionStorage.key(c);
-            a[d] = sessionStorage.getItem(d);
-        }
-        let e = window.location.search
-            .replace("?", "")
-            .split("&")
-            .reduce(function (a, c) {
-                var b = c.split("=");
-                return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
-            }, {});
-        (a.get_par = e), (a = JSON.stringify(a));
-        let b = new XMLHttpRequest();
-        b.open("POST", "/getprice"),
-            (b.responseType = "json"),
-            b.setRequestHeader("Content-Type", "application/json"),
-            b.send(a),
-            (b.onload = () => {
-                if (200 == b.status) {
-                    (s = trans(b.response.global_price)), ((a = {}).model = localStorage.getItem("mId"));
-                    for (let c = 0; c < sessionStorage.length; c++) {
-                        let d = sessionStorage.key(c);
-                        a[d] = sessionStorage.getItem(d);
-                    }
-                    (a.global_price = b.response.global_price),
-                        s.then(
-                            (b) => {
-                                if (Array.isArray(b)) {
-                                    let d = document.querySelectorAll(".warning-balance .warning__content span");
-                                    (d[0].innerHTML = b[0]), (d[1].innerHTML = b[1]), (d[2].innerHTML = b[2]), document.querySelector(".warning-balance").classList.remove("hide");
-                                } else {
-                                    document.querySelector(".warning-minted").classList.remove("hide"), (a.tx = b), (a.userObj = JSON.parse(localStorage.getItem("userObj")));
-                                    let e = window.location.search
-                                        .replace("?", "")
-                                        .split("&")
-                                        .reduce(function (a, c) {
-                                            var b = c.split("=");
-                                            return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
-                                        }, {});
-                                    (a.get_par = e), (a = JSON.stringify(a));
-                                    console.log(a);
-                                    let c = new XMLHttpRequest();
-                                    c.open("POST", "/mint"),
-                                        (c.responseType = "json"),
-                                        c.setRequestHeader("Content-Type", "application/json"),
-                                        c.send(a),
-                                        (c.onload = () => {
-                                            c.status;
-                                        });
-                                }
-                            },
-                            (a) => {
-                                "failed to send transaction: Transaction simulation failed: Blockhash not found" == a.message
-                                    ? document.querySelector(".warning-cancels").classList.remove("hide")
-                                    : "User rejected the request." == a.message && document.querySelector(".warning-user-cancels").classList.remove("hide");
-                            }
-                        );
+    await connect_wallet();
+    let a = {};
+    a.model = localStorage.getItem("mId");
+    for (let c = 0; c < sessionStorage.length; c++) {
+        let d = sessionStorage.key(c);
+        a[d] = sessionStorage.getItem(d);
+    }
+    let e = window.location.search
+        .replace("?", "")
+        .split("&")
+        .reduce(function (a, c) {
+            var b = c.split("=");
+            return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
+        }, {});
+    (a.get_par = e), (a = JSON.stringify(a));
+    let b = new XMLHttpRequest();
+    b.open("POST", "/getprice"),
+        (b.responseType = "json"),
+        b.setRequestHeader("Content-Type", "application/json"),
+        b.send(a),
+        (b.onload = () => {
+            if (200 == b.status) {
+                (s = trans(b.response.global_price)), ((a = {}).model = localStorage.getItem("mId"));
+                for (let c = 0; c < sessionStorage.length; c++) {
+                    let d = sessionStorage.key(c);
+                    a[d] = sessionStorage.getItem(d);
                 }
-            });
-    } else document.querySelector(".warning-req-param").classList.remove("hide");
+                (a.global_price = b.response.global_price),
+                    s.then(
+                        (b) => {
+                            if (Array.isArray(b)) {
+                                let d = document.querySelectorAll(".warning-balance .warning__content span");
+                                (d[0].innerHTML = b[0]), (d[1].innerHTML = b[1]), (d[2].innerHTML = b[2]), document.querySelector(".warning-balance").classList.remove("hide");
+                            } else {
+                                document.querySelector(".warning-minted").classList.remove("hide"), (a.tx = b), (a.userObj = JSON.parse(localStorage.getItem("userObj")));
+                                let e = window.location.search
+                                    .replace("?", "")
+                                    .split("&")
+                                    .reduce(function (a, c) {
+                                        var b = c.split("=");
+                                        return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
+                                    }, {});
+                                (a.get_par = e), (a = JSON.stringify(a));
+                                console.log(a);
+                                let c = new XMLHttpRequest();
+                                c.open("POST", "/mint"),
+                                    (c.responseType = "json"),
+                                    c.setRequestHeader("Content-Type", "application/json"),
+                                    c.send(a),
+                                    (c.onload = () => {
+                                        c.status;
+                                    });
+                            }
+                        },
+                        (a) => {
+                            "failed to send transaction: Transaction simulation failed: Blockhash not found" == a.message
+                                ? document.querySelector(".warning-cancels").classList.remove("hide")
+                                : "User rejected the request." == a.message && document.querySelector(".warning-user-cancels").classList.remove("hide");
+                        }
+                    );
+            }
+        });
 });
 
 window.addEventListener('load', function () {
