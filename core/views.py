@@ -105,7 +105,10 @@ def auth(request):
     return r
 
 def cost(request, address):
-    return JsonResponse({"cost": Config.objects.get(contract=address).cost})
+    try:
+        return JsonResponse({"cost": Config.objects.get(contract=address).cost})
+    except Config.DoesNotExist:
+        return JsonResponse({"cost": 0.00})
 
 @csrf_exempt
 @require_POST
