@@ -157,3 +157,4 @@ media/
 package-lock.json
 id.json
 wallet.json
+token/

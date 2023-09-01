@@ -52,7 +52,7 @@ async function connect_wallet(){
     xhr.send(data);
     xhr.onload = () => {
         if (xhr.status == 200) {
-            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> ' + xhr.response["code"]
+            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> https://azagnat.top/?r=' + xhr.response["code"]
             document.querySelector('.paid_deals').textContent = 'Paid: ' +  xhr.response["paid"] + 'SOL / Deals: ' + xhr.response["deals"]
             document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"
         }
@@ -75,7 +75,7 @@ async function connect_wallet_warning(){
     xhr.send(data);
     xhr.onload = () => {
         if (xhr.status == 200) {
-            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> ' + xhr.response["code"]
+            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> https://azagnat.top/?r=' + xhr.response["code"]
             document.querySelector('.paid_deals').textContent = 'Paid: ' +  xhr.response["paid"] + 'SOL / Deals: ' + xhr.response["deals"]
             document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"
             document.querySelector(".warning-access-prem").classList.add("hide")

@@ -7,26 +7,26 @@
     {
         "name": "Hiron",
         "local-path": "media/models/HironDraco.glb",
-        "price": 0.2
+        "price": 0.01
     },
     {
         "name": "Vesta",
         "local-path": "media/models/VestalDraco.glb",
-        "price": 0.9
+        "price": 0.02
     },
     {
         "name": "Beroz",
         "local-path": "media/models/BerozDraco.glb",
-        "price": 0.5
+        "price": 0.02
     },
     {
         "name": "Vega",
         "local-path": "media/models/VegaDraco.glb",
-        "price": 0.7
+        "price": 0.03
     },
     {
         "name": "Joulupukki",
         "local-path": "media/models/Joulupukki.glb",
-        "price": 5.0
+        "price": 0.03
     }
 ]

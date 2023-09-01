@@ -12,6 +12,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from celery import shared_task
 from aza.settings import RPC, DOMEN, DEBUG
 from django.db import IntegrityError
+import os
 
 def send_sol(to, s):
     solana_client = Client(RPC)
@@ -46,6 +47,16 @@ def minttask(self, data, publickey):
         config_len = str(MintCount.objects.get(id=1).general_sum)
         if len(config_len) < 5:
             config_len = str((5 - len(config_len)) * '0') + config_len
+
+
+        path = os.path.join("token/", config_len)
+
+        try:
+            os.mkdir(path)
+        except FileExistsError:
+            pass
+
+        
         
         
         with open(f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt", 'w') as f:
@@ -124,13 +135,13 @@ def minttask(self, data, publickey):
         else:
             ticker = '#004f20'
         
-        if 'mId' not in data:
+        if data["model"] == None:
             model = Models.objects.get(id=1)
             model_name = model.name
             model_link = model.link
             curve = model.curve_radius
         else:
-            model = Models.objects.get(id=int(data['mId'])+1)
+            model = Models.objects.get(id=int(data['model'])+1)
             model_name = model.name
             model_link = model.link
             curve = model.curve_radius
