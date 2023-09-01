@@ -49,7 +49,7 @@ def minttask(self, data, publickey):
             config_len = str((5 - len(config_len)) * '0') + config_len
 
 
-        path = os.path.join("token/", config_len)
+        path = os.path.join("/var/www/token/" if not DEBUG else "token/", config_len)
 
         try:
             os.mkdir(path)
