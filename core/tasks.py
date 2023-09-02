@@ -62,14 +62,14 @@ def minttask(self, data, publickey):
         with open(f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt", 'w') as f:
             f.write(data['userObj']['imgData'])
         result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
-        avatar_link = result.stdout.split()[5].decode('utf8').replace("'", '"')
+        avatar_link = result.stdout.decode().split()[5]
         
         if data['idBodyColor'] == '2':
             if 'customImgData' in data:
                 with open(f"/var/www/token/{config_len}/custom.png" if not DEBUG else f"token/{config_len}/custom.png", "wb") as fh:
                     fh.write(base64.b64decode(data['customImgData']))
                 result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
-                body = ['',data['metalness'],data['roughness'],'',result.stdout.split()[5].decode('utf8').replace("'", '"'),'','','']
+                body = ['',data['metalness'],data['roughness'],'',result.stdout.decode().split()[5],'','','']
                 
         elif data['idBodyColor'] == '1':
             if 'customBodyColor' in data:
@@ -115,7 +115,7 @@ def minttask(self, data, publickey):
                     with open(f"/var/www/token/{config_len}/custom.txt" if not DEBUG else f"token/{config_len}/custom.txt",'w') as f:
                         f.write(data['customBgImgData'])
                     result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/custom.txt" if not DEBUG else f"token/{config_len}/custom.txt"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
-                    background = ['','','','','',result.stdout.split()[5].decode('utf8').replace("'", '"'),'']
+                    background = ['','','','','',result.stdout.decode().split()[5],'']
                     
             elif data['idBackground'] == '5':
                 if 'selectedBgImgId' in data:
@@ -179,11 +179,11 @@ def minttask(self, data, publickey):
             file.write(rendered_page)
         
         result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/token.html" if not DEBUG else f"token/{config_len}/token.html"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
-        html = result.stdout.split()[5].decode('utf8').replace("'", '"') + '?ext=html'
+        html = result.stdout.decode().split()[5] + '?ext=html'
         with open(f"/var/www/token/{config_len}/screenshot.png" if not DEBUG else f"token/{config_len}/screenshot.png", "wb") as fh:
             fh.write(base64.b64decode(data['screenshot']))
         result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/screenshot.png" if not DEBUG else f"token/{config_len}/screenshot.png"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
-        screenshot = result.stdout.split()[5].decode('utf8').replace("'", '"') + '?ext=png'
+        screenshot = result.stdout.decode().split()[5] + '?ext=png'
         metadata = {}
         metadata['name'] = f"Azagnat #{config_len}"
         metadata['symbol'] = 'AZGT'
@@ -230,7 +230,7 @@ def minttask(self, data, publickey):
             json.dump(metadata, f, indent=4, ensure_ascii=False)
         
         result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/metadata.json" if not DEBUG else f"token/{config_len}/metadata.json"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
-        metadata_url = result.stdout.split()[5].decode('utf8').replace("'", '"')
+        metadata_url = result.stdout.decode().split()[5]
         d = {}
         d['name'] = f"Azagnat #{config_len}"
         d['symbol'] = 'AZGT'
@@ -243,7 +243,7 @@ def minttask(self, data, publickey):
         res = subprocess.run(f"metaboss mint one -r {RPC} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
         print(f"metaboss mint one -r {RPC} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}")
         print(res.stdout)
-        contract = res.stdout.split()[5].decode('utf8').replace("'", '"')
+        contract = res.stdout.decode().split()[5]
     except BaseException as e:
         raise self.retry(exc=e, countdown=2) 
     else:

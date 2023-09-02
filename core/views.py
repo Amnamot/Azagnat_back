@@ -77,7 +77,7 @@ def ownership(request):
 @csrf_exempt
 @require_POST
 def auth(request):
-    publickey = json.loads(request.body.decode('utf8').replace("'", '"'))['publickey']
+    publickey = json.loads(request.body.decode())['publickey']
     try:
         a = Address.objects.get(address=publickey)
         a.address = publickey
@@ -116,7 +116,7 @@ def mint(request):
     count = MintCount.objects.get(id=1)
     count.general_sum += 1
     count.save()
-    data = json.loads(request.body.decode('utf8').replace("'", '"'))
+    data = json.loads(request.body.decode())
     minttask.delay(data, request.COOKIES.get('publickey'))
     return HttpResponse("wait")
 
@@ -130,7 +130,7 @@ def getprice(request):
     price['bg_price'] = .0
     price['ticker_price'] = .0
     baseprice = BasePrice.objects.get(id=1).price
-    data = json.loads(request.body.decode('utf8').replace("'", '"'))
+    data = json.loads(request.body.decode())
     if 'p' in data['get_par']:
         if Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).isactive:
             price['global_price'] = baseprice - (baseprice * (Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).percent / 100))
