@@ -240,7 +240,7 @@ def minttask(self, data, publickey):
         with open(f"/var/www/token/{config_len}/ex.json" if not DEBUG else f"token/{config_len}/ex.json", 'w') as f:
             json.dump(d, f, indent=4, ensure_ascii=False)
 
-        res = subprocess.run(f"metaboss mint one -r {RPC} --keypair id.json --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
+        res = subprocess.run(f"metaboss mint one -r {RPC} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
         contract = res.stdout.split()[5].decode('utf8').replace("'", '"')
     except BaseException as e:
         raise self.retry(exc=e, countdown=2) 
