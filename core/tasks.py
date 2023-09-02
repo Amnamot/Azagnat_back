@@ -298,7 +298,7 @@ def minttask(self, data, publickey):
             re.count = re.count + (baseprice*0.2)
             re.save()
         elif 'e' in data['get_par']:
-            e = EasyMint.objects.get(code=f'{DOMEN}?p='+data['get_par']['e'])
+            e = EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
             e.delete()
 
     return config_len
