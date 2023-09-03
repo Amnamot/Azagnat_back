@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
-from django.core.exceptions import ObjectDoesNotExist
 import json
 import random
 from .tasks import minttask
@@ -21,13 +20,9 @@ def generator(n):
 def homepage(request):
 
     try:
-        config_len = str(MintCount.objects.get(id=1).general_sum + 1)
-    except ObjectDoesNotExist:
+        MintCount.objects.get(id=1)
+    except MintCount.DoesNotExist:
         MintCount.objects.create()
-        config_len = str(1)
-    
-    if len(config_len) < 5:
-        config_len = str((5 - len(config_len)) * '0') + config_len
 
     is_active = True
 
@@ -38,32 +33,32 @@ def homepage(request):
         try:
             RefferalCode.objects.get(code=request.GET.get('r'))
             is_active = True
-        except ObjectDoesNotExist:
+        except RefferalCode.DoesNotExist:
             is_active = False
     elif 'a' in request.GET:
         try:
             Ambassador.objects.get(code=f'{DOMEN}?a='+request.GET.get('a'))
             is_active = True
-        except ObjectDoesNotExist:
+        except Ambassador.DoesNotExist:
             is_active = False
     elif 'p' in request.GET:
         try:
             Promocode.objects.get(code=f'{DOMEN}?p='+request.GET.get('p'))
             is_active = True
-        except ObjectDoesNotExist:
+        except Promocode.DoesNotExist:
             is_active = False
     elif 'e' in request.GET:
         try:
             EasyMint.objects.get(code=f'{DOMEN}?e='+request.GET.get('e'))
             is_active = True
-        except ObjectDoesNotExist:
+        except EasyMint.DoesNotExist:
             is_active = False
     try:
         re = Returned.objects.get(id=1)
-    except ObjectDoesNotExist:
+    except Returned.DoesNotExist:
         re = Returned.objects.create()
     
-    return render(request, 'index.html', {'id': config_len, 'returned': "{:.3f}".format(re.count), 'is_active': is_active, "mint_active": MintActive.objects.all().last().is_active})
+    return render(request, 'index.html', {'returned': "{:.3f}".format(re.count), 'is_active': is_active, "mint_active": MintActive.objects.all().last().is_active})
 
 
 def creating(request):
@@ -82,7 +77,7 @@ def auth(request):
         a = Address.objects.get(address=publickey)
         a.address = publickey
         a.save()
-    except ObjectDoesNotExist:
+    except Address.DoesNotExist:
         a = Address.objects.create(address=publickey)
 
 

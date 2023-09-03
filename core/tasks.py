@@ -41,8 +41,8 @@ def minttask(self, data, publickey):
     try:
         name = data['userObj']['name']
         date = data['userObj']['date']
-        gender = 'Man' if data['userObj']['gender']=='0' else 'Woman'
-        lang = 'English' if data['userObj']['language']=='0' else 'Russian'
+        gender = 'Man' if data['userObj']['gender'] == '0' else 'Woman'
+        lang = 'English' if data['userObj']['language'] == '0' else 'Russian'
 
         config_len = str(MintCount.objects.get(id=1).general_sum)
         if len(config_len) < 5:
@@ -55,9 +55,6 @@ def minttask(self, data, publickey):
             os.mkdir(path)
         except FileExistsError:
             pass
-
-        
-        
         
         with open(f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt", 'w') as f:
             f.write(data['userObj']['imgData'])
@@ -164,7 +161,6 @@ def minttask(self, data, publickey):
             user_name = name,
             birthday = date,
             avatar = avatar_link,
-            user_number = '#' + config_len,
             ball_name = model_name,
             ball_url = model_link,
             body_pam = body,
@@ -241,8 +237,6 @@ def minttask(self, data, publickey):
             json.dump(d, f, indent=4, ensure_ascii=False)
 
         res = subprocess.run(f"metaboss mint one -r {RPC} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
-        print(f"metaboss mint one -r {RPC} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}")
-        print(res.stdout)
         contract = res.stdout.decode().split()[5]
     except BaseException as e:
         raise self.retry(exc=e, countdown=2) 
