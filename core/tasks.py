@@ -65,7 +65,7 @@ def minttask(self, data, publickey):
             if 'customImgData' in data:
                 with open(f"/var/www/token/{config_len}/custom.png" if not DEBUG else f"token/{config_len}/custom.png", "wb") as fh:
                     fh.write(base64.b64decode(data['customImgData']))
-                result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+                result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/custom.png" if not DEBUG else f"token/{config_len}/custom.png"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
                 body = ['',data['metalness'],data['roughness'],'',result.stdout.decode().split()[5],'','','']
                 
         elif data['idBodyColor'] == '1':
@@ -171,6 +171,7 @@ def minttask(self, data, publickey):
             ticker_path = tick_path,
             hat = True if model_link == 'https://arweave.net/54_M2OvAOnO-vKmL34wE0QxPFKcl6KgHIlWxBotnpS4' else False
         )
+
         with open(f"/var/www/token/{config_len}/token.html" if not DEBUG else f"token/{config_len}/token.html", 'w', encoding="utf8") as file:
             file.write(rendered_page)
         
