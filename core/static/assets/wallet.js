@@ -259,13 +259,6 @@ window.addEventListener('load', function () {
 
     avatar_name.innerText = localStorage.getItem("avatar_name") == null ? "select image" : localStorage.getItem("avatar_name").split(".")[0].slice(0, 16)
 
-    const custom_ball = document.querySelector(".custom-img-input").nextElementSibling
-
-    custom_ball.innerText = sessionStorage.getItem("bodyCustomName") == null ? "select image" : sessionStorage.getItem("bodyCustomName").split(".")[0].slice(0, 16)
-
-    const custom_bg = document.querySelector(".custom-bg-img-input").nextElementSibling
-
-    custom_bg.innerText = sessionStorage.getItem("backgroundCustomName") == null ? "select image" : sessionStorage.getItem("backgroundCustomName").split(".")[0].slice(0, 16)
 
     const body_color = document.querySelector("select.body-color")
 
@@ -378,6 +371,14 @@ window.addEventListener('load', function () {
         }
         document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(6) > div.addOption.change-ticker-color-add > input[type=color]").value = sessionStorage.getItem("tickerColor")
     }
+
+    const custom_ball = document.querySelector(".custom-img-input").nextElementSibling
+
+    custom_ball.innerText = sessionStorage.getItem("bodyCustomName") == null ? "select image" : sessionStorage.getItem("bodyCustomName").split(".")[0].slice(0, 16)
+
+    const custom_bg = document.querySelector(".custom-bg-img-input").nextElementSibling
+
+    custom_bg.innerText = sessionStorage.getItem("backgroundCustomName") == null ? "select image" : sessionStorage.getItem("backgroundCustomName").split(".")[0].slice(0, 16)
 
     let data = {}; 
     data['model'] = localStorage.getItem('mId'); 
