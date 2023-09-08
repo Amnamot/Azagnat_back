@@ -117,6 +117,8 @@ async function getAllAzagnat(address){
         nfts.push(d)
     }
 
+    nfts.sort((a, b) => b.name.localeCompare(a.name));
+
     return nfts
 }
 
@@ -255,7 +257,15 @@ window.addEventListener('load', function () {
 
     const avatar_name = document.querySelector("#uploadBannerImage").nextElementSibling
 
-    avatar_name.innerText = localStorage.getItem("avatar_name") == null ? "select image" : localStorage.getItem("avatar_name").slice(0, 16)
+    avatar_name.innerText = localStorage.getItem("avatar_name") == null ? "select image" : localStorage.getItem("avatar_name").split(".")[0].slice(0, 16)
+
+    const custom_ball = document.querySelector(".custom-img-input").nextElementSibling
+
+    custom_ball.innerText = sessionStorage.getItem("bodyCustomName") == null ? "select image" : sessionStorage.getItem("bodyCustomName").split(".")[0].slice(0, 16)
+
+    const custom_bg = document.querySelector(".custom-bg-img-input").nextElementSibling
+
+    custom_bg.innerText = sessionStorage.getItem("backgroundCustomName") == null ? "select image" : sessionStorage.getItem("backgroundCustomName").split(".")[0].slice(0, 16)
 
     const body_color = document.querySelector("select.body-color")
 
