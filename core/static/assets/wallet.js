@@ -273,6 +273,9 @@ window.addEventListener('load', function () {
         for (let select_option of select_options){
             select_option.classList.remove("active")
         }
+        const custom_ball = document.querySelector(".custom-img-input").nextElementSibling
+
+        custom_ball.innerText = sessionStorage.getItem("bodyCustomName") == null ? "select image" : sessionStorage.getItem("bodyCustomName").split(".")[0].slice(0, 16)
     } else if (sessionStorage.getItem("idBodyColor") == '3'){
         document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > label > div > div > div:nth-child(5)").click()
         const body_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div.ball-settings__container.ball-settings__container--body-color > label > div > div")
@@ -343,6 +346,9 @@ window.addEventListener('load', function () {
         for (let select_option of select_options){
             select_option.classList.remove("active")
         }
+        const custom_bg = document.querySelector(".custom-bg-img-input").nextElementSibling
+
+        custom_bg.innerText = sessionStorage.getItem("backgroundCustomName") == null ? "select image" : sessionStorage.getItem("backgroundCustomName").split(".")[0].slice(0, 16)
     } else if (sessionStorage.getItem("idBackground") == '5'){
         document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div > div:nth-child(7)").click()
         const back_color_f_select = document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(5) > label > div > div")
@@ -371,14 +377,6 @@ window.addEventListener('load', function () {
         }
         document.querySelector("body > div.container-main > main > form > div > div.menu > div > fieldset.ball-settings > div:nth-child(6) > div.addOption.change-ticker-color-add > input[type=color]").value = sessionStorage.getItem("tickerColor")
     }
-
-    const custom_ball = document.querySelector(".custom-img-input").nextElementSibling
-
-    custom_ball.innerText = sessionStorage.getItem("bodyCustomName") == null ? "select image" : sessionStorage.getItem("bodyCustomName").split(".")[0].slice(0, 16)
-
-    const custom_bg = document.querySelector(".custom-bg-img-input").nextElementSibling
-
-    custom_bg.innerText = sessionStorage.getItem("backgroundCustomName") == null ? "select image" : sessionStorage.getItem("backgroundCustomName").split(".")[0].slice(0, 16)
 
     let data = {}; 
     data['model'] = localStorage.getItem('mId'); 
