@@ -52,7 +52,7 @@ async function connect_wallet(){
     xhr.send(data);
     xhr.onload = () => {
         if (xhr.status == 200) {
-            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> https://azagnat.top/?r=' + xhr.response["code"]
+            document.querySelector(".refferal_code").innerHTML = 'https://azagnat.top/?r=' + xhr.response["code"]
             document.querySelector('.paid_deals').textContent = 'Paid: ' +  xhr.response["paid"] + 'SOL / Deals: ' + xhr.response["deals"]
             document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"
         }
@@ -75,7 +75,7 @@ async function connect_wallet_warning(){
     xhr.send(data);
     xhr.onload = () => {
         if (xhr.status == 200) {
-            document.querySelector(".refferal_code").innerHTML = '<span style="color: #09B224; font-weight: 700;">Your referral link:</span> https://azagnat.top/?r=' + xhr.response["code"]
+            document.querySelector(".refferal_code").innerHTML = 'https://azagnat.top/?r=' + xhr.response["code"]
             document.querySelector('.paid_deals').textContent = 'Paid: ' +  xhr.response["paid"] + 'SOL / Deals: ' + xhr.response["deals"]
             document.querySelector(".header-wallet").src = "static/img/wallet_off.svg"
             document.querySelector(".warning-access-prem").classList.add("hide")
@@ -142,8 +142,8 @@ header_wallet.addEventListener('click', () => {
                 b.querySelector(".token-content").querySelectorAll("p")[0].querySelector("span").innerHTML = element["cost"]
                 b.querySelectorAll(".token-content__links a")[0].href = element["animation_url"]
                 const l = b.querySelectorAll(".token-content__links a")
-                l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=devnet"
-                l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=devnet"
+                l[1].href = "https://explorer.solana.com/address/" + element["mintAddress"] + "/metadata?cluster=mainnet"
+                l[2].href = "https://solscan.io/token/" + element["mintAddress"] + "?cluster=mainnet"
                 tp.after(b);
             }
             document.querySelector(".warning-minted-tokens").classList.remove("hide");
