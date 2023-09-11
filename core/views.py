@@ -126,17 +126,8 @@ def getprice(request):
     price['ticker_price'] = .0
     baseprice = BasePrice.objects.get(id=1).price
     data = json.loads(request.body.decode())
-    if 'p' in data['get_par']:
-        if Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).isactive:
-            price['global_price'] = baseprice - (baseprice * (Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).percent / 100))
-        else:
-            price['global_price'] = baseprice
-    elif 'r' in data['get_par']:
-        price['global_price'] = baseprice - (baseprice * 0.2)
-    elif 'a' in data['get_par']:
-        price['global_price'] = baseprice - (baseprice * (Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a']).percent / 100))
-    else:
-        price['global_price'] = baseprice
+
+    price['global_price'] = .0
 
     if data['model'] == None:
         price['model_price'] = Models.objects.get(id=1).price
@@ -198,7 +189,17 @@ def getprice(request):
     except KeyError:
         pass
 
-
-    if 'e' in data['get_par']:
+    if 'p' in data['get_par']:
+        if Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).isactive:
+            price['global_price'] = baseprice - (baseprice * (Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).percent / 100))
+        else:
+            price['global_price'] = baseprice
+    elif 'r' in data['get_par']:
+        price['global_price'] = baseprice - (baseprice * 0.2)
+    elif 'a' in data['get_par']:
+        price['global_price'] = baseprice - (baseprice * (Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a']).percent / 100))
+    elif 'e' in data['get_par']:
         price['global_price'] = price['global_price'] - (price['global_price'] * (90 / 100))
+    else:
+        price['global_price'] = baseprice
     return JsonResponse(price)

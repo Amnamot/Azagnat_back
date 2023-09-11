@@ -399,7 +399,7 @@
         
         <div style="text-align: center; display: flex;flex-direction: column; justify-content: center; font-size: 20px;">
             <p class="paid_deals"></p>
-            <p class="refferal_code">dfsdfsd</p>
+            <p class="refferal_code"></p>
             <button type="button" onclick="copyContent(this)" style="border-radius: 15px; padding: 10px 40px; font-size: 16px; font-weight: 700; background-color: #09B224; border: none;">CLIPBOARD</button>
         </div>
         <div class="warning__info"> The most you'll get from Azagnat is in the Telegram bot
@@ -660,6 +660,10 @@
     const copyContent = async (e) => {
       try {
         await navigator.clipboard.writeText(e.previousElementSibling.innerHTML);
+        e.textContent = "COPIED"
+        setTimeout(() => {
+            e.textContent = "CLIPBOARD"
+        }, 500);
         console.log('Content copied to clipboard');
       } catch (err) {
         console.error('Failed to copy: ', err);
