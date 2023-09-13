@@ -127,7 +127,7 @@ def getprice(request):
     baseprice = BasePrice.objects.get(id=1).price
     data = json.loads(request.body.decode())
 
-    price['global_price'] = .0
+    price['global_price'] = baseprice
 
     if data['model'] == None:
         price['model_price'] = Models.objects.get(id=1).price
@@ -191,15 +191,12 @@ def getprice(request):
 
     if 'p' in data['get_par']:
         if Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).isactive:
-            price['global_price'] = baseprice - (baseprice * (Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).percent / 100))
-        else:
-            price['global_price'] = baseprice
+            price['global_price'] = price['global_price']  - (price['global_price']  * (Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).percent / 100))
     elif 'r' in data['get_par']:
-        price['global_price'] = baseprice - (baseprice * 0.2)
+        price['global_price'] = price['global_price'] - (price['global_price']  * 0.2)
     elif 'a' in data['get_par']:
-        price['global_price'] = baseprice - (baseprice * (Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a']).percent / 100))
+        price['global_price'] = price['global_price']  - (price['global_price']  * (Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a']).percent / 100))
     elif 'e' in data['get_par']:
         price['global_price'] = price['global_price'] - (price['global_price'] * (90 / 100))
-    else:
-        price['global_price'] = baseprice
+
     return JsonResponse(price)
