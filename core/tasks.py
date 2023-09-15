@@ -272,25 +272,23 @@ def minttask(self, data, publickey):
             pass
         
         if 'r' in data['get_par']:
-            baseprice = BasePrice.objects.get(id=1).price
             a = RefferalCode.objects.get(code=data['get_par']['r'])
-            res = send_sol(a.config.address.address, int((baseprice*0.1)*1000000000))
+            res = send_sol(a.config.address.address, int((data['global_price']*0.1)*1000000000))
             r = RefferalCode.objects.get(code=data['get_par']['r'])
-            r.paid = r.paid + (baseprice*0.1)
+            r.paid = r.paid + (data['global_price']*0.1)
             r.deals = r.deals + 1
             r.save()
             re = Returned.objects.get(id=1)
-            re.count = re.count + (baseprice*0.1)
+            re.count = re.count + (data['global_price']*0.1)
             re.save()
         elif 'p' in data['get_par']:
             p = Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p'])
             p.delete()
         elif 'a' in data['get_par']:
-            baseprice = BasePrice.objects.get(id=1).price
             a = Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a'])
-            res = send_sol(a.address.address, int((baseprice*a.percent/100)*1000000000))
+            res = send_sol(a.address.address, int((data['global_price']*a.percent/100)*1000000000))
             re = Returned.objects.get(id=1)
-            re.count = re.count + (baseprice*0.2)
+            re.count = re.count + (data['global_price']*0.2)
             re.save()
         elif 'e' in data['get_par']:
             e = EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
