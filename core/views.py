@@ -124,10 +124,9 @@ def getprice(request):
     price['body_price'] = .0
     price['bg_price'] = .0
     price['ticker_price'] = .0
-    baseprice = BasePrice.objects.get(id=1).price
     data = json.loads(request.body.decode())
 
-    price['global_price'] = baseprice
+    price['global_price'] = .0
 
     if data['model'] == None:
         price['model_price'] = Models.objects.get(id=1).price
@@ -195,7 +194,7 @@ def getprice(request):
     elif 'r' in data['get_par']:
         price['global_price'] = price['global_price'] - (price['global_price']  * 0.2)
     elif 'a' in data['get_par']:
-        price['global_price'] = price['global_price']  - (price['global_price']  * (Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a']).percent / 100))
+        price['global_price'] = price['global_price']  - (price['global_price']  * (Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a']).discount / 100))
     elif 'e' in data['get_par']:
         price['global_price'] = price['global_price'] - (price['global_price'] * (90 / 100))
 

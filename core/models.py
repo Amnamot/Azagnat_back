@@ -16,8 +16,8 @@ class Address(models.Model):
     date_in = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = 'address'
-        verbose_name_plural = "addresses"
+        verbose_name = 'Address'
+        verbose_name_plural = "Addresses"
 
 
     def __str__(self):
@@ -29,6 +29,7 @@ class Config(models.Model):
         Address,
         on_delete=models.CASCADE
     )
+    name = models.CharField(max_length=256)
     metadata = models.JSONField()
     token_id = models.PositiveIntegerField()
     avatar = models.CharField(max_length=5200000)
@@ -39,13 +40,12 @@ class Config(models.Model):
     whatref = models.CharField(null=True, blank=True, max_length=8)
     whatpro = models.CharField(null=True, blank=True, max_length=8)
     whatamb = models.CharField(null=True, blank=True, max_length=8)
-    base_cost = models.FloatField()
     contract = models.CharField(max_length=500, primary_key=True)
     date_minted = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = 'config'
-        verbose_name_plural = "configs"
+        verbose_name = 'Config'
+        verbose_name_plural = "Configs"
 
     def __str__(self):
         return self.contract
@@ -62,8 +62,8 @@ class RefferalCode(models.Model):
     deals = models.PositiveIntegerField(default=0)
 
     class Meta:
-        verbose_name = '1refferal_code'
-        verbose_name_plural = "1refferal_code"
+        verbose_name = '1. Refferal code'
+        verbose_name_plural = "1. Refferal codes"
 
     def __str__(self):
         return self.code
@@ -81,8 +81,8 @@ class Promocode(models.Model):
         super().save()
 
     class Meta:
-        verbose_name = '3promocode'
-        verbose_name_plural = "3promocodes"
+        verbose_name = '3. Promocode'
+        verbose_name_plural = "3. Promocodes"
 
     def __str__(self):
         return self.code
@@ -93,8 +93,10 @@ class Ambassador(models.Model):
         Address,
         on_delete=models.CASCADE
     )
+    name = models.CharField(max_length=128)
     code = models.URLField(unique=True, null=True, blank=True)
-    percent = models.IntegerField(default=0)
+    discount = models.IntegerField()
+    royality = models.IntegerField()
 
 
     def save(self):
@@ -104,8 +106,8 @@ class Ambassador(models.Model):
         super().save()
 
     class Meta:
-        verbose_name = '2ambassador'
-        verbose_name_plural = "2ambassadors"
+        verbose_name = '2. Ambassador'
+        verbose_name_plural = "2. Ambassadors"
 
     def __str__(self):
         return self.code
@@ -122,8 +124,8 @@ class EasyMint(models.Model):
         super().save()
 
     class Meta:
-        verbose_name = '4Easy mint'
-        verbose_name_plural = "4Easy mints"
+        verbose_name = '4. Easy mint code'
+        verbose_name_plural = "4. Easy mint codes"
 
     def __str__(self):
         return self.code
@@ -159,8 +161,8 @@ class Models(models.Model):
             json.dump(model,f,indent=4,ensure_ascii=False)
         
     class Meta:
-        verbose_name = 'model'
-        verbose_name_plural = "models"
+        verbose_name = 'Model'
+        verbose_name_plural = "Models"
 
     def __str__(self):
         return self.name
@@ -183,8 +185,8 @@ class Materials(models.Model):
 
 
     class Meta:
-        verbose_name = 'material'
-        verbose_name_plural = "materials"
+        verbose_name = 'Material'
+        verbose_name_plural = "Materials"
 
     def save(self):
         super().save()
@@ -290,12 +292,6 @@ class SelectImageBackground(models.Model):
 #========================================
 #price
 
-class BasePrice(models.Model):
-    price = models.FloatField()
-
-
-    def __str__(self):
-        return "BasePrice"    
 
 class BodyViewPrice(models.Model):
     default = models.FloatField()
@@ -332,7 +328,7 @@ class Returned(models.Model):
 
 
     def __str__(self):
-        return 'returned'
+        return 'Returned'
     
 
 class MintCount(models.Model):

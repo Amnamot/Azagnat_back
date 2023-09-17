@@ -9,10 +9,6 @@ class PromocodeAdmin(admin.ModelAdmin):
 class EasyMintAdmin(admin.ModelAdmin):
     list_display = ['code']
 
-@admin.register(BasePrice)
-class BasePriceAdmin(admin.ModelAdmin):
-    list_display = ['price']
-
 @admin.register(BodyViewPrice)
 class BodyViewPriceAdmin(admin.ModelAdmin):
     list_display = ['default', 'custom_color', 'custom_image', 'select_image']
@@ -26,12 +22,9 @@ class TickerPriceAdmin(admin.ModelAdmin):
     list_display = ['default', 'color']
 
 
-
-
 @admin.register(Models)
 class ModelsAdmin(admin.ModelAdmin):
     list_display = ['name', 'curve_radius', 'price']
-
 
 
 @admin.register(Materials)
@@ -49,7 +42,6 @@ class SelectImageBackgroundAdmin(admin.ModelAdmin):
     list_display = ['name']
 
 
-
 admin.site.register(Returned)
 admin.site.register(Address)
 admin.site.register(MintActive)
@@ -57,15 +49,15 @@ admin.site.register(MintActive)
 
 @admin.register(Config)
 class ConfigAdmin(admin.ModelAdmin):
-    list_display = ['token_id', 'contract', 'date_minted']
+    list_display = ['name', 'token_id', 'contract', 'date_minted']
 
 @admin.register(RefferalCode)
-class RafferalCodeAdmin(admin.ModelAdmin):
+class RefferalCodeAdmin(admin.ModelAdmin):
     list_display = ['code', 'paid', 'deals']
 
 @admin.register(Ambassador)
 class AmbassadorAdmin(admin.ModelAdmin):
-    list_display = ['address', 'code']
+    list_display = ['address','name', 'discount', 'royality', 'code']
 
 
 @admin.register(MintCount)

@@ -244,6 +244,7 @@ def minttask(self, data, publickey):
     else:
         config = Config()
         config.address_id = publickey
+        config.name = name
         config.token_id = MintCount.objects.get(id=1).general_sum
         config.metadata = metadata
         config.avatar = data['userObj']['imgData']
@@ -260,7 +261,6 @@ def minttask(self, data, publickey):
             config.whatpro = data['get_par']['p']
         elif 'a' in data['get_par']:
             config.whatamb = data['get_par']['a']
-        config.base_cost = BasePrice.objects.get(id=1).price
         config.save()
 
         ref_code = RefferalCode()
@@ -286,7 +286,7 @@ def minttask(self, data, publickey):
             p.delete()
         elif 'a' in data['get_par']:
             a = Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a'])
-            res = send_sol(a.address.address, int((data['global_price']*a.percent/100)*1000000000))
+            res = send_sol(a.address.address, int((data['global_price']*a.royality/100)*1000000000))
             re = Returned.objects.get(id=1)
             re.count = re.count + (data['global_price']*0.2)
             re.save()
