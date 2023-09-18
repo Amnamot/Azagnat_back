@@ -25,7 +25,7 @@ def send_sol(to, s):
     keypair = Keypair(key_from_file[:32])
 
     txn = Transaction().add(transfer(TransferParams(
-    from_pubkey=keypair.public_key(), to_pubkey=PublicKey(to), lamports=s)))
+    from_pubkey=keypair.public_key, to_pubkey=PublicKey(to), lamports=s)))
     resp = solana_client.send_transaction(txn, keypair)
     return resp
 
