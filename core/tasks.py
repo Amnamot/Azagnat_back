@@ -70,16 +70,16 @@ def minttask(self, data, publickey):
                 
         elif data['idBodyColor'] == '1':
             if 'customBodyColor' in data:
-                body = [data['customBodyColor'],data['metalness'],data['roughness'],'','','','','']
+                body = [data['customBodyColor'], data['metalness'], data['roughness'], '', '', '', '', '']
                 
         elif data['idBodyColor'] == '3':
             if 'selectedImgId' in data:
-                body = ['',data['metalness'],data['roughness'],'',SelectImageBody.objects.get(id=int(data['selectedImgId'])+1).link,'','','']
+                body = ['', data['metalness'],data['roughness'], '', SelectImageBody.objects.get(id=int(data['selectedImgId'])+1).link, '', '', '']
         
         elif data['idBodyColor'] == '4':
             if 'selectedMaterialId' in data:
                 mater = Materials.objects.get(id=int(data['selectedMaterialId'])+1)
-                body = ['',data['metalness'],data['roughness'],mater.roughness,mater.albedo,mater.normal]
+                body = ['', data['metalness'], data['roughness'], mater.roughness, mater.albedo, mater.normal]
                 if mater.displacement == None:
                     body.append('')
                 else:
@@ -90,7 +90,7 @@ def minttask(self, data, publickey):
                     body.append(mater.displacescale)
                 
         elif data['idBodyColor'] == '0':
-            body = ['#1c1c1c',data['metalness'],data['roughness'],'','','','','']
+            body = ['#1c1c1c', data['metalness'], data['roughness'], '', '', '', '', '']
 
 
         
@@ -273,22 +273,22 @@ def minttask(self, data, publickey):
         
         if 'r' in data['get_par']:
             a = RefferalCode.objects.get(code=data['get_par']['r'])
-            res = send_sol(a.config.address.address, int((data['global_price']*0.1)*1000000000))
+            res = send_sol(a.config.address.address, int((data['global_price'] * 0.1) * 1000000000))
             r = RefferalCode.objects.get(code=data['get_par']['r'])
-            r.paid = r.paid + (data['global_price']*0.1)
+            r.paid = r.paid + (data['global_price'] * 0.1)
             r.deals = r.deals + 1
             r.save()
             re = Returned.objects.get(id=1)
-            re.count = re.count + (data['global_price']*0.1)
+            re.count = re.count + (data['global_price'] * 0.1)
             re.save()
         elif 'p' in data['get_par']:
             p = Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p'])
             p.delete()
         elif 'a' in data['get_par']:
             a = Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a'])
-            res = send_sol(a.address.address, int((data['global_price']*a.royality/100)*1000000000))
+            res = send_sol(a.address.address, int((data['global_price'] * a.royality / 100) * 1000000000))
             re = Returned.objects.get(id=1)
-            re.count = re.count + (data['global_price']*0.2)
+            re.count = re.count + (data['global_price'] * a.royality / 100)
             re.save()
         elif 'e' in data['get_par']:
             e = EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
