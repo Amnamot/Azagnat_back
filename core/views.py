@@ -58,7 +58,7 @@ def homepage(request):
     except Returned.DoesNotExist:
         re = Returned.objects.create()
     
-    return render(request, 'index.html', {'returned': "{:.3f}".format(re.count), 'is_active': is_active, "mint_active": MintActive.objects.all().last().is_active})
+    return render(request, 'index.html', {'returned': "{:.3f}".format(re.count), 'is_active': is_active, "mint_active": MintActive.objects.all().last().is_active, "fonts": Font.objects.all().order_by("id"), "envs": Environment.objects.all().order_by("id")})
 
 
 def creating(request):

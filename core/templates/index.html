@@ -204,6 +204,53 @@
                             </div>
                             <div class="ball-settings__container">
                                 <label class="active">
+                                    Environments
+                                    
+                                    <select class="change-env hide">
+                                        {% for env in envs %}
+                                            <option value="{{env.url}}">{{env.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="f-select">
+                                        <div class="f-select-container f-select-container__env">
+                                            {% for env in envs %}
+                                                {% if env.id == 1 %}
+                                                <div class="f-select-option placeholder"><span>{{env.name}}</span>
+                                                </div>
+                                                {% endif %}
+                                                <div class="f-select-option">{{env.name}}</div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="addOption"></div>
+                            </div>
+                            <div class="ball-settings__container">
+                                <label class="active">
+                                    Ticker fonts
+                                    <select class="change-ticker-font hide">
+                                        {% for font in fonts %}
+                                            <option value="{{font.url}}">{{font.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="f-select">
+                                        <div class="f-select-container f-select-container__ticker-font">
+                                            {% for font in fonts %}
+                                                {% if font.id == 1 %}
+                                                <div class="f-select-option placeholder"><span>{{font.name}}</span>
+                                                </div>
+                                                {% endif %}
+                                                <div class="f-select-option">{{font.name}}</div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </label>
+                                <div class="sol text">+ <span>0.00</span> SOL</div>
+                                <div class="addOption"></div>
+                            </div>
+                            <div class="ball-settings__container">
+                                <label class="active">
                                     Ticker color
                                     <select class="change-ticker-color hide">
                                         <option value="0">Default</option>
