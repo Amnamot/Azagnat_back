@@ -337,3 +337,12 @@ class MintCount(models.Model):
 
 class MintActive(models.Model):
     is_active = models.BooleanField(default=False)
+
+
+class Font(models.Model):
+    name = models.CharField(max_length=100)
+    url = models.URLField()
+
+class Environment(models.Model):
+    name = models.CharField(max_length=100)
+    url = models.URLField()

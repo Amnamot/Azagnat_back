@@ -64,3 +64,11 @@ class AmbassadorAdmin(admin.ModelAdmin):
 class MintCountAdmin(admin.ModelAdmin):
     list_display = ['general_sum']
 
+@admin.register(Font)
+class FontAdmin(admin.ModelAdmin):
+    list_display = ['name', 'url']
+
+@admin.register(Environment)
+class EnvironmentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'url']
+
