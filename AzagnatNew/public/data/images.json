@@ -1,0 +1,56 @@
+[
+  {
+    "bodyImages": [
+      {
+        "name" : "Abstract",
+        "path" : "../img/body-img/Abstract.jpg"
+      },
+      {
+        "name" : "Cell",
+        "path" : "../img/body-img/Cell.jpg"
+      },
+      {
+        "name" : "ColorDrops",
+        "path" : "../img/body-img/ColorDrops.jpg"
+      },
+      {
+        "name" : "Drops",
+        "path" : "../img/body-img/Drops.jpg"
+      },
+      {
+        "name" : "Morning",
+        "path" : "../img/body-img/Morning.jpg"
+      },
+      {
+        "name" : "Thunderstorm",
+        "path" : "../img/body-img/Thunderstorm.jpg"
+      }
+    ],
+    "backgroundImages": [
+      {
+        "name" : "Abstract",
+        "path" : "../img/body-img/Abstract.jpg"
+      },
+      {
+        "name" : "Cell",
+        "path" : "../img/body-img/Cell.jpg"
+      },
+      {
+        "name" : "ColorDrops",
+        "path" : "../img/body-img/ColorDrops.jpg"
+      },
+      {
+        "name" : "Drops",
+        "path" : "../img/body-img/Drops.jpg"
+      },
+      {
+        "name" : "Morning",
+        "path" : "../img/body-img/Morning.jpg"
+      },
+      {
+        "name" : "Thunderstorm",
+        "path" : "../img/body-img/Thunderstorm.jpg"
+      }
+    ]
+  }
+]
