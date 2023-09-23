@@ -1,0 +1,45 @@
+@import "mixins";
+
+.header {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  @include adaptiv-height(85, 45);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  @include adaptiv-padding(50, 20);
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #061903;
+  border-bottom: #09B224 2px solid;
+  &-logo {
+    width: auto;
+    @include adaptiv-height(30, 20);
+    object-fit: cover;
+    margin: 5px;
+  }
+  &-texts {
+    text-align: center;
+  }
+  &-title {
+    //@include adaptiv-margin-bottom(7, 4);
+    margin: 0;
+    padding-left: 4px;
+  }
+  &-subtitle {
+  }
+  &-wallet {
+    width: auto;
+    @include adaptiv-height(60, 30);
+
+  }
+  &-info{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+}

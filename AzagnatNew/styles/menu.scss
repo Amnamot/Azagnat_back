@@ -1,0 +1,435 @@
+@import "mixins";
+
+.menu {
+
+  flex-shrink: 0;
+  flex-grow: 1;
+  position: relative;
+  width: 50%;
+  z-index: 1;
+  @media screen and (max-width: 1024px) {
+    overflow-y: hidden;
+    //padding-bottom: 100px;
+    //padding-top: 100px;
+    width: 100%;
+    height: 40vh;
+  }
+  &-container {
+    @media screen and (max-width: 1024px) {
+      //overflow-y: hidden;
+      padding-bottom: 120px;
+      padding-top: 80px;
+      //width: 100%;
+    }
+  }
+
+  .ball-settings__container--body-color {
+    .addOption {
+      .f-select {
+        z-index: 14;
+      }
+    }
+  }
+
+  label {
+    @media screen and (max-width: 767px) {
+      max-width: 30vw
+    }
+    &.label-container__body-color {
+
+    }
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 5px;
+    color: red;
+    //@include adaptiv-margin-bottom(20, 10);
+    &.active {
+      color: inherit;
+      .f-select-container,
+      input,
+      select,
+      input[type='file'],
+      .input {
+        border-color: #09B224;
+      }
+
+    }
+    sub {
+      @include adaptiv-font(10, 9);
+      font-weight: 300;
+      line-height: 16px;
+      @include adaptiv-line-height(11, 10);
+      letter-spacing: 0;
+      text-align: left;
+      color: #006637;
+    }
+    input[type='file'] {
+      display: none;
+    }
+  }
+
+  // inputs style
+  input,
+  .input,
+  .f-select-container
+  {
+    flex-shrink: 0;
+    flex-grow: 0;
+    @include adaptiv-padding(10, 5);
+    &.styled-slider {
+      padding: 2px;
+    }
+    //padding-top: 5px;
+    //padding-bottom: 5px;
+    line-height: 34px;
+    background-color: transparent;
+    color: #08B024;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    //@include adaptiv-width(220, 120);
+    width: 220px;
+    @media screen and (max-width: 767px) {
+      max-width: 30vw
+    }
+    border: #A92525 2px solid;
+    border-radius: 18px;
+    outline: none;
+
+    &::-webkit-file-upload-button {
+      background: transparent;
+      color: #08B024;
+      height: 36px;
+      border: none;
+
+    }
+
+    .placeholder span,
+    &::-webkit-input-placeholder {
+      font-family: Comfortaa, sans-serif;
+      color: #0c6a1b;
+      @include adaptiv-font(20, 14);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    //&:not([type='text'], [type='date']) {
+    //  &:focus {
+    //    border-bottom-left-radius: 0;
+    //    border-bottom-right-radius: 0;
+    //    border-bottom: none;
+    //  }
+    //}
+
+
+    &[type='date'] {
+      width: 220px;
+      font-family: Comfortaa , sans-serif;
+      text-align: center;
+    }
+
+    &[type='color'] {
+      width: 36px;
+      padding: 0;
+    }
+
+    /* -webkit */
+    &[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    &[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: 50%;
+    }
+
+  }
+
+  .ball-settings {
+    input,
+    .input,
+    .f-select-container
+    {
+      border-color: #09B224;
+    }
+  }
+
+  .f-select {
+
+    height: 36px;
+    width: 220px;
+    @media screen and (max-width: 767px) {
+      max-width: 30vw;
+    }
+
+    //@include adaptiv-width(180, 120);
+    position: relative;
+    &-container {
+      display: block;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      background-color: #061903;
+      cursor: pointer;
+      &.active {
+        height: fit-content;
+      }
+    }
+    &-option {
+      position: relative;
+      padding-left: 10px;
+      &.placeholder {
+        padding: 0;
+      }
+      height: 34px;
+      overflow: hidden;
+      display: none;
+      &:hover:not(.placeholder) {
+        background-color: #09B224;
+        color: #061903;
+      }
+      &.active, &.placeholder {
+        display: block;
+        span {
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+      }
+      &.placeholder {
+        //padding: 0 10px;
+        text-align: center;
+      }
+    }
+  }
+
+  // inputs end
+
+
+  &__title {
+    text-align: center;
+    @include adaptiv-margin-bottom(20, 10);
+  }
+
+  fieldset {
+    border: none;
+    span.text-input {
+      cursor: pointer;
+    }
+  }
+  .user-data {
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      @media screen and(max-width: 767px) {
+        justify-content: space-around;
+      }
+      @include adaptiv-gap(20, 5);
+      @include adaptiv-padding(15, 2);
+      @media screen and (max-width: 1024px) {
+        input, .f-select, .input {
+          width: 80vw;
+        }
+      }
+
+
+    }
+  }
+  .ball-settings {
+    display: flex;
+    flex-wrap: wrap;
+    //gap: 5px;
+    justify-content: center;
+    .ball-settings__container {
+      width: 100%;
+      //@include adaptiv-height(98, 87);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      &.metalness-conyainer {
+        height: max-content;
+        //@include adaptiv-gap(123, 73);
+        flex-wrap: wrap;
+        .metalness-lb {
+          @include adaptiv-margin-right(100, 72);
+          //margin-bottom: 10px;
+        }
+      }
+
+      align-items: flex-end;
+      @include adaptiv-gap(20, 5);
+      @include adaptiv-padding(15, 2);
+      .sol {
+        height: 20px;
+        margin-bottom: 38px;
+        white-space: nowrap;
+      }
+    }
+    input,
+    select,
+    input[type='file'],
+    .input {
+      border-color: #09B224;
+    }
+    &__title {
+      width: 100%;
+      @include adaptiv-margin-bottom(10, 5);
+      span {
+        font-weight: 300;
+      }
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      color: red;
+      text-align: left;
+      &.active {
+        color: inherit;
+      }
+
+    }
+    .addOption {
+      position: relative;
+      width: auto;
+      label {
+        margin: 0;
+      }
+      &.body-color-add,
+      &.background-settings-add,
+      &.change-ticker-color-add
+      {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-start;
+        align-items: flex-end;
+        //padding-bottom: 4px;
+      }
+    }
+    .metalness,
+    .roughness {
+      width: 220px;
+      max-width: 30vw;
+    }
+
+
+    //  type range
+
+    /*generated with Input range slider CSS style generator (version 20211225)
+https://toughengineer.github.io/demo/slider-styler*/
+    input[type=range].styled-slider {
+      height: 36px;
+      -webkit-appearance: none;
+      border: 2px #09B224 solid;
+    }
+
+    /*progress support*/
+    input[type=range].styled-slider.slider-progress {
+      --range: calc(var(--max) - var(--min));
+      --ratio: calc((var(--value) - var(--min)) / var(--range));
+      --sx: calc(0.5 * 28px + var(--ratio) * (100% - 28px));
+    }
+
+    input[type=range].styled-slider:focus {
+      outline: none;
+    }
+
+    /*webkit*/
+    input[type=range].styled-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 16px;
+      background: #09B224;
+      border: none;
+      box-shadow: 0 0 2px black;
+      margin-top: calc(6px * 0.5 - 28px * 0.5);
+    }
+
+    input[type=range].styled-slider::-webkit-slider-runnable-track {
+      height: 6px;
+      border: none;
+      border-radius: 3px;
+      background: #EFEFEF;
+      box-shadow: none;
+    }
+
+    input[type=range].styled-slider.slider-progress::-webkit-slider-runnable-track {
+      background: linear-gradient(#056013,#056013) 0/var(--sx) 100% no-repeat, #EFEFEF;
+    }
+
+    /*mozilla*/
+    input[type=range].styled-slider::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      border-radius: 16px;
+      background: #09B224;
+      border: none;
+      box-shadow: 0 0 2px black;
+    }
+
+    input[type=range].styled-slider::-moz-range-track {
+      height: 6px;
+      border: none;
+      border-radius: 3px;
+      background: #EFEFEF;
+      box-shadow: none;
+    }
+
+    input[type=range].styled-slider.slider-progress::-moz-range-track {
+      background: linear-gradient(#056013,#056013) 0/var(--sx) 100% no-repeat, #EFEFEF;
+    }
+
+    /*ms*/
+    input[type=range].styled-slider::-ms-fill-upper {
+      background: transparent;
+      border-color: transparent;
+    }
+
+    input[type=range].styled-slider::-ms-fill-lower {
+      background: transparent;
+      border-color: transparent;
+    }
+
+    input[type=range].styled-slider::-ms-thumb {
+      width: 28px;
+      height: 28px;
+      border-radius: 16px;
+      background: #09B224;
+      border: none;
+      box-shadow: 0 0 2px black;
+      margin-top: 0;
+      box-sizing: border-box;
+    }
+
+    input[type=range].styled-slider::-ms-track {
+      height: 6px;
+      border-radius: 3px;
+      background: #EFEFEF;
+      border: none;
+      box-shadow: none;
+      box-sizing: border-box;
+    }
+
+    input[type=range].styled-slider.slider-progress::-ms-fill-lower {
+      height: 6px;
+      border-radius: 3px 0 0 3px;
+      margin: -undefined 0 -undefined -undefined;
+      background: #056013;
+      border: none;
+      border-right-width: 0;
+    }
+
+    //  type range end
+  }
+}
