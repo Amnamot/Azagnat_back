@@ -13,7 +13,7 @@
     <link rel="mask-icon" href="{% static 'safari-pinned-tab.svg' %}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <script type="module" crossorigin src="{% static 'assets/main.c363845d.js' %}"></script>
+    <script type="module" crossorigin src="{% static 'assets/main.97aac55b.js' %}"></script>
     <link rel="stylesheet" href="{% static 'assets/main.4a5f77ed.css' %}">
 </head>
 <body>
@@ -206,7 +206,7 @@
                                 <label class="active">
                                     Environments
                                     
-                                    <select class="change-env hide">
+                                    <select class="environment-settings hide">
                                         {% for env in envs %}
                                             <option value="{{env.url}}">{{env.name}}</option>
                                         {% endfor %}
@@ -229,7 +229,7 @@
                             <div class="ball-settings__container">
                                 <label class="active">
                                     Ticker fonts
-                                    <select class="change-ticker-font hide">
+                                    <select class="font-settings hide">
                                         {% for font in fonts %}
                                             <option value="{{font.url}}">{{font.name}}</option>
                                         {% endfor %}

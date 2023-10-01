@@ -8,7 +8,7 @@ from solana.transaction import Transaction
 from solana.system_program import TransferParams, transfer
 import subprocess
 import base64
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jinja2 import Environment as Env, FileSystemLoader, select_autoescape
 from celery import shared_task
 from aza.settings import RPC, DOMEN, DEBUG
 from django.db import IntegrityError
@@ -38,6 +38,16 @@ def generator(n):
 
 @shared_task(bind=True)
 def minttask(self, data, publickey):
+    if "font" in data:
+        font = Font.objects.get(url=data["font"])
+    else:
+        font = Font.objects.get(id=2)
+    
+    if "env" in data:
+        environment = Environment.objects.get(url=data["env"])
+    else:
+        environment = Environment.objects.get(id=2)
+
     try:
         name = data['userObj']['name']
         date = data['userObj']['date']
@@ -142,7 +152,7 @@ def minttask(self, data, publickey):
             model_name = model.name
             model_link = model.link
             curve = model.curve_radius
-        env = Environment(
+        env = Env(
             loader=FileSystemLoader('.'),
             autoescape=select_autoescape(['html', 'xml'])
         )
@@ -168,6 +178,8 @@ def minttask(self, data, publickey):
             back_type = int(data['idBackground'])-1 if data['idBackground']!='0' else data['idBackground'],
             curve_radius = curve,
             tick = ticker,
+            env = environment.url,
+            font = font.url,
             ticker_path = tick_path,
             hat = True if model_link == 'https://arweave.net/54_M2OvAOnO-vKmL34wE0QxPFKcl6KgHIlWxBotnpS4' else False
         )
@@ -194,6 +206,9 @@ def minttask(self, data, publickey):
         a.append({'trait_type' : 'Gender', 'value': gender})
         a.append({'trait_type' : 'Language', 'value': lang})
         a.append({'trait_type' : 'Ball_name', 'value': model_name})
+        a.append({'trait_type' : 'Environment', 'value': environment.name})
+        a.append({'trait_type' : 'Font', 'value': font.name})
+
         value = '#1c1c1c'
         if data['idBodyColor'] == '1':
             value = data['customBodyColor']

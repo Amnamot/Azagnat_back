@@ -342,7 +342,10 @@ class MintActive(models.Model):
 class Font(models.Model):
     name = models.CharField(max_length=100)
     url = models.URLField()
+    price = models.FloatField()
+    
 
 class Environment(models.Model):
     name = models.CharField(max_length=100)
     url = models.URLField()
+    price = models.FloatField()

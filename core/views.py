@@ -124,6 +124,8 @@ def getprice(request):
     price['body_price'] = .0
     price['bg_price'] = .0
     price['ticker_price'] = .0
+    price['font_price'] = .0
+    price['env_price'] = .0
     data = json.loads(request.body.decode())
 
     price['global_price'] = .0
@@ -187,6 +189,13 @@ def getprice(request):
             price['global_price'] += price['ticker_price']
     except KeyError:
         pass
+
+    if 'font' in data:
+        price["font_price"] = Font.objects.get(url=data["font"]).price
+    
+    if 'env' in data:
+        price["env_price"] = Environment.objects.get(url=data["env"]).price
+
 
     if 'p' in data['get_par']:
         if Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).isactive:
