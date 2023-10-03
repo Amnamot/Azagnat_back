@@ -208,17 +208,21 @@
                                     
                                     <select class="environment-settings hide">
                                         {% for env in envs %}
-                                            <option value="{{env.url}}">{{env.name}}</option>
+                                            {% if env.is_active %}
+                                                <option value="{{env.url}}">{{env.name}}</option>
+                                            {% endif %}
                                         {% endfor %}
                                     </select>
                                     <div class="f-select">
                                         <div class="f-select-container f-select-container__env">
                                             {% for env in envs %}
-                                                {% if env.id == 2 %}
-                                                <div class="f-select-option placeholder"><span>{{env.name}}</span>
-                                                </div>
+                                                {% if env.is_active %}
+                                                    {% if env.id == 2 %}
+                                                    <div class="f-select-option placeholder"><span>{{env.name}}</span>
+                                                    </div>
+                                                    {% endif %}
+                                                    <div class="f-select-option">{{env.name}}</div>
                                                 {% endif %}
-                                                <div class="f-select-option">{{env.name}}</div>
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -231,17 +235,21 @@
                                     Ticker fonts
                                     <select class="font-settings hide">
                                         {% for font in fonts %}
-                                            <option value="{{font.url}}">{{font.name}}</option>
+                                            {% if font.is_active %}
+                                                <option value="{{font.url}}">{{font.name}}</option>
+                                            {% endif %}
                                         {% endfor %}
                                     </select>
                                     <div class="f-select">
                                         <div class="f-select-container f-select-container__ticker-font">
                                             {% for font in fonts %}
-                                                {% if font.id == 2 %}
-                                                <div class="f-select-option placeholder"><span>{{font.name}}</span>
-                                                </div>
+                                                {% if font.is_active %}
+                                                    {% if font.id == 2 %}
+                                                    <div class="f-select-option placeholder"><span>{{font.name}}</span>
+                                                    </div>
+                                                    {% endif %}
+                                                    <div class="f-select-option">{{font.name}}</div>
                                                 {% endif %}
-                                                <div class="f-select-option">{{font.name}}</div>
                                             {% endfor %}
                                         </div>
                                     </div>

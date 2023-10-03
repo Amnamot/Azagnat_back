@@ -72,3 +72,10 @@ class FontAdmin(admin.ModelAdmin):
 class EnvironmentAdmin(admin.ModelAdmin):
     list_display = ['name', 'url']
 
+@admin.register(FontPrice)
+class FontPriceAdmin(admin.ModelAdmin):
+    list_display = ['price']
+
+@admin.register(EnvPrice)
+class EnvironmentPriceAdmin(admin.ModelAdmin):
+    list_display = ['price']

@@ -321,6 +321,11 @@ class TickerPrice(models.Model):
     def __str__(self):
         return 'TickerPrice'
     
+class FontPrice(models.Model):
+    price = models.FloatField()
+
+class EnvPrice(models.Model):
+    price = models.FloatField()
 
 
 class Returned(models.Model):
@@ -342,10 +347,10 @@ class MintActive(models.Model):
 class Font(models.Model):
     name = models.CharField(max_length=100)
     url = models.URLField()
-    price = models.FloatField()
+    is_active = models.BooleanField(default=True)
     
 
 class Environment(models.Model):
     name = models.CharField(max_length=100)
     url = models.URLField()
-    price = models.FloatField()
+    is_active = models.BooleanField(default=True)
