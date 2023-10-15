@@ -170,10 +170,20 @@ class Models(models.Model):
             model.append(data)
 
         with open("data/models.json", 'w', encoding='utf-8') as f:
-            json.dump(model,f,indent=4,ensure_ascii=False)
+            json.dump(model, f, indent=4, ensure_ascii=False)
 
     def delete(self):
         super().delete()
+        with open("data/models.json", 'r', encoding='utf-8') as f:
+            model = json.load(f)
+
+        model.pop(self.id - 1)
+
+
+        with open("data/models.json", 'w', encoding='utf-8') as f:
+            json.dump(model, f, indent = 4, ensure_ascii = False)
+
+        
 
         
     class Meta:
