@@ -288,7 +288,7 @@ def minttask(self, data, publickey):
         
         if 'r' in data['get_par']:
             a = RefferalCode.objects.get(code=data['get_par']['r'])
-            res = send_sol(a.config.address.address, int((data['global_price'] * 0.1) * 1000000000))
+            res = send_sol(a.config.address, int((data['global_price'] * 0.1) * 1000000000))
             r = RefferalCode.objects.get(code=data['get_par']['r'])
             r.paid = r.paid + (data['global_price'] * 0.1)
             r.deals = r.deals + 1

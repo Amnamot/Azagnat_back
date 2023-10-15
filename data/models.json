@@ -1,32 +1,136 @@
 [
     {
         "name": "Ostan",
-        "local-path": "media/models/OstanDraco.glb",
-        "price": 0.0
+        "local-path": "https://arweave.net/RxtNv0UnhR7dUICf8ZjqMa7IlTpgHMilM055tx_5syk",
+        "price": 0.0,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
     },
     {
         "name": "Hiron",
-        "local-path": "media/models/HironDraco.glb",
-        "price": 0.01
+        "local-path": "https://arweave.net/1t1qEGTTEiNHUjQZNzEvVTr9iGdHM7rY7kB1_PMQisU",
+        "price": 0.01,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
     },
     {
         "name": "Vesta",
-        "local-path": "media/models/VestalDraco.glb",
-        "price": 0.02
+        "local-path": "https://arweave.net/5zGsUDLdYTkkPB_pdvJDxAM-UbqUmDU4KbHtCEKqjcY",
+        "price": 0.02,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
     },
     {
         "name": "Beroz",
-        "local-path": "media/models/BerozDraco.glb",
-        "price": 0.02
+        "local-path": "https://arweave.net/koa1zxvzpfTtyBlLamuIENU5Li_gj50irMvivHl-nqI",
+        "price": 0.02,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
     },
     {
         "name": "Vega",
-        "local-path": "media/models/VegaDraco.glb",
-        "price": 0.03
+        "local-path": "https://arweave.net/7RP_jxbF3V4G-ht1HXWmRjwSwnsL-tbL_n0gXeQw9wE",
+        "price": 0.03,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
     },
     {
         "name": "Joulupukki",
-        "local-path": "media/models/Joulupukki.glb",
-        "price": 0.03
+        "local-path": "https://arweave.net/54_M2OvAOnO-vKmL34wE0QxPFKcl6KgHIlWxBotnpS4",
+        "hat": 0,
+        "price": 0.03,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
+    },
+    {
+        "name": "Maradona",
+        "local-path": "https://arweave.net/kSQLBRS6dWyXnn1z4WTRu4mLiyPHRLe7bg4SkUh940o",
+        "price": 0.03,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
+    },
+    {
+        "name": "Star",
+        "local-path": "https://arweave.net/Kg2PcSqR6yi4EnS40VNwaX-C7cFg-2kgBQR8hB2Eivw",
+        "price": 0.03,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
+    },
+    {
+        "name": "Pokeball",
+        "local-path": "https://arweave.net/jIIRbgLKUNCMMV-66UHHy2VtB4-vJSm-qvTCw-S7qJk",
+        "price": 0.03,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
+    },
+    {
+        "name": "Icosa",
+        "local-path": "https://arweave.net/6yCVyyCK159gbEi56-hNH9TQl1NYr-_qWxbcxt4YSok",
+        "price": 0.03,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
+    },
+    {
+        "name": "Rock",
+        "local-path": "https://arweave.net/4Ki4RFg_ZmBmuCVonuqSbPRj5PJgqxcl0jYkOV33Lxs",
+        "hat": 1,
+        "price": 0.03,
+        "PozZ" : 32,
+        "LocY" : -10,
+        "LocX" : -14,
+        "Bend" : -30,
+        "shiftGlass": 0.1,
+        "fontSize": 5,
+        "speed": 15
     }
 ]

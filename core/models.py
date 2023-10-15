@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 import os
 import json
@@ -136,10 +137,15 @@ class EasyMint(models.Model):
 
 class Models(models.Model):
     name = models.CharField(max_length=20)
-    file = models.FileField(upload_to="models")
     link = models.URLField()
     curve_radius = models.FloatField()
     price = models.FloatField()
+    pozZ = models.IntegerField(default=32)
+    locY = models.IntegerField(default=-10)
+    locX = models.IntegerField(default=-14)
+    bend = models.IntegerField(default=-30)
+    shiftGlass = models.FloatField(default=0.1)
+    speed = models.IntegerField(default=15)
 
     def save(self):
         super().save()
@@ -150,15 +156,25 @@ class Models(models.Model):
                 model = json.load(f)
         data = {
             "name": self.name,
-            "local-path": self.file.url[1::],
-            "price": self.price
+            "local-path": self.link,
+            "PozZ": self.pozZ,
+            "LocY": self.locY,
+            "LocX": self.locX,
+            "Bend": self.bend,
+            "shiftGlass": self.shiftGlass,
+            "speed": self.speed
         }
-        if len(model)>=self.id:
+        if len(model) >= self.id:
             model[self.id-1] = data
         else:
             model.append(data)
+
         with open("data/models.json", 'w', encoding='utf-8') as f:
             json.dump(model,f,indent=4,ensure_ascii=False)
+
+    def delete(self):
+        super().delete()
+
         
     class Meta:
         verbose_name = 'Model'
@@ -168,19 +184,15 @@ class Models(models.Model):
         return self.name
 
 class Materials(models.Model):
-    name = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length = 20, unique = True)
     albedo = models.URLField()
     normal = models.URLField()
     roughness = models.URLField()
-    albedo_file = models.ImageField(upload_to=f"models/materials")
-    normal_file = models.ImageField(upload_to=f"models/materials")
-    roughness_file = models.ImageField(upload_to=f"models/materials")
-    displacement = models.URLField(null=True, blank=True)
-    displacement_file = models.ImageField(upload_to=f"models/materials", null=True, blank=True)
+    displacement = models.URLField(null = True, blank = True)
     metalness = models.FloatField()
     roughness_param = models.FloatField()
-    displacescale = models.FloatField(null=True, blank=True)
-    displaceshift = models.FloatField(null=True, blank=True)
+    displacescale = models.FloatField(null = True, blank = True)
+    displaceshift = models.FloatField(null = True, blank = True)
     price = models.FloatField()
 
 
@@ -198,16 +210,29 @@ class Materials(models.Model):
         data = {
             "id": self.id-1,
             "name": self.name,
-            "map": ".." + self.albedo_file.url,
-            "normalMap": ".." + self.normal_file.url,
-            "roughnessMap": ".." + self.roughness_file.url,
+            "map": self.albedo,
+            "normalMap": self.normal,
+            "roughnessMap": self.roughness,
             "metalness": self.metalness,
             "roughness": self.roughness_param
         }
-        if len(materials)>=self.id:
+
+        if not self.displacement:
+            data["displacementMap"] = self.displacement
+
+
+        if not self.displacescale:
+            data["displacementScale"] = self.displacescale
+
+
+        if not self.displaceshift:
+            data["displacementBias"] = self.displaceshift
+
+        if len(materials) >= self.id:
             materials[self.id-1] = data
         else:
             materials.append(data)
+
         with open("data/materials.json", 'w', encoding='utf-8') as f:
             json.dump(materials, f, indent=4, ensure_ascii=False)
     
@@ -215,8 +240,7 @@ class Materials(models.Model):
         return self.name
 
 class SelectImageBody(models.Model):
-    name = models.CharField(max_length=20)
-    file = models.ImageField(upload_to="body-img")
+    name = models.CharField(max_length = 20)
     link = models.URLField()
 
     def save(self):
@@ -233,16 +257,16 @@ class SelectImageBody(models.Model):
                 images = json.load(f)
         data = {
             "name" : self.name,
-            "path" : ".." + self.file.url
+            "path" : self.link
         }
-        if len(images[0]['bodyImages'])>=self.id:
+        if len(images[0]['bodyImages']) >= self.id:
             images[0]['bodyImages'][self.id-1] = data
         else:
             images[0]['bodyImages'].append(data)
         
 
         with open("data/images.json", 'w', encoding='utf-8') as f:
-            json.dump(images,f,indent=4,ensure_ascii=False)
+            json.dump(images, f, indent = 4, ensure_ascii = False)
 
     class Meta:
         verbose_name = 'std_body_image'
@@ -252,8 +276,7 @@ class SelectImageBody(models.Model):
         return self.name
 
 class SelectImageBackground(models.Model):
-    name = models.CharField(max_length=20)
-    file = models.ImageField(upload_to="bg-img")
+    name = models.CharField(max_length = 20)
     link = models.URLField()
 
     def save(self):
@@ -270,15 +293,15 @@ class SelectImageBackground(models.Model):
                 images = json.load(f)
         data = {
             "name" : self.name,
-            "path" : ".." + self.file.url
+            "path" : self.link
         }
-        if len(images[0]['backgroundImages'])>=self.id:
+        if len(images[0]['backgroundImages']) >= self.id:
             images[0]['backgroundImages'][self.id-1] = data
         else:
             images[0]['backgroundImages'].append(data)
 
         with open("data/images.json", 'w', encoding='utf-8') as f:
-            json.dump(images,f,indent=4,ensure_ascii=False)
+            json.dump(images, f, indent = 4, ensure_ascii = False)
 
     class Meta:
         verbose_name = 'std_background_image'

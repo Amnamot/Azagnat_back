@@ -8,6 +8,19 @@
     "normalMap" : "https://arweave.net/HbEPamzgLLte07Z7B0H3YzJ0vfIang6H5ijgjZI4AeM",
     "displacementMap"   : "",
     "displacementScale" : "",
-    "envMapIntensity" : 2
+    "envMapIntensity" : 2,
+    "flipY": true
+  },
+  {
+    "color" : "#ffffff",
+    "metalness": 1,
+    "roughness": 1,
+    "roughnessMap"  : "https://arweave.net/7UySi14E_ZTqRQlzjI9THLCE49JGw1OZT-glWyzltsQ",
+    "map" : "https://arweave.net/gRGm6t1jY9JQckEEaznTpa6YlnRl4P8140hGKdBG0lc",
+    "normalMap" : "https://arweave.net/dL72U0-qz-yn4sZnhJO29F1PH84WHRI-QfY0664rV00",
+    "displacementMap"   : "",
+    "displacementScale" : "",
+    "envMapIntensity" : 2,
+    "flipY": false
   }
 ]  
