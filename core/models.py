@@ -297,8 +297,6 @@ class Models(models.Model):
         verbose_name = 'Model'
         verbose_name_plural = "Models"
 
-    def __str__(self):
-        return self.name
 
 class Materials(models.Model):
     data = models.JSONField(default=[
