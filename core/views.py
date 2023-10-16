@@ -131,10 +131,10 @@ def getprice(request):
     price['global_price'] = .0
 
     if data['model'] == None:
-        price['model_price'] = Models.objects.get(id=1).price
+        price['model_price'] = Models.objects.all()[-1][0]["price"]
         price['global_price'] += price['model_price']
     else:
-        price['model_price'] = Models.objects.get(id=1)[data['model']]["price"]
+        price['model_price'] = Models.objects.all()[-1][int(data['model'])]["price"]
         price['global_price'] += price['model_price']
 
     try:
@@ -154,7 +154,7 @@ def getprice(request):
             if data['selectedMaterialId'] == None:
                 price['body_price'] = .0
             else:
-                price['body_price'] = Materials.objects.get(id=1)[data['selectedMaterialId']]["price"]
+                price['body_price'] = Materials.objects.all()[-1][int(data['selectedMaterialId'])]["price"]
                 price['global_price'] += price['body_price']
     except KeyError:
         pass
