@@ -9,7 +9,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Hiron",
@@ -21,7 +21,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Vesta",
@@ -33,7 +33,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Beroz",
@@ -45,7 +45,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Vega",
@@ -57,7 +57,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Joulupukki",
@@ -70,7 +70,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Maradona",
@@ -82,7 +82,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Star",
@@ -94,7 +94,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Pokeball",
@@ -106,7 +106,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Icosa",
@@ -118,7 +118,7 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     },
     {
         "name": "Rock",
@@ -131,6 +131,6 @@
         "Bend" : -30,
         "shiftGlass": 0.1,
         "fontSize": 5,
-        "speed": 15
+        "speed": 10
     }
 ]

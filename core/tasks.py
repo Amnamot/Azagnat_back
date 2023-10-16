@@ -84,7 +84,7 @@ def minttask(self, data, publickey):
                 
         elif data['idBodyColor'] == '3':
             if 'selectedImgId' in data:
-                body = ['', data['metalness'],data['roughness'], '', SelectImageBody.objects.get(id=int(data['selectedImgId'])+1).link, '', '', '']
+                body = ['', data['metalness'],data['roughness'], '', SelectImages.objects.get(id=1)[0]["backgroundImages"][int(data["selectedImgId"])]["path"], '', '', '']
         
         elif data['idBodyColor'] == '4':
             if 'selectedMaterialId' in data:
@@ -126,7 +126,7 @@ def minttask(self, data, publickey):
                     
             elif data['idBackground'] == '5':
                 if 'selectedBgImgId' in data:
-                    background = ['','','','','','',SelectImageBackground.objects.get(id=int(data['selectedBgImgId'])+1).link]
+                    background = ['','','','','','',SelectImages.objects.get(id=1)[0]["backgroundImages"][int(data["selectedBgImgId"])]["path"]]
                     
 
             elif data['idBackground'] == '0':
@@ -143,15 +143,15 @@ def minttask(self, data, publickey):
             ticker = '#004f20'
         
         if data["model"] == None:
-            model = Models.objects.get(id=1)
-            model_name = model.name
-            model_link = model.link
-            curve = model.curve_radius
+            model = Models.objects.get(id=1)[0]
+            model_name = model["name"]
+            model_link = model["local-path"]
+            curve = model["curve_radius"]
         else:
-            model = Models.objects.get(id=int(data['model'])+1)
-            model_name = model.name
-            model_link = model.link
-            curve = model.curve_radius
+            model = Models.objects.get(id=1)[int(data["model"])]
+            model_name = model["name"]
+            model_link = model["local-path"]
+            curve = model["curve_radius"]
         env = Env(
             loader=FileSystemLoader('.'),
             autoescape=select_autoescape(['html', 'xml'])
@@ -215,9 +215,9 @@ def minttask(self, data, publickey):
         elif data['idBodyColor'] == '2':
             value = data["bodyCustomName"]
         elif data['idBodyColor'] == '3':
-            value = SelectImageBody.objects.get(id=int(data['selectedImgId'])+1).name
+            value = SelectImages.objects.get(id=1)[0]["bodyImages"][int(data["selectedImgId"])]["name"]
         elif data['idBodyColor'] == '4':
-            value = Materials.objects.get(id=int(data['selectedMaterialId'])+1).name
+            value = Materials.objects.get(id=1)[int(data['selectedMaterialId'])]["name"]
 
         a.append({'trait_type' : 'Body_view', 'value': value})
         value = '#0A3104'
@@ -230,7 +230,7 @@ def minttask(self, data, publickey):
         elif data['idBackground'] == '4':
             value = data["backgroundCustomName"]
         elif data['idBackground'] == '5':
-            value = SelectImageBackground.objects.get(id=int(data['selectedBgImgId'])+1).name
+            value = SelectImages.objects.get(id=1)[0]["backgroundImages"][int(data["selectedBgImgId"])]["name"]
         
         a.append({'trait_type' : 'Background', 'value': value})
         if 'tickerColor' in data:

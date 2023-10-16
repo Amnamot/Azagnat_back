@@ -24,22 +24,18 @@ class TickerPriceAdmin(admin.ModelAdmin):
 
 @admin.register(Models)
 class ModelsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'curve_radius', 'price']
+    list_display = ["id"]
 
 
 @admin.register(Materials)
 class MaterialsAdmin(admin.ModelAdmin):
-    list_display = ['name', 'metalness', 'roughness_param', 'price']
+    list_display = ['id']
 
 
 
-@admin.register(SelectImageBody)
-class SelectImageBodyAdmin(admin.ModelAdmin):
-    list_display = ['name']
-
-@admin.register(SelectImageBackground)
-class SelectImageBackgroundAdmin(admin.ModelAdmin):
-    list_display = ['name']
+@admin.register(SelectImages)
+class SelectImagesAdmin(admin.ModelAdmin):
+    list_display = ['id']
 
 
 admin.site.register(Returned)
