@@ -107,33 +107,33 @@ def minttask(self, data, publickey):
         if 'idBackground' in data:
             if data['idBackground'] == '1':
                 if 'backgroundColor' in data:
-                    background = [data['backgroundColor'],'','','','','','']
+                    background = [data['backgroundColor'], '', '', '', '', '', '']
                     
             elif data['idBackground'] == '2':
                 if 'backgroundColor1' in data and 'backgroundColor2' in data:
-                    background = ['',data['backgroundColor1'],data['backgroundColor2'],'','','','']
+                    background = ['', data['backgroundColor1'], data['backgroundColor2'], '', '', '', '']
                     
             elif data['idBackground'] == '3':
                 if 'backgroundColor3' in data and 'backgroundColor4' in data:
-                    background = ['','','',data['backgroundColor3'],data['backgroundColor4'],'','']
+                    background = ['', '', '', data['backgroundColor3'], data['backgroundColor4'], '', '']
                     
             elif data['idBackground'] == '4':
                 if 'customBgImgData' in data:
                     with open(f"/var/www/token/{config_len}/custom.txt" if not DEBUG else f"token/{config_len}/custom.txt",'w') as f:
                         f.write(data['customBgImgData'])
                     result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/custom.txt" if not DEBUG else f"token/{config_len}/custom.txt"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
-                    background = ['','','','','',result.stdout.decode().split()[5],'']
+                    background = ['', '', '', '', '', result.stdout.decode().split()[5], '']
                     
             elif data['idBackground'] == '5':
                 if 'selectedBgImgId' in data:
-                    background = ['','','','','','',SelectImages.objects.all()[-1][0]["backgroundImages"][int(data["selectedBgImgId"])]["path"]]
+                    background = ['', '', '', '', '', '', SelectImages.objects.all()[-1][0]["backgroundImages"][int(data["selectedBgImgId"])]["path"]]
                     
 
             elif data['idBackground'] == '0':
-                background = ['#0A3104','','','','','','']
+                background = ['#0A3104', '', '', '', '', '', '']
         else:
             data['idBackground'] = '0'
-            background = ['#0A3104','','','','','','']
+            background = ['#0A3104', '', '', '', '', '', '']
                 
         
         
