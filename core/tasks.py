@@ -76,7 +76,7 @@ def minttask(self, data, publickey):
                 with open(f"/var/www/token/{config_len}/custom.png" if not DEBUG else f"token/{config_len}/custom.png", "wb") as fh:
                     fh.write(base64.b64decode(data['customImgData']))
                 result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/custom.png" if not DEBUG else f"token/{config_len}/custom.png"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
-                body = ['',data['metalness'],data['roughness'],'',result.stdout.decode().split()[5],'','','']
+                body = ['', data['metalness'], data['roughness'], '', result.stdout.decode().split()[5], '', '', '']
                 
         elif data['idBodyColor'] == '1':
             if 'customBodyColor' in data:
@@ -84,11 +84,11 @@ def minttask(self, data, publickey):
                 
         elif data['idBodyColor'] == '3':
             if 'selectedImgId' in data:
-                body = ['', data['metalness'],data['roughness'], '', SelectImages.objects.all()[-1][0]["backgroundImages"][int(data["selectedImgId"])]["path"], '', '', '']
+                body = ['', data['metalness'], data['roughness'], '', SelectImages.objects.last().data[0]["backgroundImages"][int(data["selectedImgId"])]["path"], '', '', '']
         
         elif data['idBodyColor'] == '4':
             if 'selectedMaterialId' in data:
-                mater = Materials.objects.all()[-1][int(data['selectedMaterialId'])]
+                mater = Materials.objects.last().data[int(data['selectedMaterialId'])]
                 body = ['', data['metalness'], data['roughness'], mater["roughnessMap"], mater["map"], mater["normalMap"]]
                 if "displacementMap" not in mater:
                     body.append('')
@@ -126,7 +126,7 @@ def minttask(self, data, publickey):
                     
             elif data['idBackground'] == '5':
                 if 'selectedBgImgId' in data:
-                    background = ['', '', '', '', '', '', SelectImages.objects.all()[-1][0]["backgroundImages"][int(data["selectedBgImgId"])]["path"]]
+                    background = ['', '', '', '', '', '', SelectImages.objects.last().data[0]["backgroundImages"][int(data["selectedBgImgId"])]["path"]]
                     
 
             elif data['idBackground'] == '0':
@@ -143,15 +143,15 @@ def minttask(self, data, publickey):
             ticker = '#004f20'
         
         if data["model"] == None:
-            model = Models.objects.get(id=1)[0]
+            model = Models.objects.last().data[0]
             model_name = model["name"]
             model_link = model["local-path"]
-            curve = model["curve_radius"]
+            curve = model["Bend"]
         else:
-            model = Models.objects.get(id=1)[int(data["model"])]
+            model = Models.objects.last().data[int(data["model"])]
             model_name = model["name"]
             model_link = model["local-path"]
-            curve = model["curve_radius"]
+            curve = model["Bend"]
         env = Env(
             loader=FileSystemLoader('.'),
             autoescape=select_autoescape(['html', 'xml'])
@@ -215,9 +215,9 @@ def minttask(self, data, publickey):
         elif data['idBodyColor'] == '2':
             value = data["bodyCustomName"]
         elif data['idBodyColor'] == '3':
-            value = SelectImages.objects.all()[-1][0]["bodyImages"][int(data["selectedImgId"])]["name"]
+            value = SelectImages.objects.last().data[0]["bodyImages"][int(data["selectedImgId"])]["name"]
         elif data['idBodyColor'] == '4':
-            value = Materials.objects.all()[-1][int(data['selectedMaterialId'])]["name"]
+            value = Materials.objects.last().data[int(data['selectedMaterialId'])]["name"]
 
         a.append({'trait_type' : 'Body_view', 'value': value})
         value = '#0A3104'
@@ -230,7 +230,7 @@ def minttask(self, data, publickey):
         elif data['idBackground'] == '4':
             value = data["backgroundCustomName"]
         elif data['idBackground'] == '5':
-            value = SelectImages.objects.all()[-1][0]["backgroundImages"][int(data["selectedBgImgId"])]["name"]
+            value = SelectImages.objects.last().data[0]["backgroundImages"][int(data["selectedBgImgId"])]["name"]
         
         a.append({'trait_type' : 'Background', 'value': value})
         if 'tickerColor' in data:
