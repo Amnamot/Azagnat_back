@@ -203,8 +203,10 @@ def getprice(request):
 
 
     if 'p' in data['get_par']:
-        if Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).isactive:
+        try:
             price['global_price'] = price['global_price']  - (price['global_price']  * (Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p']).percent / 100))
+        except Promocode.DoesNotExist:
+            pass
     elif 'r' in data['get_par']:
         price['global_price'] = price['global_price'] - (price['global_price']  * 0.2)
     elif 'a' in data['get_par']:

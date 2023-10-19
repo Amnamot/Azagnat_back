@@ -6,7 +6,8 @@
         "normalMap": "https://arweave.net/2ZE6DAGKlabJl5dYSzqAjglm-NcpheVYsZbgrndPI60",
         "roughnessMap": "https://arweave.net/PxXXrrZrtvoFPzXjeBmj-WI7EIYNvZB4B-g7A9532Os",
         "metalness": 1.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.1
     },
     {
         "id": 1,
@@ -15,7 +16,8 @@
         "normalMap": "https://arweave.net/ndw1EPyUxH7jhB4uJOIFtFdKW4s3XjDmRftS9a_yHqY",
         "roughnessMap": "https://arweave.net/27kLNmoQxER3L3xvlNYgH7RoTmpDLNZzYLR4yNpbR3c",
         "metalness": 0.16,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.2
     },
     {
         "id": 2,
@@ -24,7 +26,8 @@
         "normalMap": "https://arweave.net/SpJ8tilMij2OT3MNVTnSA3QJtrWzVRyLYJFVHlxEcsY",
         "roughnessMap": "https://arweave.net/Xxlj0jZo_m_IsIYPUX7UpjCbwD8nvJ7_ddigw7n35LY",
         "metalness": 1.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.3
     },
     {
         "id": 3,
@@ -33,7 +36,8 @@
         "normalMap": "https://arweave.net/5-fjpVJ03Qjly6X7s0lePnM_BY3SlYGsAJOBqoygKMQ",
         "roughnessMap": "https://arweave.net/Qdu9D0r440jg1KVSztrtcm_NnaaAGXbDzGxPXm3stlc",
         "metalness": 0.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.4
     },
     {
         "id": 4,
@@ -42,7 +46,8 @@
         "normalMap": "https://arweave.net/vQto9YanPRzhnHEFRRePXD-zWTePG3-MxyQ5FpBOuFo",
         "roughnessMap": "https://arweave.net/ch5QLG55OQylBESvDHNj8ZylPwjRdiUBAk2ZUuaNAzA",
         "metalness": 0.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.5
     },
     {
         "id": 5,
@@ -51,7 +56,8 @@
         "normalMap": "https://arweave.net/QLjfu2ZXjRHKk53rju19OWK9Jcz_qzhUI4EfEVhbfFU",
         "roughnessMap": "https://arweave.net/qhLCsN71I50LYx04daXjuUV6MnADqbBz66Cyzkj4tyg",
         "metalness": 0.35,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.6
     },
     {
         "id": 6,
@@ -60,7 +66,8 @@
         "normalMap": "https://arweave.net/zhME-6ll9DFpmUNHL6asMP6Ppt6C3GoMilIUieAXALc",
         "roughnessMap": "https://arweave.net/YN8UpVjpVtry-Fba7zvuJfkJ5YIGVEfQoaDjtfrVV8M",
         "metalness": 1.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.7
     },
     {
         "id": 7,
@@ -69,7 +76,8 @@
         "normalMap": "https://arweave.net/OL2upxh1lwiHNYgEIJgcyZtUm0XcUrJ-uD8aUW-XmtY",
         "roughnessMap": "https://arweave.net/OlRIUwBh4GHkOFWvcCuxqBx4nAbWg_G4nob4PNxqMlY",
         "metalness": 0.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.8
     },
     {
         "id": 8,
@@ -78,7 +86,8 @@
         "normalMap": "https://arweave.net/4mMS1WFL3EJpYDuBq4yWIMY2zF7WjDRFiDo_XMtB7jk",
         "roughnessMap": "https://arweave.net/gGVTkHfDmOBZSlWjdo06JsX2UINvmXNCORMyH6VvLbo",
         "metalness": 0.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.9
     },
     {
         "id": 9,
@@ -87,7 +96,8 @@
         "normalMap": "https://arweave.net/9ZUIIxkY_fFKEgAVmwa3ydFyeMtSk1GXM3kfh-kkP18",
         "roughnessMap": "https://arweave.net/7rzU5hXd6s1710rbirwXDq2r5xFtymRW_mGRaWeYfLA",
         "metalness": 0.1,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.11
     },
     {
         "id": 10,
@@ -96,7 +106,8 @@
         "normalMap": "https://arweave.net/dhlLVWMqOfYtvQ-ZfVgNky5Id4MfHpAPwBNxYFTSo74",
         "roughnessMap": "https://arweave.net/bYE4v_8R2ZXVaS_H_qMLV7D8Z-cNlUUMDFEdAzQhf6Y",
         "metalness": 1.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.12
     },
     {
         "id": 11,
@@ -105,7 +116,8 @@
         "normalMap": "https://arweave.net/fivUFYgY925qZP1FJzBI0MVr4oOhjvOTPxn8RuMFzXQ",
         "roughnessMap": "https://arweave.net/otqnMrH2UKG2rj92fzDwnzCYhWlxcpcklyJqPxXN36o",
         "metalness": 0.6,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.13
     },
     {
         "id": 12,
@@ -114,7 +126,8 @@
         "normalMap": "https://arweave.net/-8T9bGZSNkDSOTa-JbsbFdJqO2fz97rmjBXB7n_7iDo",
         "roughnessMap": "https://arweave.net/0XaJnw_bYjyM4PxKdRuU9zV5GdVlJfoXCafHktdxK9s",
         "metalness": 1.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.14
     },
     {
         "id": 13,
@@ -123,7 +136,8 @@
         "normalMap": "https://arweave.net/xk8PlCVwIrohYkmvs1TyFR5540p36ThkKjqdyuaj0uA",
         "roughnessMap": "https://arweave.net/5R-HpS43Rpf7Y3u2bEwF7WMnF_cTbyQMK-cSekTlcY4",
         "metalness": 0.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.15
     },
     {
         "id": 14,
@@ -135,7 +149,7 @@
         "roughness": 1.0,
         "displacementMap": "https://arweave.net/-c3mBq36Czwwy7gSOvPTIXeO_fAa45XhbcTa3Cs1c90",
         "displacementScale": 3,
-        "displacementBias": -0.5
+        "price": 0.16
     },
     {
         "id": 15,
@@ -144,7 +158,8 @@
         "normalMap": "https://arweave.net/UVHVYMesFZqJ82pn_isNsFmFoYc1_DnjujIw72Ezl6A",
         "roughnessMap": "https://arweave.net/47FfaK7cCWf5DQUpmtFZdXJUGjwgm2h6Ni-3LZA8NGI",
         "metalness": 1.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.17
     },
     {
         "id": 16,
@@ -153,7 +168,8 @@
         "normalMap": "https://arweave.net/aSnk-oArHDZGub6nikaOqjasswsmEjzWVQbXo1h37RQ",
         "roughnessMap": "https://arweave.net/HwwUgIXbxmjP1sgY78UXnZlc04UG_3mcoq86OiuhunY",
         "metalness": 1.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.18
     },
     {
         "id": 17,
@@ -165,7 +181,7 @@
         "roughness": 0.0,
         "displacementMap": "https://arweave.net/ANrApmpVZLe22dFD0vtN1prBAuw2WHCvHAz9zRb9MPY",
         "displacementScale": 5,
-        "displacementBias": -1.5
+        "price": 0.19
     },
     {
         "id": 18,
@@ -174,7 +190,8 @@
         "normalMap": "https://arweave.net/D_gKYN-n0XhfwO94o4IPPdFKoGEhga2eZrI9-cIkxMY",
         "roughnessMap": "https://arweave.net/jxoeGdQmjrlRoEp4i0Xuf9UYICVDBWTuB3pZxs3DlXo",
         "metalness": 0.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.21
     },
     {
         "id": 19,
@@ -183,7 +200,8 @@
         "normalMap": "https://arweave.net/P4Dr7XW24yaf_1u9PRFyIgXANEeFRVdOjSTOaLvfDqo",
         "roughnessMap": "https://arweave.net/6R10dM_fNOVnuUhFZVlO7aX9Mz1Ez5Mhfut4_AMVG4Y",
         "metalness": 0.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.22
     },
     {
         "id": 20,
@@ -192,7 +210,8 @@
         "normalMap": "https://arweave.net/prT866HUBFbcVXmQFxIAvKF7OqFaV8L8d95Aj6ObXLA",
         "roughnessMap": "https://arweave.net/MChiRBPght-rvVMv3zgbQ7Z4fRDujHROpR4c6Px9HL0",
         "metalness": 1.0,
-        "roughness": 0.9
+        "roughness": 0.9,
+        "price": 0.22
     },
     {
         "id": 21,
@@ -201,7 +220,8 @@
         "normalMap": "https://arweave.net/XpGMccqJDajYZCSJsz9inu2y-ORoSGz_5orspIqpdro",
         "roughnessMap": "https://arweave.net/js33fvuZ-v_czgPRsa5qjOnCxthLctk_y4vwc-wYrUA",
         "metalness": 0.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.23
     },
     {
         "id": 22,
@@ -210,6 +230,7 @@
         "normalMap": "https://arweave.net/Wd2kjCTXvPQNoTMGXHt1w9i4goyO7bjFKp4zp8wTKvg",
         "roughnessMap": "https://arweave.net/FldPeIjz1DdBpl7XVlBBR9QfcKLi80cQcJt5E91ua5s",
         "metalness": 1.0,
-        "roughness": 1.0
+        "roughness": 1.0,
+        "price": 0.24
     }
 ]

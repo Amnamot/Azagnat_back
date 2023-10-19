@@ -132,5 +132,17 @@
         "shiftGlass": 0.1,
         "fontSize": 5,
         "speed": 10
-    }
+    },
+    {
+        "name": "Pampkin",
+        "local-path": "https://arweave.net/XOHsULl5u5TF07xUt3K_g-jpM0jem_WCU5P0G_rlpIw",
+        "fontSize": 4,
+        "hat": 2,
+        "PozZ" : 42,
+        "LocY" : -4,
+        "LocX" : -14,
+        "Bend" : -16,
+        "shiftGlass": 0,
+        "speed": 8
+      }
 ]

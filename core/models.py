@@ -147,8 +147,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": -30
+            "speed": 10
         },
         {
             "name": "Hiron",
@@ -160,8 +159,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": -30
+            "speed": 10
         },
         {
             "name": "Vesta",
@@ -173,8 +171,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": -60
+            "speed": 10
         },
         {
             "name": "Beroz",
@@ -186,8 +183,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": -30
+            "speed": 10
         },
         {
             "name": "Vega",
@@ -199,8 +195,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": -30
+            "speed": 10
         },
         {
             "name": "Joulupukki",
@@ -213,8 +208,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": -30
+            "speed": 10
         },
         {
             "name": "Maradona",
@@ -226,8 +220,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": -60
+            "speed": 10
         },
         {
             "name": "Star",
@@ -239,8 +232,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": 60
+            "speed": 10
         },
         {
             "name": "Pokeball",
@@ -252,8 +244,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": 270
+            "speed": 10
         },
         {
             "name": "Icosa",
@@ -265,8 +256,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": -120
+            "speed": 10
         },
         {
             "name": "Rock",
@@ -279,8 +269,7 @@ class Models(models.Model):
             "Bend" : -30,
             "shiftGlass": 0.1,
             "fontSize": 5,
-            "speed": 10,
-            "curve_radius": 0
+            "speed": 10
         }
     ])
 
@@ -318,7 +307,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/27kLNmoQxER3L3xvlNYgH7RoTmpDLNZzYLR4yNpbR3c",
             "metalness": 0.16,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.2
         },
         {
             "id": 2,
@@ -328,7 +317,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/Xxlj0jZo_m_IsIYPUX7UpjCbwD8nvJ7_ddigw7n35LY",
             "metalness": 1.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.3
         },
         {
             "id": 3,
@@ -338,7 +327,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/Qdu9D0r440jg1KVSztrtcm_NnaaAGXbDzGxPXm3stlc",
             "metalness": 0.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.4
         },
         {
             "id": 4,
@@ -348,7 +337,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/ch5QLG55OQylBESvDHNj8ZylPwjRdiUBAk2ZUuaNAzA",
             "metalness": 0.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.5
         },
         {
             "id": 5,
@@ -358,7 +347,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/qhLCsN71I50LYx04daXjuUV6MnADqbBz66Cyzkj4tyg",
             "metalness": 0.35,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.6
         },
         {
             "id": 6,
@@ -368,7 +357,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/YN8UpVjpVtry-Fba7zvuJfkJ5YIGVEfQoaDjtfrVV8M",
             "metalness": 1.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.7
         },
         {
             "id": 7,
@@ -378,7 +367,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/OlRIUwBh4GHkOFWvcCuxqBx4nAbWg_G4nob4PNxqMlY",
             "metalness": 0.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.8
         },
         {
             "id": 8,
@@ -388,7 +377,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/gGVTkHfDmOBZSlWjdo06JsX2UINvmXNCORMyH6VvLbo",
             "metalness": 0.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.9
         },
         {
             "id": 9,
@@ -398,7 +387,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/7rzU5hXd6s1710rbirwXDq2r5xFtymRW_mGRaWeYfLA",
             "metalness": 0.1,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.11
         },
         {
             "id": 10,
@@ -408,7 +397,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/bYE4v_8R2ZXVaS_H_qMLV7D8Z-cNlUUMDFEdAzQhf6Y",
             "metalness": 1.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.12
         },
         {
             "id": 11,
@@ -418,7 +407,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/otqnMrH2UKG2rj92fzDwnzCYhWlxcpcklyJqPxXN36o",
             "metalness": 0.6,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.13
         },
         {
             "id": 12,
@@ -428,7 +417,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/0XaJnw_bYjyM4PxKdRuU9zV5GdVlJfoXCafHktdxK9s",
             "metalness": 1.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.14
         },
         {
             "id": 13,
@@ -438,7 +427,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/5R-HpS43Rpf7Y3u2bEwF7WMnF_cTbyQMK-cSekTlcY4",
             "metalness": 0.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.15
         },
         {
             "id": 14,
@@ -450,8 +439,7 @@ class Materials(models.Model):
             "roughness": 1.0,
             "displacementMap": "https://arweave.net/-c3mBq36Czwwy7gSOvPTIXeO_fAa45XhbcTa3Cs1c90",
             "displacementScale": 3,
-            "displacementBias": -0.5,
-            "price": 0.1
+            "price": 0.16
         },
         {
             "id": 15,
@@ -461,7 +449,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/47FfaK7cCWf5DQUpmtFZdXJUGjwgm2h6Ni-3LZA8NGI",
             "metalness": 1.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.17
         },
         {
             "id": 16,
@@ -471,7 +459,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/HwwUgIXbxmjP1sgY78UXnZlc04UG_3mcoq86OiuhunY",
             "metalness": 1.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.18
         },
         {
             "id": 17,
@@ -483,8 +471,7 @@ class Materials(models.Model):
             "roughness": 0.0,
             "displacementMap": "https://arweave.net/ANrApmpVZLe22dFD0vtN1prBAuw2WHCvHAz9zRb9MPY",
             "displacementScale": 5,
-            "displacementBias": -1.5,
-            "price": 0.1
+            "price": 0.19
         },
         {
             "id": 18,
@@ -494,7 +481,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/jxoeGdQmjrlRoEp4i0Xuf9UYICVDBWTuB3pZxs3DlXo",
             "metalness": 0.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.21
         },
         {
             "id": 19,
@@ -504,7 +491,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/6R10dM_fNOVnuUhFZVlO7aX9Mz1Ez5Mhfut4_AMVG4Y",
             "metalness": 0.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.22
         },
         {
             "id": 20,
@@ -514,7 +501,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/MChiRBPght-rvVMv3zgbQ7Z4fRDujHROpR4c6Px9HL0",
             "metalness": 1.0,
             "roughness": 0.9,
-            "price": 0.1
+            "price": 0.22
         },
         {
             "id": 21,
@@ -524,7 +511,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/js33fvuZ-v_czgPRsa5qjOnCxthLctk_y4vwc-wYrUA",
             "metalness": 0.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.23
         },
         {
             "id": 22,
@@ -534,7 +521,7 @@ class Materials(models.Model):
             "roughnessMap": "https://arweave.net/FldPeIjz1DdBpl7XVlBBR9QfcKLi80cQcJt5E91ua5s",
             "metalness": 1.0,
             "roughness": 1.0,
-            "price": 0.1
+            "price": 0.24
         }
     ])
 

@@ -88,16 +88,16 @@ def minttask(self, data, publickey):
         
         elif data['idBodyColor'] == '4':
             if 'selectedMaterialId' in data:
-                mater = Materials.objects.get(id=int(data['selectedMaterialId'])+1)
-                body = ['', data['metalness'], data['roughness'], mater.roughness, mater.albedo, mater.normal]
-                if mater.displacement == None:
+                mater = Materials.objects.all()[-1][int(data['selectedMaterialId'])]
+                body = ['', data['metalness'], data['roughness'], mater["roughnessMap"], mater["map"], mater["normalMap"]]
+                if "displacementMap" not in mater:
                     body.append('')
                 else:
-                    body.append(mater.displacement)
-                if mater.displacescale == None:
+                    body.append(mater["displacementMap"])
+                if "displacementScale" not in mater:
                     body.append('')
                 else:
-                    body.append(mater.displacescale)
+                    body.append(mater["displacementScale"])
                 
         elif data['idBodyColor'] == '0':
             body = ['#1c1c1c', data['metalness'], data['roughness'], '', '', '', '', '']
