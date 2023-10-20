@@ -286,6 +286,58 @@ class Models(models.Model):
         verbose_name = 'Model'
         verbose_name_plural = "Models"
 
+class Hat(models.Model):
+    data = models.JSONField(default=[
+    {
+        "color" : "#ffffff",
+        "metalness": 1,
+        "roughness": 1,
+        "roughnessMap"  : "https://arweave.net/wUqIxu-by-swZPuCg1raaYBJEr8RvCNNGGRnVf25Bh4",
+        "map" : "https://arweave.net/6k2vpDLjLj5IJci_yOuU2wSWKv3FRPQ_d6gqqjWXUEQ",
+        "normalMap" : "https://arweave.net/HbEPamzgLLte07Z7B0H3YzJ0vfIang6H5ijgjZI4AeM",
+        "displacementMap"   : "",
+        "displacementScale" : "",
+        "envMapIntensity" : 2,
+        "flipY": True
+    },
+    {
+        "color" : "#ffffff",
+        "metalness": 1,
+        "roughness": 1,
+        "roughnessMap"  : "https://arweave.net/7UySi14E_ZTqRQlzjI9THLCE49JGw1OZT-glWyzltsQ",
+        "map" : "https://arweave.net/gRGm6t1jY9JQckEEaznTpa6YlnRl4P8140hGKdBG0lc",
+        "normalMap" : "https://arweave.net/dL72U0-qz-yn4sZnhJO29F1PH84WHRI-QfY0664rV00",
+        "displacementMap"   : "",
+        "displacementScale" : "",
+        "envMapIntensity" : 2,
+        "flipY": False
+    },
+    {
+        "color": "#ffffff",
+        "metalness": 1,
+        "roughness": 1,
+        "roughnessMap":      "https://arweave.net/uFQL34uuYCBIOkB-SWYldLcuijEBcyVz5R1nqyQBoeo", 
+        "map":               "https://arweave.net/h54414i1wpY1e3ezqFe6xBD55HnJ-9hjAV-OvATAauM",
+        "normalMap":         "https://arweave.net/wNg7XexkW-EZCLQB2XUi9Lzousa2yd5hjV8pH-bZBT4",
+        "displacementMap":   "",
+        "displacementScale": "",
+        "envMapIntensity": 2,
+        "flipY": False
+    }
+    ])
+
+    def save(self):
+        super().save()
+
+        with open("data/add-materials.json", 'w', encoding='utf-8') as f:
+            json.dump(self.data, f, indent=4, ensure_ascii=False)
+
+        
+
+        
+    class Meta:
+        verbose_name = 'Model'
+        verbose_name_plural = "Models"
 
 class Materials(models.Model):
     data = models.JSONField(default=[

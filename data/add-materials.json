@@ -24,16 +24,15 @@
     "flipY": false
   },
   {
-    "add-name": "Hat",
-    "add-color": "#ffffff",
-    "add-metalness": "1",
-    "add-roughness": "1",
-    "add-r-map":  "https://arweave.net/uFQL34uuYCBIOkB-SWYldLcuijEBcyVz5R1nqyQBoeo",
-    "add-albedo": "https://arweave.net/h54414i1wpY1e3ezqFe6xBD55HnJ-9hjAV-OvATAauM",
-    "add-normal": "https://arweave.net/wNg7XexkW-EZCLQB2XUi9Lzousa2yd5hjV8pH-bZBT4",
-    "add-disp": "",
-    "add-dispScale": "",
-    "add-envMapIntensity": "2",
-    "add-flipY" : false
+    "color": "#ffffff",
+    "metalness": 1,
+    "roughness": 1,
+    "roughnessMap":      "https://arweave.net/uFQL34uuYCBIOkB-SWYldLcuijEBcyVz5R1nqyQBoeo", 
+    "map":               "https://arweave.net/h54414i1wpY1e3ezqFe6xBD55HnJ-9hjAV-OvATAauM",
+    "normalMap":         "https://arweave.net/wNg7XexkW-EZCLQB2XUi9Lzousa2yd5hjV8pH-bZBT4",
+    "displacementMap":   "",
+    "displacementScale": "",
+    "envMapIntensity": 2,
+    "flipY": false
   }
 ]  
