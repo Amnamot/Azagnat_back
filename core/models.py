@@ -336,8 +336,8 @@ class Hat(models.Model):
 
         
     class Meta:
-        verbose_name = 'Model'
-        verbose_name_plural = "Models"
+        verbose_name = 'Hat'
+        verbose_name_plural = "Hats"
 
 class Materials(models.Model):
     data = models.JSONField(default=[
