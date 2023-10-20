@@ -38,6 +38,12 @@ class SelectImagesAdmin(admin.ModelAdmin):
     list_display = ['id']
 
 
+@admin.register(Hat)
+class HatAdmin(admin.ModelAdmin):
+    list_display = ['id']
+
+
+
 admin.site.register(Returned)
 admin.site.register(Address)
 admin.site.register(MintActive)
