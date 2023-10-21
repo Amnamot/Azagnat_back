@@ -141,17 +141,36 @@ def minttask(self, data, publickey):
             ticker = data['tickerColor']
         else:
             ticker = '#004f20'
+
+        with open("data/add-materials.json", "r") as f:
+            hats = json.load(f)
         
         if data["model"] == None:
             model = Models.objects.last().data[0]
             model_name = model["name"]
             model_link = model["local-path"]
             curve = model["Bend"]
+            speed = model["speed"]
+            shiftGlass = model["shiftGlass"]
+            fontSize = model["fontSize"]
+            LocX = model["LocX"]
+            LocY = model["LocY"]
+            PosZ = model["PosZ"]
+            hat_data = hats[model["hat"]]
+            
         else:
             model = Models.objects.last().data[int(data["model"])]
             model_name = model["name"]
             model_link = model["local-path"]
             curve = model["Bend"]
+            speed = model["speed"]
+            shiftGlass = model["shiftGlass"]
+            fontSize = model["fontSize"]
+            LocX = model["LocX"]
+            LocY = model["LocY"]
+            PosZ = model["PosZ"]
+            hat_data = hats[model["hat"]]
+
         env = Env(
             loader=FileSystemLoader('.'),
             autoescape=select_autoescape(['html', 'xml'])
@@ -177,11 +196,18 @@ def minttask(self, data, publickey):
             back_pam = background,
             back_type = int(data['idBackground'])-1 if data['idBackground']!='0' else data['idBackground'],
             curve_radius = curve,
+            speed = speed,
+            shiftGlass = shiftGlass,
+            fontSize = fontSize,
+            LocY = LocY,
+            LocX = LocX,
+            PosZ = PosZ,
             tick = ticker,
             env = environment.url,
             font = font.url,
             ticker_path = tick_path,
-            hat = True if model_link == 'https://arweave.net/54_M2OvAOnO-vKmL34wE0QxPFKcl6KgHIlWxBotnpS4' else False
+            hat = True if "hat" in model else False,
+            hat_data = f'[{"add-name":"Hat","add-color":"{hat_data["color"]}","add-metalness":"{hat_data["metalness"]}","add-roughness":"{hat_data["roughness"]}","add-r-map":"{hat_data["roughnessMap"]}","add-albedo":"{hat_data["map"]}","add-normal":"{hat_data["normalMap"]}","add-disp":"{hat_data["displacementMap"]}","add-dispScale":"{hat_data["displacementScale"]}","add-envMapIntensity":"{hat_data["envMapIntensity"]}","add-flipY":{"true" if hat_data["flipY"] else "false"}}]'
         )
 
         with open(f"/var/www/token/{config_len}/token.html" if not DEBUG else f"token/{config_len}/token.html", 'w', encoding="utf8") as file:
