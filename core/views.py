@@ -194,13 +194,24 @@ def getprice(request):
         if data["font"] != "https://arweave.net/_UUYLd9yZdb7TU2qWatd6SSJSqSM0Gul3pMzRtcU-bE":
             price["font_price"] = FontPrice.objects.get(id=1).price
             price['global_price'] += price['font_price']
+        else:
+            price["font_price"] = .0
+            price['global_price'] += price['font_price']
+    else:
+        price["font_price"] = .0
+        price['global_price'] += price['font_price']
 
     
     if 'env' in data:
         if data["env"] != "https://arweave.net/3g7voXOwFvpfI2xjBsMmNGsZLaDrnfGLMLauxn50gGY":
             price["env_price"] = EnvPrice.objects.get(id=1).price
             price['global_price'] += price['env_price']
-
+        else:
+            price["env_price"] = .0
+            price['global_price'] += price['env_price']
+    else:
+        price["env_price"] = .0
+        price['global_price'] += price['env_price']
 
     if 'p' in data['get_par']:
         try:

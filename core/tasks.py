@@ -156,18 +156,18 @@ def minttask(self, data, publickey):
             LocX = model["LocX"]
             LocY = model["LocY"]
             PosZ = model["PosZ"]
-            hat_data = {"add-name": "Hat"}
-            hat_data = {"add-name": "Hat"}
-            hat_data["add-color"] = hats[model["hat"]]["color"]
-            hat_data["add-metalness"] = hats[model["hat"]]["metalness"]
-            hat_data["add-roughness"] = hats[model["hat"]]["roughness"]
-            hat_data["add-r-map"] = hats[model["hat"]]["roughnessMap"]
-            hat_data["add-albedo"] = hats[model["hat"]]["map"]
-            hat_data["add-normal"] = hats[model["hat"]]["normalMap"]
-            hat_data["add-disp"] = hats[model["hat"]]["displacementMap"]
-            hat_data["add-dispScale"] = hats[model["hat"]]["displacementScale"]
-            hat_data["add-envMapIntensity"] = hats[model["hat"]]["envMapIntensity"]
-            hat_data["flipY"] = hats[model["hat"]]["flipY"]
+            if "hat" in model:
+                hat_data = {"add-name": "Hat"}
+                hat_data["add-color"] = hats[model["hat"]]["color"]
+                hat_data["add-metalness"] = hats[model["hat"]]["metalness"]
+                hat_data["add-roughness"] = hats[model["hat"]]["roughness"]
+                hat_data["add-r-map"] = hats[model["hat"]]["roughnessMap"]
+                hat_data["add-albedo"] = hats[model["hat"]]["map"]
+                hat_data["add-normal"] = hats[model["hat"]]["normalMap"]
+                hat_data["add-disp"] = hats[model["hat"]]["displacementMap"]
+                hat_data["add-dispScale"] = hats[model["hat"]]["displacementScale"]
+                hat_data["add-envMapIntensity"] = hats[model["hat"]]["envMapIntensity"]
+                hat_data["flipY"] = hats[model["hat"]]["flipY"]
 
             
         else:
@@ -181,17 +181,18 @@ def minttask(self, data, publickey):
             LocX = model["LocX"]
             LocY = model["LocY"]
             PosZ = model["PosZ"]
-            hat_data = {"add-name": "Hat"}
-            hat_data["add-color"] = hats[model["hat"]]["color"]
-            hat_data["add-metalness"] = hats[model["hat"]]["metalness"]
-            hat_data["add-roughness"] = hats[model["hat"]]["roughness"]
-            hat_data["add-r-map"] = hats[model["hat"]]["roughnessMap"]
-            hat_data["add-albedo"] = hats[model["hat"]]["map"]
-            hat_data["add-normal"] = hats[model["hat"]]["normalMap"]
-            hat_data["add-disp"] = hats[model["hat"]]["displacementMap"]
-            hat_data["add-dispScale"] = hats[model["hat"]]["displacementScale"]
-            hat_data["add-envMapIntensity"] = hats[model["hat"]]["envMapIntensity"]
-            hat_data["flipY"] = hats[model["hat"]]["flipY"]
+            if "hat" in model:
+                hat_data = {"add-name": "Hat"}
+                hat_data["add-color"] = hats[model["hat"]]["color"]
+                hat_data["add-metalness"] = hats[model["hat"]]["metalness"]
+                hat_data["add-roughness"] = hats[model["hat"]]["roughness"]
+                hat_data["add-r-map"] = hats[model["hat"]]["roughnessMap"]
+                hat_data["add-albedo"] = hats[model["hat"]]["map"]
+                hat_data["add-normal"] = hats[model["hat"]]["normalMap"]
+                hat_data["add-disp"] = hats[model["hat"]]["displacementMap"]
+                hat_data["add-dispScale"] = hats[model["hat"]]["displacementScale"]
+                hat_data["add-envMapIntensity"] = hats[model["hat"]]["envMapIntensity"]
+                hat_data["flipY"] = hats[model["hat"]]["flipY"]
 
 
         env = Env(
