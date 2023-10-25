@@ -156,7 +156,19 @@ def minttask(self, data, publickey):
             LocX = model["LocX"]
             LocY = model["LocY"]
             PosZ = model["PosZ"]
-            hat_data = hats[model["hat"]]
+            hat_data = {"add-name": "Hat"}
+            hat_data = {"add-name": "Hat"}
+            hat_data["add-color"] = hats[model["hat"]]["color"]
+            hat_data["add-metalness"] = hats[model["hat"]]["metalness"]
+            hat_data["add-roughness"] = hats[model["hat"]]["roughness"]
+            hat_data["add-r-map"] = hats[model["hat"]]["roughnessMap"]
+            hat_data["add-albedo"] = hats[model["hat"]]["map"]
+            hat_data["add-normal"] = hats[model["hat"]]["normalMap"]
+            hat_data["add-disp"] = hats[model["hat"]]["displacementMap"]
+            hat_data["add-dispScale"] = hats[model["hat"]]["displacementScale"]
+            hat_data["add-envMapIntensity"] = hats[model["hat"]]["envMapIntensity"]
+            hat_data["flipY"] = hats[model["hat"]]["flipY"]
+
             
         else:
             model = Models.objects.last().data[int(data["model"])]
@@ -169,7 +181,18 @@ def minttask(self, data, publickey):
             LocX = model["LocX"]
             LocY = model["LocY"]
             PosZ = model["PosZ"]
-            hat_data = hats[model["hat"]]
+            hat_data = {"add-name": "Hat"}
+            hat_data["add-color"] = hats[model["hat"]]["color"]
+            hat_data["add-metalness"] = hats[model["hat"]]["metalness"]
+            hat_data["add-roughness"] = hats[model["hat"]]["roughness"]
+            hat_data["add-r-map"] = hats[model["hat"]]["roughnessMap"]
+            hat_data["add-albedo"] = hats[model["hat"]]["map"]
+            hat_data["add-normal"] = hats[model["hat"]]["normalMap"]
+            hat_data["add-disp"] = hats[model["hat"]]["displacementMap"]
+            hat_data["add-dispScale"] = hats[model["hat"]]["displacementScale"]
+            hat_data["add-envMapIntensity"] = hats[model["hat"]]["envMapIntensity"]
+            hat_data["flipY"] = hats[model["hat"]]["flipY"]
+
 
         env = Env(
             loader=FileSystemLoader('.'),
@@ -207,7 +230,7 @@ def minttask(self, data, publickey):
             font = font.url,
             ticker_path = tick_path,
             hat = True if "hat" in model else False,
-            hat_data = f'[{"add-name":"Hat","add-color":"{hat_data["color"]}","add-metalness":"{hat_data["metalness"]}","add-roughness":"{hat_data["roughness"]}","add-r-map":"{hat_data["roughnessMap"]}","add-albedo":"{hat_data["map"]}","add-normal":"{hat_data["normalMap"]}","add-disp":"{hat_data["displacementMap"]}","add-dispScale":"{hat_data["displacementScale"]}","add-envMapIntensity":"{hat_data["envMapIntensity"]}","add-flipY":{"true" if hat_data["flipY"] else "false"}}]'
+            hat_data = json.dumps([hat_data])
         )
 
         with open(f"/var/www/token/{config_len}/token.html" if not DEBUG else f"token/{config_len}/token.html", 'w', encoding="utf8") as file:
