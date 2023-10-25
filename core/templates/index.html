@@ -302,7 +302,7 @@
                 <div class="mint__sum">
                     Σ = <span>0.00</span> SOL
                 </div>
-                {% if mint_active %}
+                {% if mint_active.is_active %}
                 <input class="mint__submit" type="submit" value="MINT">
                 {% else %}
                 <input class="mint__submit" disabled type="button" value="MINT">
@@ -509,6 +509,15 @@
             is possible after connecting the wallet.
         </p>
         <img class="warning-access-prem" src="{% static 'img/WalletON.svg' %}" alt="pic">
+    </div>
+</div>
+
+<div class="warning warning-req-param {% if mint_active.is_active %} hide {% else %} {% endif %}">
+    <div class="warning__content">
+        <h2 class="warning__title yellow">Warning!</h2>
+        <p class="description">
+            {{mint_active.text}}
+        </p>
     </div>
 </div>
 

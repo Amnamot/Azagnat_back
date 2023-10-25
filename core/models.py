@@ -795,6 +795,7 @@ class MintCount(models.Model):
 
 class MintActive(models.Model):
     is_active = models.BooleanField(default=False)
+    text = models.CharField(max_length=600, default="")
 
 
 class Font(models.Model):
