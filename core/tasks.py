@@ -145,6 +145,8 @@ def minttask(self, data, publickey):
         with open("data/add-materials.json", "r") as f:
             hats = json.load(f)
         
+        hat_data = {}
+        
         if data["model"] == None:
             model = Models.objects.last().data[0]
             model_name = model["name"]
@@ -157,7 +159,7 @@ def minttask(self, data, publickey):
             LocY = model["LocY"]
             PosZ = model["PosZ"]
             if "hat" in model:
-                hat_data = {"add-name": "Hat"}
+                hat_data["add-name"] = "Hat"
                 hat_data["add-color"] = hats[model["hat"]]["color"]
                 hat_data["add-metalness"] = hats[model["hat"]]["metalness"]
                 hat_data["add-roughness"] = hats[model["hat"]]["roughness"]
@@ -182,7 +184,7 @@ def minttask(self, data, publickey):
             LocY = model["LocY"]
             PosZ = model["PosZ"]
             if "hat" in model:
-                hat_data = {"add-name": "Hat"}
+                hat_data["add-name"] = "Hat"
                 hat_data["add-color"] = hats[model["hat"]]["color"]
                 hat_data["add-metalness"] = hats[model["hat"]]["metalness"]
                 hat_data["add-roughness"] = hats[model["hat"]]["roughness"]
