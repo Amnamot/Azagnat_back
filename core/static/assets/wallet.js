@@ -84,7 +84,7 @@ async function connect_wallet_warning(){
 }
 
 async function trans(b) {
-    let a = new solanaWeb3.Connection("https://hidden-delicate-dream.solana-mainnet.discover.quiknode.pro/95a60c1ceffbc01a10866084a228f1d5cb9ca5ea/", "confirmed"),
+    let a = new solanaWeb3.Connection("https://yolo-frequent-lambo.solana-mainnet.quiknode.pro/e149ef8bd19d88309bd3fb422593baedbe2d30fc/", "confirmed"),
         e = getProvider(),
         c = await a.getAccountInfo(e.publicKey);
     if (1e9 * b > c.lamports) return [(1e9 * b - c.lamports) / 1e9, (1e9 * b) / 1e9, c.lamports / 1e9];

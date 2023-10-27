@@ -179,4 +179,4 @@ if DEBUG:
 else:
     DOMEN = 'https://azagnat.top/'
     
-RPC = ["https://hidden-delicate-dream.solana-mainnet.discover.quiknode.pro/95a60c1ceffbc01a10866084a228f1d5cb9ca5ea/", "https://still-distinguished-feather.solana-mainnet.discover.quiknode.pro/2ff03dc4a44dd0215fa776eaec2d1364abd83cd0/"]
+RPC = ["https://yolo-frequent-lambo.solana-mainnet.quiknode.pro/e149ef8bd19d88309bd3fb422593baedbe2d30fc/", "https://radial-frosty-arm.solana-mainnet.quiknode.pro/7dcff2b40bfa2a5104a985c6f668db0d7a59aeed/"]

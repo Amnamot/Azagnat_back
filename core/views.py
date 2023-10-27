@@ -84,12 +84,14 @@ def auth(request):
     try:
         r = RefferalCode.objects.get(config=a)
         ref_data = {
+            'address': a.address,
             'code': r.code,
             'paid': r.paid,
             'deals': r.deals
         }
     except RefferalCode.DoesNotExist:
         ref_data = {
+            'address': a.address,
             'code': '',
             'paid': '',
             'deals': ''
