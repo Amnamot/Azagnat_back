@@ -179,4 +179,4 @@ if DEBUG:
 else:
     DOMEN = 'https://azagnat.top/'
     
-RPC = os.getenv('RPC')
+RPC = ["https://hidden-delicate-dream.solana-mainnet.discover.quiknode.pro/95a60c1ceffbc01a10866084a228f1d5cb9ca5ea/", "https://still-distinguished-feather.solana-mainnet.discover.quiknode.pro/2ff03dc4a44dd0215fa776eaec2d1364abd83cd0/"]

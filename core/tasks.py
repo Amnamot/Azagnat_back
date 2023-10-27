@@ -13,9 +13,10 @@ from celery import shared_task
 from aza.settings import RPC, DOMEN, DEBUG
 from django.db import IntegrityError
 import os
+import random
 
 def send_sol(to, s):
-    solana_client = Client(RPC)
+    solana_client = Client(random.choice(RPC))
 
 
     with open('id.json', 'r') as f:
@@ -146,7 +147,7 @@ def minttask(self, data, publickey):
             hats = json.load(f)
         
         hat_data = {}
-        
+
         if data["model"] == None:
             model = Models.objects.last().data[0]
             model_name = model["name"]
@@ -304,7 +305,7 @@ def minttask(self, data, publickey):
         with open(f"/var/www/token/{config_len}/ex.json" if not DEBUG else f"token/{config_len}/ex.json", 'w') as f:
             json.dump(d, f, indent=4, ensure_ascii=False)
 
-        res = subprocess.run(f"metaboss mint one -r {RPC} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
+        res = subprocess.run(f"metaboss mint one -r {random.choice(RPC)} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
         contract = res.stdout.decode().split()[5]
     except BaseException as e:
         raise self.retry(exc=e, countdown=2) 
