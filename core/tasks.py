@@ -39,6 +39,17 @@ def generator(n):
 
 @shared_task(bind=True)
 def minttask(self, data, publickey):
+    if 'p' in data['get_par']:
+        try:
+            Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p'])
+        except Promocode.DoesNotExist:
+            return
+    elif 'e' in data['get_par']:
+        try:
+            EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
+        except EasyMint.DoesNotExist:
+            return
+        
     if "font" in data:
         font = Font.objects.get(url=data["font"])
     else:
