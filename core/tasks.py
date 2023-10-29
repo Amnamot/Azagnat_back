@@ -319,7 +319,7 @@ def minttask(self, data, publickey):
         res = subprocess.run(f"metaboss mint one -r {random.choice(RPC)} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
         contract = res.stdout.decode().split()[5]
     except BaseException as e:
-        raise self.retry(exc=e, countdown=2) 
+        raise self.retry(exc=e, countdown=10) 
     else:
         config = Config()
         config.address_id = publickey
