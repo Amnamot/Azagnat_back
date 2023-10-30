@@ -345,6 +345,7 @@ def minttask(self, data, publickey):
         config.name = name
         config.token_id = MintCount.objects.get(id=1).general_sum
         config.metadata = d
+        config.html = html
         config.cost = "{:.3f}".format(data['global_price'])
         config.contract = contract        
         config.save()
@@ -380,9 +381,11 @@ def minttask(self, data, publickey):
             e = EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
             e.delete()
 
-
-        NotMinted.objects.get(token_id=MintCount.objects.get(id=1).general_sum).delete()
-
+        try:
+            NotMinted.objects.get(token_id=MintCount.objects.get(id=1).general_sum).delete()
+        except NotMinted.DoesNotExist:
+            pass
+            
     return config_len
         
 

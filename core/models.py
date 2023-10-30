@@ -33,6 +33,7 @@ class Config(models.Model):
     name = models.CharField(max_length=256)
     metadata = models.JSONField()
     token_id = models.PositiveIntegerField()
+    html = models.URLField(null=True, blank=True)
     cost = models.FloatField()
     contract = models.CharField(max_length=500, primary_key=True)
     date_minted = models.DateTimeField(auto_now_add=True)
