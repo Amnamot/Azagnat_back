@@ -319,27 +319,25 @@ def minttask(self, data, publickey):
         res = subprocess.run(f"metaboss mint one -r {random.choice(RPC)} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
         contract = res.stdout.decode().split()[5]
     except BaseException as e:
-        raise self.retry(exc=e, countdown=10) 
+        ob = NotMinted()
+        ob.token_id = MintCount.objects.get(id=1).general_sum
+        ob.data = d
+        if 'r' in data['get_par']:
+            ob.code = f"r={data['get_par']['r']}"
+        elif 'p' in data['get_par']:
+            ob.code = f"p={data['get_par']['p']}"
+        elif 'a' in data['get_par']:
+            ob.code = f"a={data['get_par']['a']}"
+        elif 'e' in data['get_par']:
+            ob.code = f"e={data['get_par']['e']}"
     else:
         config = Config()
         config.address_id = publickey
         config.name = name
         config.token_id = MintCount.objects.get(id=1).general_sum
-        config.metadata = metadata
-        config.avatar = data['userObj']['imgData']
-        if data['idBackground'] == '4':
-            config.background = data['customBgImgData']
-        if data['idBodyColor'] == '2':
-            config.body_view = data['customImgData']
-        config.html = html
+        config.metadata = d
         config.cost = "{:.3f}".format(data['global_price'])
-        config.contract = contract
-        if 'r' in data['get_par']:
-            config.whatref = data['get_par']['r']
-        elif 'p' in data['get_par']:
-            config.whatpro = data['get_par']['p']
-        elif 'a' in data['get_par']:
-            config.whatamb = data['get_par']['a']
+        config.contract = contract        
         config.save()
 
         ref_code = RefferalCode()

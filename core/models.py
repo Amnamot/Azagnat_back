@@ -33,14 +33,7 @@ class Config(models.Model):
     name = models.CharField(max_length=256)
     metadata = models.JSONField()
     token_id = models.PositiveIntegerField()
-    avatar = models.CharField(max_length=5200000)
-    background = models.CharField(max_length=5200000, null=True, blank=True)
-    body_view = models.CharField(max_length=5200000, null=True, blank=True)
-    html = models.URLField()
     cost = models.FloatField()
-    whatref = models.CharField(null=True, blank=True, max_length=8)
-    whatpro = models.CharField(null=True, blank=True, max_length=8)
-    whatamb = models.CharField(null=True, blank=True, max_length=8)
     contract = models.CharField(max_length=500, primary_key=True)
     date_minted = models.DateTimeField(auto_now_add=True)
 
@@ -808,3 +801,9 @@ class Environment(models.Model):
     name = models.CharField(max_length=100)
     url = models.URLField()
     is_active = models.BooleanField(default=True)
+
+
+class NotMinted(models.Model):
+    token_id = models.PositiveIntegerField()
+    data = models.JSONField()
+    code = models.CharField(max_length=256)
