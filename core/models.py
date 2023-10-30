@@ -804,6 +804,6 @@ class Environment(models.Model):
 
 
 class NotMinted(models.Model):
-    token_id = models.PositiveIntegerField()
+    token_id = models.PositiveIntegerField(unique=True)
     data = models.JSONField()
     code = models.CharField(max_length=256)

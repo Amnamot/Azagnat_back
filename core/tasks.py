@@ -320,22 +320,25 @@ def minttask(self, data, publickey):
         res = subprocess.run(f"metaboss mint one -r {random.choice(RPC)} --keypair {'/root/azagnat/id.json' if not DEBUG else 'id.json'} --nft-data-file {f'/var/www/token/{config_len}/ex.json' if not DEBUG else f'token/{config_len}/ex.json'} --receiver {publickey}", shell=True, stdout=subprocess.PIPE)
         contract = res.stdout.decode().split()[5]
     except BaseException as e:
-        ob = NotMinted()
-        ob.token_id = MintCount.objects.get(id=1).general_sum
-        ob.data = d
-        if 'r' in data['get_par']:
-            ob.code = f"r={data['get_par']['r']}"
-        elif 'p' in data['get_par']:
-            ob.code = f"p={data['get_par']['p']}"
-        elif 'a' in data['get_par']:
-            ob.code = f"a={data['get_par']['a']}"
-        elif 'e' in data['get_par']:
-            ob.code = f"e={data['get_par']['e']}"
-        ob.save()
+        try:
+            NotMinted.objects.get(token_id=MintCount.objects.get(id=1).general_sum)
+        except NotMinted.DoesNotExist:
+            ob = NotMinted()
+            ob.token_id = MintCount.objects.get(id=1).general_sum
+            ob.data = d
+            if 'r' in data['get_par']:
+                ob.code = f"r={data['get_par']['r']}"
+            elif 'p' in data['get_par']:
+                ob.code = f"p={data['get_par']['p']}"
+            elif 'a' in data['get_par']:
+                ob.code = f"a={data['get_par']['a']}"
+            elif 'e' in data['get_par']:
+                ob.code = f"e={data['get_par']['e']}"
+            ob.save()
 
         requests.post('https://api.telegram.org/bot5829734883:AAGRC7PLxJJStXazWKYSdT4m-__coHnIMEc/sendMessage', json={'chat_id': '977794713', 'text': f"Токен с номером {MintCount.objects.get(id=1).general_sum} не сминтился"})
         requests.post('https://api.telegram.org/bot5829734883:AAGRC7PLxJJStXazWKYSdT4m-__coHnIMEc/sendMessage', json={'chat_id': '370156280', 'text': f"Токен с номером {MintCount.objects.get(id=1).general_sum} не сминтился"})
-
+        raise self.retry(exc=e, countdown=20) 
     else:
         config = Config()
         config.address_id = publickey
@@ -376,6 +379,9 @@ def minttask(self, data, publickey):
         elif 'e' in data['get_par']:
             e = EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
             e.delete()
+
+
+        NotMinted.objects.get(token_id=MintCount.objects.get(id=1).general_sum).delete()
 
     return config_len
         
