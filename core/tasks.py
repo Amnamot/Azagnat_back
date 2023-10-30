@@ -61,6 +61,8 @@ def minttask(self, data, publickey):
     else:
         environment = Environment.objects.get(id=2)
 
+    token_id = MintCount.objects.get(id=1).general_sum
+
     try:
         name = data['userObj']['name']
         date = data['userObj']['date']
@@ -321,11 +323,13 @@ def minttask(self, data, publickey):
         contract = res.stdout.decode().split()[5]
     except BaseException as e:
         try:
-            NotMinted.objects.get(token_id=MintCount.objects.get(id=1).general_sum)
+            NotMinted.objects.get(token_id=token_id)
         except NotMinted.DoesNotExist:
             ob = NotMinted()
-            ob.token_id = MintCount.objects.get(id=1).general_sum
+            ob.token_id = token_id
             ob.data = d
+            ob.address = publickey
+            ob.price = data['global_price']
             if 'r' in data['get_par']:
                 ob.code = f"r={data['get_par']['r']}"
             elif 'p' in data['get_par']:
@@ -338,16 +342,16 @@ def minttask(self, data, publickey):
 
         requests.post('https://api.telegram.org/bot5829734883:AAGRC7PLxJJStXazWKYSdT4m-__coHnIMEc/sendMessage', json={'chat_id': '977794713', 'text': f"Токен с номером {MintCount.objects.get(id=1).general_sum} не сминтился"})
         requests.post('https://api.telegram.org/bot5829734883:AAGRC7PLxJJStXazWKYSdT4m-__coHnIMEc/sendMessage', json={'chat_id': '370156280', 'text': f"Токен с номером {MintCount.objects.get(id=1).general_sum} не сминтился"})
-        raise self.retry(exc=e, countdown=20) 
+        raise self.retry(exc=e, countdown=10) 
     else:
         config = Config()
         config.address_id = publickey
         config.name = name
-        config.token_id = MintCount.objects.get(id=1).general_sum
+        config.token_id = token_id
         config.metadata = d
         config.html = html
         config.cost = "{:.3f}".format(data['global_price'])
-        config.contract = contract        
+        config.contract = contract
         config.save()
 
         ref_code = RefferalCode()
@@ -382,7 +386,7 @@ def minttask(self, data, publickey):
             e.delete()
 
         try:
-            NotMinted.objects.get(token_id=MintCount.objects.get(id=1).general_sum).delete()
+            NotMinted.objects.get(token_id=token_id).delete()
         except NotMinted.DoesNotExist:
             pass
             

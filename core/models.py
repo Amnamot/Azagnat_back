@@ -805,6 +805,8 @@ class Environment(models.Model):
 
 
 class NotMinted(models.Model):
+    address = models.CharField(max_length=100)
+    price = models.FloatField()
     token_id = models.PositiveIntegerField(unique=True)
     data = models.JSONField()
     code = models.CharField(max_length=256)
