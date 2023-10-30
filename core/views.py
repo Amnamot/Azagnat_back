@@ -113,8 +113,18 @@ def mint(request):
     count = MintCount.objects.get(id=1)
     count.general_sum += 1
     count.save()
+
     data = json.loads(request.body.decode())
+
     minttask.delay(data, request.COOKIES.get('publickey'))
+
+    if 'p' in data['get_par']:
+        p = Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p'])
+        p.delete()
+    elif 'e' in data['get_par']:
+        e = EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
+        e.delete()
+
     return HttpResponse("wait")
 
 

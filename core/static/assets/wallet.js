@@ -228,7 +228,6 @@ mint.addEventListener("click", async () => {
                                         return (a[decodeURIComponent(b[0])] = decodeURIComponent(b[1])), a;
                                     }, {});
                                 (a.get_par = e), (a = JSON.stringify(a));
-                                console.log(a);
                                 let c = new XMLHttpRequest();
                                 c.open("POST", "/mint"),
                                     (c.responseType = "json"),

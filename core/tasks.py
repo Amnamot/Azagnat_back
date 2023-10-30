@@ -40,16 +40,6 @@ def generator(n):
 
 @shared_task(bind=True)
 def minttask(self, data, publickey):
-    if 'p' in data['get_par']:
-        try:
-            Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p'])
-        except Promocode.DoesNotExist:
-            return
-    elif 'e' in data['get_par']:
-        try:
-            EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
-        except EasyMint.DoesNotExist:
-            return
         
     if "font" in data:
         font = Font.objects.get(url=data["font"])
@@ -372,18 +362,12 @@ def minttask(self, data, publickey):
             re = Returned.objects.get(id=1)
             re.count = re.count + (data['global_price'] * 0.1)
             re.save()
-        elif 'p' in data['get_par']:
-            p = Promocode.objects.get(code=f'{DOMEN}?p='+data['get_par']['p'])
-            p.delete()
         elif 'a' in data['get_par']:
             a = Ambassador.objects.get(code=f'{DOMEN}?a='+data['get_par']['a'])
             res = send_sol(a.address.address, int((data['global_price'] * a.royality / 100) * 1000000000))
             re = Returned.objects.get(id=1)
             re.count = re.count + (data['global_price'] * a.royality / 100)
             re.save()
-        elif 'e' in data['get_par']:
-            e = EasyMint.objects.get(code=f'{DOMEN}?e='+data['get_par']['e'])
-            e.delete()
 
         try:
             NotMinted.objects.get(token_id=token_id).delete()
