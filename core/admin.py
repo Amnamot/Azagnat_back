@@ -42,6 +42,10 @@ class SelectImagesAdmin(admin.ModelAdmin):
 class HatAdmin(admin.ModelAdmin):
     list_display = ['id']
 
+@admin.register(NotMinted)
+class NotMintedAdmin(admin.ModelAdmin):
+    list_display = ['token_id']
+
 
 
 admin.site.register(Returned)

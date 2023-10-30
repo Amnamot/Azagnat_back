@@ -14,6 +14,7 @@ from aza.settings import RPC, DOMEN, DEBUG
 from django.db import IntegrityError
 import os
 import random
+import requests
 
 def send_sol(to, s):
     solana_client = Client(random.choice(RPC))
@@ -330,6 +331,11 @@ def minttask(self, data, publickey):
             ob.code = f"a={data['get_par']['a']}"
         elif 'e' in data['get_par']:
             ob.code = f"e={data['get_par']['e']}"
+        ob.save()
+
+        requests.post('https://api.telegram.org/bot5829734883:AAGRC7PLxJJStXazWKYSdT4m-__coHnIMEc/sendMessage', json={'chat_id': '977794713', 'text': f"Токен с номером {MintCount.objects.get(id=1).general_sum} не сминтился"})
+        requests.post('https://api.telegram.org/bot5829734883:AAGRC7PLxJJStXazWKYSdT4m-__coHnIMEc/sendMessage', json={'chat_id': '370156280', 'text': f"Токен с номером {MintCount.objects.get(id=1).general_sum} не сминтился"})
+
     else:
         config = Config()
         config.address_id = publickey
