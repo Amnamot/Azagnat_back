@@ -320,6 +320,7 @@ def minttask(self, data, publickey):
             ob.data = d
             ob.address = publickey
             ob.price = data['global_price']
+            ob.html = html
             if 'r' in data['get_par']:
                 ob.code = f"r={data['get_par']['r']}"
             elif 'p' in data['get_par']:
