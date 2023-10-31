@@ -305,7 +305,7 @@ def minttask(self, data, publickey):
         d['symbol'] = 'AZGT'
         d['uri'] = metadata_url
         d['seller_fee_basis_points'] = 777
-        d['creators'] = [{"address": "AzagnattdNF4kiZnQDDXhmpQ9FgGUb9ZGTJouEACjGj7", "verified": True, "share": 100}]
+        d['creators'] = [{"address": "AZAGNAT39kYmVzhgtQF8LyM9PXFkvXMZjFbCjLZoTuG5", "verified": True, "share": 100}]
         with open(f"/var/www/token/{config_len}/ex.json" if not DEBUG else f"token/{config_len}/ex.json", 'w') as f:
             json.dump(d, f, indent=4, ensure_ascii=False)
 

