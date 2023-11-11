@@ -73,14 +73,14 @@ def minttask(self, data, publickey):
         
         with open(f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt", 'w') as f:
             f.write(data['userObj']['imgData'])
-        result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+        result = subprocess.run(f'irys upload {f"/var/www/token/{config_len}/avatar.txt" if not DEBUG else f"token/{config_len}/avatar.txt"} -h https://node1.irys.xyz -t arweave -w wallet.json', shell=True, stdout=subprocess.PIPE)
         avatar_link = result.stdout.decode().split()[5]
         
         if data['idBodyColor'] == '2':
             if 'customImgData' in data:
                 with open(f"/var/www/token/{config_len}/custom.png" if not DEBUG else f"token/{config_len}/custom.png", "wb") as fh:
                     fh.write(base64.b64decode(data['customImgData']))
-                result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/custom.png" if not DEBUG else f"token/{config_len}/custom.png"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+                result = subprocess.run(f'irys upload {f"/var/www/token/{config_len}/custom.png" if not DEBUG else f"token/{config_len}/custom.png"} -h https://node1.irys.xyz -t arweave -w wallet.json', shell=True, stdout=subprocess.PIPE)
                 body = ['', data['metalness'], data['roughness'], '', result.stdout.decode().split()[5], '', '', '']
                 
         elif data['idBodyColor'] == '1':
@@ -126,7 +126,7 @@ def minttask(self, data, publickey):
                 if 'customBgImgData' in data:
                     with open(f"/var/www/token/{config_len}/custom.txt" if not DEBUG else f"token/{config_len}/custom.txt",'w') as f:
                         f.write(data['customBgImgData'])
-                    result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/custom.txt" if not DEBUG else f"token/{config_len}/custom.txt"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+                    result = subprocess.run(f'irys upload {f"/var/www/token/{config_len}/custom.txt" if not DEBUG else f"token/{config_len}/custom.txt"} -h https://node1.irys.xyz -t arweave -w wallet.json', shell=True, stdout=subprocess.PIPE)
                     background = ['', '', '', '', '', result.stdout.decode().split()[5], '']
                     
             elif data['idBackground'] == '5':
@@ -244,11 +244,11 @@ def minttask(self, data, publickey):
         with open(f"/var/www/token/{config_len}/token.html" if not DEBUG else f"token/{config_len}/token.html", 'w', encoding="utf8") as file:
             file.write(rendered_page)
         
-        result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/token.html" if not DEBUG else f"token/{config_len}/token.html"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+        result = subprocess.run(f'irys upload {f"/var/www/token/{config_len}/token.html" if not DEBUG else f"token/{config_len}/token.html"} -h https://node1.irys.xyz -t arweave -w wallet.json', shell=True, stdout=subprocess.PIPE)
         html = result.stdout.decode().split()[5] + '?ext=html'
         with open(f"/var/www/token/{config_len}/screenshot.png" if not DEBUG else f"token/{config_len}/screenshot.png", "wb") as fh:
             fh.write(base64.b64decode(data['screenshot']))
-        result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/screenshot.png" if not DEBUG else f"token/{config_len}/screenshot.png"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+        result = subprocess.run(f'irys upload {f"/var/www/token/{config_len}/screenshot.png" if not DEBUG else f"token/{config_len}/screenshot.png"} -h https://node1.irys.xyz -t arweave -w wallet.json', shell=True, stdout=subprocess.PIPE)
         screenshot = result.stdout.decode().split()[5] + '?ext=png'
         metadata = {}
         metadata['name'] = f"Azagnat #{config_len}"
@@ -298,7 +298,7 @@ def minttask(self, data, publickey):
         with open(f"/var/www/token/{config_len}/metadata.json" if not DEBUG else f"token/{config_len}/metadata.json", 'w') as f:
             json.dump(metadata, f, indent=4, ensure_ascii=False)
         
-        result = subprocess.run(f'bundlr upload {f"/var/www/token/{config_len}/metadata.json" if not DEBUG else f"token/{config_len}/metadata.json"} -h https://node1.bundlr.network -w wallet.json -c arweave', shell=True, stdout=subprocess.PIPE)
+        result = subprocess.run(f'irys upload {f"/var/www/token/{config_len}/metadata.json" if not DEBUG else f"token/{config_len}/metadata.json"} -h https://node1.irys.xyz -t arweave -w wallet.json', shell=True, stdout=subprocess.PIPE)
         metadata_url = result.stdout.decode().split()[5]
         d = {}
         d['name'] = f"Azagnat #{config_len}"
